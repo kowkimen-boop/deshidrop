@@ -303,29 +303,26 @@
 
 /* ---- Welcome popup: delivery info + random Quran verse ---- */
 (function () {
-  // Full verses (Arabic text, Sahih International-style English, Bangla meaning).
-  const VERSES = [
-    { ar: "فَإِنَّ مَعَ الْعُسْرِ يُسْرًا", en: "For indeed, with hardship comes ease.", bn: "অতএব, নিশ্চয়ই কষ্টের সাথে স্বস্তি আছে।", ref: "Surah Ash-Sharh 94:5 · সূরা আশ-শারহ ৯৪:৫" },
-    { ar: "فَاذْكُرُونِي أَذْكُرْكُمْ وَاشْكُرُوا لِي وَلَا تَكْفُرُونِ", en: "So remember Me; I will remember you. And be grateful to Me and do not deny Me.", bn: "অতএব তোমরা আমাকে স্মরণ করো, আমিও তোমাদের স্মরণ করব। আর আমার কৃতজ্ঞতা প্রকাশ করো এবং অকৃতজ্ঞ হয়ো না।", ref: "Surah Al-Baqarah 2:152 · সূরা আল-বাকারা ২:১৫২" },
-    { ar: "إِنَّ اللَّهَ هُوَ الرَّزَّاقُ ذُو الْقُوَّةِ الْمَتِينُ", en: "Indeed, it is Allah who is the Provider, the firm possessor of strength.", bn: "নিশ্চয়ই আল্লাহই রিযিকদাতা, শক্তির অধিকারী, পরাক্রমশালী।", ref: "Surah Adh-Dhariyat 51:58 · সূরা আয-যারিয়াত ৫১:৫৮" },
-    { ar: "فَبِأَيِّ آلَاءِ رَبِّكُمَا تُكَذِّبَانِ", en: "So which of the favors of your Lord would you deny?", bn: "অতএব তোমরা উভয়ে তোমাদের রবের কোন কোন নিয়ামত অস্বীকার করবে?", ref: "Surah Ar-Rahman 55:13 · সূরা আর-রহমান ৫৫:১৩" },
-    { ar: "الَّذِينَ آمَنُوا وَتَطْمَئِنُّ قُلُوبُهُم بِذِكْرِ اللَّهِ ۗ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ", en: "Those who believe, and whose hearts find rest in the remembrance of Allah. Surely, in the remembrance of Allah hearts find rest.", bn: "যারা ঈমান আনে এবং আল্লাহর স্মরণে যাদের অন্তর প্রশান্ত হয়। জেনে রাখো, আল্লাহর স্মরণেই অন্তরসমূহ প্রশান্তি লাভ করে।", ref: "Surah Ar-Ra'd 13:28 · সূরা আর-রা'দ ১৩:২৮" },
-    { ar: "وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَىٰ", en: "And your Lord is going to give you, and you will be satisfied.", bn: "আর অচিরেই তোমার রব তোমাকে দান করবেন, ফলে তুমি সন্তুষ্ট হবে।", ref: "Surah Ad-Duha 93:5 · সূরা আদ-দুহা ৯৩:৫" },
-    { ar: "وَمَا أَرْسَلْنَاكَ إِلَّا رَحْمَةً لِّلْعَالَمِينَ", en: "And We have not sent you except as a mercy to the worlds.", bn: "আর আমি তোমাকে কেবল সমগ্র বিশ্বজগতের জন্য রহমতস্বরূপ পাঠিয়েছি।", ref: "Surah Al-Anbiya 21:107 · সূরা আল-আম্বিয়া ২১:১০৭" },
-    { ar: "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ", en: "Our Lord, give us good in this world and good in the Hereafter, and protect us from the punishment of the Fire.", bn: "হে আমাদের রব! আমাদের দুনিয়াতে কল্যাণ দিন, আখিরাতেও কল্যাণ দিন এবং আমাদের জাহান্নামের আযাব থেকে রক্ষা করুন।", ref: "Surah Al-Baqarah 2:201 · সূরা আল-বাকারা ২:২০১" },
-  ];
-
-  // Random pick on every visit; avoid repeating the previous visit's verse.
-  let last = -1;
-  try { last = parseInt(localStorage.getItem('dd_last_verse'), 10); } catch (e) {}
-  let i;
-  do { i = Math.floor(Math.random() * VERSES.length); } while (VERSES.length > 1 && i === last);
-  try { localStorage.setItem('dd_last_verse', String(i)); } catch (e) {}
-  const v = VERSES[i];
+  // Pool lives in js/verses.js. No verse repeats within 30 minutes of being shown
+  // (tracked per browser); if every verse is on cooldown, the longest-ago one is reused.
+  const POOL = window.DD_VERSES || [];
+  const COOLDOWN = 30 * 60 * 1000, KEY = 'dd_verse_seen';
+  const id = (x) => x.s + ':' + x.a;
+  let seen = {};
+  try { seen = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { seen = {}; }
+  const nowMs = Date.now();
+  Object.keys(seen).forEach((k) => { if (nowMs - seen[k] >= COOLDOWN || seen[k] > nowMs) delete seen[k]; });
+  let avail = POOL.filter((x) => !(id(x) in seen));
+  if (!avail.length) {
+    avail = POOL.slice().sort((a, b) => (seen[id(a)] || 0) - (seen[id(b)] || 0)).slice(0, 1);
+  }
+  const v = avail[Math.floor(Math.random() * avail.length)];
+  seen[id(v)] = nowMs;
+  try { localStorage.setItem(KEY, JSON.stringify(seen)); } catch (e) {}
   document.getElementById('verse-ar').textContent = v.ar;
   document.getElementById('verse-en').textContent = v.en;
   document.getElementById('verse-bn').textContent = v.bn;
-  document.getElementById('verse-ref').textContent = v.ref;
+  document.getElementById('verse-ref').textContent = 'Surah ' + v.sn + ' ' + v.s + ':' + v.a + ' · সূরা ' + v.sb + ' ' + String(v.s + ':' + v.a).replace(/\d/g, (c) => '০১২৩৪৫৬৭৮৯'[+c]);
 
   const pop = document.getElementById('welcome');
   const closeBtn = document.getElementById('welcome-close');
@@ -442,37 +439,24 @@
 })();
 
 
-/* ---- WhatsApp: open the chat directly (app on mobile, WhatsApp Web on desktop) ---- */
+/* ---- WhatsApp: open the chat directly ----
+   Android: intent link opens the app with no chooser (falls back to WhatsApp Web).
+   iPhone: plain https://wa.me link (universal link) opens the app straight from a tap.
+   Desktop: WhatsApp Web. */
 (function () {
   const link = document.getElementById('wa-link');
   if (!link) return;
   const NUM = '19473764749'; // +1 947 376 4749
   link.addEventListener('click', (e) => {
-    e.preventDefault();
-    const mobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || (navigator.maxTouchPoints > 1 && /Mac/.test(navigator.platform));
-    if (!mobile) { window.open('https://web.whatsapp.com/send?phone=' + NUM, '_blank', 'noopener'); return; }
-    const t = Date.now();
-    window.location.href = 'whatsapp://send?phone=' + NUM;
-    setTimeout(() => { if (!document.hidden && Date.now() - t < 2500) window.location.href = 'https://wa.me/' + NUM; }, 1500);
+    const ua = navigator.userAgent;
+    if (/Android/i.test(ua)) {
+      e.preventDefault();
+      const fb = encodeURIComponent('https://wa.me/' + NUM);
+      window.location.href = 'intent://send/?phone=' + NUM + '#Intent;scheme=whatsapp;package=com.whatsapp;S.browser_fallback_url=' + fb + ';end';
+    } else if (!/iPhone|iPad|iPod/i.test(ua) && !(navigator.maxTouchPoints > 1 && /Mac/.test(navigator.platform))) {
+      e.preventDefault();
+      window.open('https://web.whatsapp.com/send?phone=' + NUM, '_blank', 'noopener');
+    }
+    // iOS: let the normal link run (same tab, no script in the way)
   });
-})();
-
-
-/* ---- Sticky header: compact on scroll + keep anchor offsets correct ---- */
-(function () {
-  const hdr = document.getElementById('top');
-  if (!hdr) return;
-  let compact = false, ticking = false;
-  function setH() { document.documentElement.style.setProperty('--hdr-h', hdr.offsetHeight + 'px'); }
-  function update() {
-    ticking = false;
-    const y = window.scrollY;
-    if (!compact && y > 80) { compact = true; hdr.classList.add('scrolled'); }
-    else if (compact && y < 20) { compact = false; hdr.classList.remove('scrolled'); }
-    setH();
-  }
-  window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
-  window.addEventListener('resize', setH);
-  hdr.addEventListener('transitionend', setH);
-  setH();
 })();
