@@ -5,8 +5,11 @@ step, no dependencies to install) — elegant/modern grocery storefront UI
 matching your style brief: warm white, charcoal, beige, Inter + Manrope
 fonts, soft shadows, scroll animations.
 
-This is a **visual prototype only** — the cart/search/account icons are
-for show, and "Add to cart" buttons don't yet connect to anything. Once
+This is still a **front-end prototype**. The cart and account now work in the
+browser (saved in localStorage on the visitor's device): add to cart, quantity
+changes, checkout request, sign up / sign in, and Google / Facebook / TikTok
+buttons (demo mode until you add app IDs in `js/config.js`). Search is still
+for show. Once
 you approve the look, this exact design gets converted into the real
 WooCommerce theme (PHP templates) so it becomes a working store.
 
@@ -51,3 +54,56 @@ Once you're happy with the design (or have specific changes), send
 feedback and I'll either adjust this file or carry the exact look over
 into the WooCommerce theme files so it becomes the real, functional
 store with cart, checkout, and the admin panel.
+
+---
+
+## Quran — part of the same site
+
+There is one website: `index.html`. The shop is the default view; the Quran is a second view of the same page,
+opened from the **Quran** tab in the bottom bar (Home · Quran · Search · Cart · Account) or the **Quran** link in the
+desktop nav. They share the header language toggle, styles, fonts and bottom bar — no separate Quran site.
+
+URLs (hash routes, so it works on GitHub Pages and by double-clicking `index.html`):
+`#/` shop · `#/quran` surah list · `#/quran/surah/2/255` verse · `#/quran/saved/bookmarks` · `#/quran/search?q=mercy`
+
+**Features** — surah / page / juz / hizb lists · reader with Arabic + English + Bangla · bookmarks · favorites ·
+Continue Reading + Last Read chips · full-text search (English, Arabic without diacritics, Bangla, surah names, or a
+reference like `2:255`) · reading streak · text size and show/hide per language. Saved in the browser
+(`localStorage`, key `dd_quran_v1`). The Search tab opens Quran search while you're in the Quran, and focuses the
+shop's search box while you're in the shop.
+
+**Data** (114 surahs, 6,236 verses — verified by `tools/build_quran_data.py`, which fails if any count is off)
+
+| Content | Source |
+|---|---|
+| Arabic (Hafs, Uthmani) | [Tanzil Project](https://tanzil.net) — kept verbatim (`tools/source/tanzil-uthmani.txt`) |
+| English | Saheeh International (Tanzil `en.sahih`, via npm `quran-json`) |
+| Bangla | Muhiuddin Khan (Tanzil `bn.bengali`, via npm `quran-json`) |
+| Page / Juz / Hizb, surah names | npm `quran-meta` (Madani 604-page mushaf) |
+
+Tanzil's terms require crediting tanzil.net with a link and not altering the text — both are done (menu + list
+footer). The bismillah Tanzil prefixes to verse 1 is hidden at display time and shown as a header instead.
+
+Files: `js/quran.js` (logic + routing), `css/quran.css`, `js/quran-meta.js` (small, always loaded),
+`js/quran-data.js` (~4 MB, ~1 MB gzipped; loads only when a surah, search or saved list opens).
+Rebuild data: `python3 tools/build_quran_data.py`.
+
+**Not included yet:** verse audio (Quran.com API) and accounts/sync — Quran data is stored per browser for now.
+
+---
+
+## Home page: popup, countdown, side stack
+
+- **Welcome popup** (shown on every visit): English title and "Start Shopping" button, delivery info, a
+  "Prayer Time for Warren, MI" section (next prayer highlighted), then the Quran verse. Fade/slide/pop-in on open,
+  fade-out on close; honours *reduce motion*.
+- **Next-prayer countdown** (fixed, right side): counts down to the next event in the order
+  Fajr → Sunrise → Dhuhr → Asr → Maghrib → Isha → tomorrow's Fajr, updating every second. The next event is picked by
+  the actual time of day (America/Detroit), so it's correct around midnight and after Isha. Times are calculated on
+  the device (ISNA method) — see `js/main.js`.
+- **Date under the countdown** follows the language: English `MM/DD/YYYY` · Bangla calendar (Bangladesh revised) ·
+  Hijri in Arabic. Hijri can be shifted for moon sighting with `HIJRI_OFFSET` in `js/main.js` (or `?hijri=-1`).
+- **Social icons** sit directly under the countdown, same width, in the same fixed stack. While you scroll down the
+  stack folds to just the prayer name + time, and unfolds when you scroll up or pause.
+- **Home ↔ Quran** switching uses the View Transitions API (slide + fade, tab bar stays put) with a CSS fallback for
+  browsers without it. The Quran text is preloaded in the background once you open Quran or hover/touch its tab.

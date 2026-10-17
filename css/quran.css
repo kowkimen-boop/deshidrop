@@ -1,0 +1,232 @@
+/* Deshi Drop — Quran page.
+   Follows the home page: green → white gradient, black text, deshi green accents. */
+
+.quran-page {
+  --q-ink: #000;
+  --q-green: #1c6b3c;
+  --q-green-dark: #144f2c;
+  --q-line: rgba(20, 79, 44, .22);
+  --q-line-strong: rgba(20, 79, 44, .5);
+  --q-glass: rgba(255, 255, 255, .72);
+  --q-bar-h: 56px;
+  --q-ar-size: 30px;
+  --q-tr-size: 16px;
+  background: transparent;
+  color: var(--q-ink);
+}
+
+/* Green → white page gradient (same family as the home prayer bar + welcome card) */
+.q-bg {
+  position: fixed; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, #8fd1a4 0%, #b9e3c7 16%, #dcf0e3 42%, #f6fbf8 72%, #ffffff 100%);
+}
+
+.quran-page a { color: inherit; }
+.quran-page :focus-visible { outline: 2px solid var(--q-green-dark); outline-offset: 2px; border-radius: 6px; }
+.quran-page [hidden] { display: none !important; }
+
+/* ---------- App bar ---------- */
+.q-bar {
+  position: sticky; top: 0; z-index: 40;
+  padding-top: env(safe-area-inset-top, 0px);
+  background: rgba(255, 255, 255, .62);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--q-line);
+}
+.q-bar-in { max-width: 720px; margin: 0 auto; height: var(--q-bar-h); display: flex; align-items: center; gap: 4px; padding: 0 8px; }
+.q-ib {
+  width: 44px; height: 44px; flex-shrink: 0; border-radius: 50%; border: 0; background: none; color: #000;
+  display: grid; place-items: center; cursor: pointer; font: 700 16px/1 'Inter', sans-serif; text-decoration: none;
+}
+.q-ib:hover { background: rgba(255, 255, 255, .75); }
+.q-ib svg { display: block; }
+.q-title { flex: 1; min-width: 0; padding: 0 6px; font: 500 20px/1.2 'Inter', sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.q-streak {
+  display: inline-flex; align-items: center; gap: 4px; height: 44px; padding: 0 10px; border: 0; background: none;
+  color: #000; font: 500 20px/1 'Inter', sans-serif; cursor: pointer; border-radius: 22px;
+}
+.q-streak:hover { background: rgba(255, 255, 255, .75); }
+
+/* ---------- Home view ---------- */
+.q-shell { max-width: 720px; margin: 0 auto; padding-bottom: 28px; min-height: 60vh; outline: none; }
+.q-sec { padding: 22px 18px 0; }
+.q-label { margin: 0 0 12px; font: 500 17px/1.3 'Inter', sans-serif; letter-spacing: 0; color: #000; }
+.quran-page h2.q-label { font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: 0; }
+
+.q-chips { display: flex; gap: 12px; overflow-x: auto; margin: 0 -18px 22px; padding: 2px 18px 4px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.q-chips::-webkit-scrollbar { display: none; }
+.q-chip {
+  flex-shrink: 0; padding: 11px 20px; border: 1.5px solid var(--q-green); border-radius: 10px;
+  background: rgba(255, 255, 255, .6); color: #000; font: 500 16px/1.2 'Inter', sans-serif; white-space: nowrap; text-decoration: none;
+}
+.q-chip:hover, .q-chip:active { background: #fff; }
+.q-empty-chip { flex-shrink: 0; padding: 11px 18px; border: 1.5px dashed var(--q-line-strong); border-radius: 10px; font: 400 15px/1.2 'Inter', sans-serif; white-space: nowrap; }
+
+.q-continue {
+  display: flex; align-items: center; gap: 12px; margin: -6px 0 22px; padding: 12px 16px;
+  background: #fff; border: 1.5px solid var(--q-green); border-radius: 14px; text-decoration: none;
+  box-shadow: 0 2px 10px rgba(20, 79, 44, .12);
+}
+.q-continue .q-c-ico { width: 38px; height: 38px; flex-shrink: 0; border-radius: 50%; background: #e3efe6; display: grid; place-items: center; }
+.q-continue b { display: block; font: 700 15px/1.25 'Inter', sans-serif; }
+.q-continue small { display: block; font: 400 14px/1.35 'Inter', sans-serif; margin-top: 1px; }
+.q-continue .q-c-go { margin-inline-start: auto; }
+
+/* Tabs: Surah / Page / Juz / Hizb */
+.q-tabs {
+  position: sticky; top: calc(var(--q-bar-h) + env(safe-area-inset-top, 0px)); z-index: 30;
+  display: flex; gap: 6px; padding: 10px 18px; background: rgba(255, 255, 255, .58);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-top: 1px solid var(--q-line); border-bottom: 1px solid var(--q-line);
+}
+.q-tab {
+  flex: 0 0 auto; padding: 11px 22px; border: 1.5px solid transparent; border-radius: 999px; background: none; color: #000;
+  font: 500 17px/1.2 'Inter', sans-serif; cursor: pointer;
+}
+.q-tab[aria-selected="true"] { background: #fff; border-color: var(--q-green); font-weight: 700; box-shadow: 0 1px 6px rgba(20, 79, 44, .15); }
+.q-tabs.two .q-tab { flex: 1; text-align: center; }
+
+.q-list { list-style: none; margin: 0; padding: 0; }
+.q-row { display: flex; align-items: center; gap: 16px; padding: 14px 20px 14px 14px; border-bottom: 1px solid var(--q-line); text-decoration: none; }
+.q-row:hover, .q-row:active { background: rgba(255, 255, 255, .55); }
+.q-num { flex: 0 0 52px; text-align: center; font: 400 26px/1 'Inter', sans-serif; }
+.q-names { min-width: 0; }
+.q-names b { display: block; font: 600 20px/1.25 'Inter', sans-serif; }
+.q-names small { display: block; margin-top: 2px; font: 400 15px/1.35 'Inter', sans-serif; }
+.quran-page .q-arn { margin-left: auto; padding-left: 8px; font-family: 'Amiri Quran', 'Amiri', 'Noto Naskh Arabic', serif; font-weight: 700; font-size: 28px; line-height: 1.4; white-space: nowrap; direction: rtl; }
+
+.q-foot { margin: 22px 18px 0; padding-top: 14px; border-top: 1px solid var(--q-line); font: 400 12.5px/1.6 'Inter', sans-serif; }
+.q-foot a { text-decoration: underline; text-underline-offset: 2px; }
+
+/* ---------- Reader ---------- */
+.q-head {
+  position: relative; margin: 18px 14px 14px; padding: 22px 16px 18px; text-align: center;
+  background: var(--q-glass); border: 1.5px solid var(--q-green); border-radius: 16px;
+}
+.q-head::after { content: ""; position: absolute; inset: 5px; border: 1px solid var(--q-line-strong); border-radius: 11px; pointer-events: none; }
+.quran-page .q-head .q-head-ar { margin: 0; font-family: 'Amiri Quran', 'Amiri', serif; font-size: 44px; line-height: 1.4; font-weight: 400; }
+.q-head h1 { margin: 2px 0 4px; font: 800 24px/1.2 'Manrope', sans-serif; letter-spacing: -.3px; }
+.q-head p { margin: 2px 0; font: 400 15px/1.5 'Inter', sans-serif; }
+.quran-page .q-head p[lang="bn"] { font-family: 'Noto Sans Bengali', 'Inter', sans-serif; }
+
+.quran-page .q-bis { margin: 4px 14px 14px; text-align: center; font-family: 'Amiri Quran', 'Amiri', serif; font-size: calc(var(--q-ar-size) + 2px); line-height: 2; }
+
+.q-verse {
+  margin: 0 14px 12px; padding: 10px 14px 16px; background: var(--q-glass);
+  border: 1px solid var(--q-line); border-radius: 14px; scroll-margin-top: calc(var(--q-bar-h) + env(safe-area-inset-top, 0px) + 12px);
+}
+.q-verse.target { box-shadow: 0 0 0 2px var(--q-green); background: #fff; }
+@media (prefers-reduced-motion: no-preference) { .q-verse.target { animation: qpulse 2.2s ease-out; } @keyframes qpulse { from { background: #fff3b0; } to { background: #fff; } } }
+.q-vtop { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.q-badge { min-width: 36px; height: 36px; padding: 0 9px; border: 1.5px solid var(--q-green); border-radius: 999px; display: grid; place-items: center; font: 600 14px/1 'Inter', sans-serif; background: #fff; }
+.q-meta { flex: 1; min-width: 0; font: 400 12.5px/1.3 'Inter', sans-serif; }
+.q-act { width: 42px; height: 42px; border: 0; background: none; border-radius: 50%; color: #000; display: grid; place-items: center; cursor: pointer; }
+.q-act:hover { background: rgba(255, 255, 255, .9); }
+.q-act svg { display: block; }
+.q-act[aria-pressed="true"] svg { fill: currentColor; }
+.q-act.bm[aria-pressed="true"] { color: var(--q-green-dark); }
+.q-act.fav[aria-pressed="true"] { color: var(--fm-red); }
+
+.quran-page .q-ar {
+  margin: 6px 0 10px; font-family: 'Amiri Quran', 'Amiri', 'Noto Naskh Arabic', serif; font-weight: 400;
+  font-size: var(--q-ar-size); line-height: 2; text-align: right; direction: rtl; color: #000;
+}
+.quran-page .q-tr { margin: 8px 0 0; font: 400 var(--q-tr-size)/1.65 'Inter', sans-serif; color: #000; }
+.quran-page .q-tr[lang="bn"] { font-family: 'Noto Sans Bengali', 'Inter', sans-serif; line-height: 1.8; }
+body.hide-ar .q-verse .q-ar, body.hide-ar .q-bis { display: none; }
+body.hide-en .q-verse .q-tr[lang="en"] { display: none; }
+body.hide-bn .q-verse .q-tr[lang="bn"] { display: none; }
+
+.q-pn { display: flex; gap: 10px; margin: 18px 14px 0; }
+.q-pn a {
+  flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; text-decoration: none;
+  background: #fff; border: 1.5px solid var(--q-green); border-radius: 12px; font: 600 15px/1.3 'Inter', sans-serif;
+}
+.q-pn a small { font-weight: 400; font-size: 12.5px; }
+.q-pn a.next { text-align: right; }
+.q-pn .gap { flex: 1; }
+
+/* ---------- Saved + Search ---------- */
+.q-items { list-style: none; margin: 14px 14px 0; padding: 0; display: grid; gap: 10px; }
+.q-item { position: relative; background: var(--q-glass); border: 1px solid var(--q-line); border-radius: 14px; }
+.q-item > a { display: block; padding: 12px 14px 14px; text-decoration: none; }
+.q-ref { display: block; font: 700 14px/1.3 'Inter', sans-serif; margin-bottom: 4px; }
+.quran-page .q-item .q-ar { font-size: 24px; line-height: 2; margin: 2px 0 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.quran-page .q-item .q-tr { font-size: 15px; margin-top: 4px; }
+.q-item.rm > a { padding-right: 52px; }
+.q-rm { position: absolute; top: 6px; right: 6px; width: 40px; height: 40px; border: 0; border-radius: 50%; background: none; color: #000; display: grid; place-items: center; cursor: pointer; }
+.q-rm:hover { background: #fff; }
+mark { background: #ffe27a; color: #000; border-radius: 3px; padding: 0 1px; }
+
+.q-searchbox { position: sticky; top: calc(var(--q-bar-h) + env(safe-area-inset-top, 0px)); z-index: 30; padding: 10px 14px; background: rgba(255, 255, 255, .58); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-bottom: 1px solid var(--q-line); }
+.q-searchbox label { display: flex; align-items: center; gap: 10px; padding: 0 14px; background: #fff; border: 1.5px solid var(--q-green); border-radius: 999px; }
+.q-searchbox input { flex: 1; min-width: 0; height: 46px; border: 0; outline: 0; background: transparent; color: #000; font: 400 16px 'Inter', 'Noto Sans Bengali', sans-serif; }
+.q-searchbox input::placeholder { color: #000; opacity: .6; }
+.q-searchbox button { border: 0; background: none; padding: 4px; cursor: pointer; color: #000; display: grid; }
+.q-sum { margin: 14px 18px 0; font: 500 14px/1.4 'Inter', sans-serif; }
+.q-goto { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 14px 0; }
+.q-more { display: block; margin: 14px auto 0; padding: 12px 26px; background: #fff; border: 1.5px solid var(--q-green); border-radius: 999px; color: #000; font: 600 15px 'Inter', sans-serif; cursor: pointer; }
+.q-state { margin: 36px 24px; text-align: center; font: 400 16px/1.6 'Inter', sans-serif; }
+.q-state b { display: block; font: 700 18px 'Inter', sans-serif; margin-bottom: 4px; }
+.q-state button { margin-top: 12px; padding: 11px 24px; background: #fff; border: 1.5px solid var(--q-green); border-radius: 999px; color: #000; font: 600 15px 'Inter', sans-serif; cursor: pointer; }
+.q-spin { width: 28px; height: 28px; margin: 0 auto 12px; border: 3px solid var(--q-line); border-top-color: var(--q-green); border-radius: 50%; }
+@media (prefers-reduced-motion: no-preference) { .q-spin { animation: qspin .8s linear infinite; } @keyframes qspin { to { transform: rotate(360deg); } } }
+
+/* ---------- Drawer, sheet, toast ---------- */
+.q-scrim { position: fixed; inset: 0; z-index: 90; background: rgba(0, 0, 0, .45); }
+.q-drawer {
+  position: fixed; top: 0; bottom: 0; left: 0; z-index: 100; width: min(84vw, 330px); display: flex; flex-direction: column;
+  padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
+  background: linear-gradient(180deg, #a9dcb9 0%, #e3f3e8 40%, #fff 100%); border-right: 1px solid var(--q-line-strong);
+  transform: translateX(-102%); visibility: hidden; box-shadow: 8px 0 30px rgba(0, 0, 0, .2);
+}
+.q-drawer.open { transform: none; visibility: visible; }
+@media (prefers-reduced-motion: no-preference) { .q-drawer { transition: transform .25s ease, visibility 0s linear .25s; } .q-drawer.open { transition: transform .25s ease; } }
+.q-drawer-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 10px 12px 20px; border-bottom: 1px solid var(--q-line); }
+.q-drawer-title { font: 800 22px/1.2 'Manrope', sans-serif; }
+.q-drawer-sub { font: 500 13px 'Inter', sans-serif; }
+.q-drawer-nav { flex: 1; overflow-y: auto; padding: 8px 0; }
+.q-dn { display: flex; align-items: center; gap: 14px; width: 100%; padding: 14px 20px; border: 0; background: none; text-align: left; color: #000; text-decoration: none; font: 500 16px/1.3 'Inter', sans-serif; cursor: pointer; }
+.q-dn:hover { background: rgba(255, 255, 255, .7); }
+.q-dn small { display: block; font-weight: 400; font-size: 13px; margin-top: 1px; }
+.q-dn .q-count { margin-inline-start: auto; min-width: 26px; padding: 3px 8px; border-radius: 999px; background: #fff; border: 1px solid var(--q-line-strong); text-align: center; font-size: 13px; font-weight: 700; }
+.q-sources { padding: 14px 20px 18px; border-top: 1px solid var(--q-line); font: 400 12.5px/1.6 'Inter', sans-serif; }
+.q-sources p { margin: 0; }
+.q-sources a { text-decoration: underline; text-underline-offset: 2px; }
+
+.q-sheet {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 100; max-width: 560px; margin: 0 auto;
+  padding: 8px 18px calc(18px + env(safe-area-inset-bottom, 0px)); background: linear-gradient(180deg, #e3f3e8 0%, #fff 60%);
+  border: 1.5px solid var(--q-green); border-bottom: 0; border-radius: 20px 20px 0 0; box-shadow: 0 -10px 30px rgba(0, 0, 0, .18);
+  transform: translateY(104%); visibility: hidden;
+}
+.q-sheet.open { transform: none; visibility: visible; }
+@media (prefers-reduced-motion: no-preference) { .q-sheet { transition: transform .25s ease, visibility 0s linear .25s; } .q-sheet.open { transition: transform .25s ease; } }
+.q-sheet-grab { width: 44px; height: 4px; margin: 4px auto 6px; border-radius: 2px; background: var(--q-line-strong); }
+.q-sheet-head { display: flex; align-items: center; justify-content: space-between; }
+.q-sheet-head h2 { margin: 0; font: 800 19px/1.2 'Manrope', sans-serif; }
+.q-set { display: grid; gap: 4px; padding: 6px 0 8px; border-bottom: 1px solid var(--q-line); }
+.q-set:last-child { border-bottom: 0; }
+.q-switch { display: flex; align-items: center; gap: 14px; min-height: 46px; font: 500 16px 'Inter', sans-serif; cursor: pointer; }
+.q-switch input { width: 22px; height: 22px; accent-color: var(--q-green); }
+.q-stepper { display: flex; align-items: center; justify-content: space-between; min-height: 52px; font: 500 16px 'Inter', sans-serif; }
+.q-stepper > div { display: flex; align-items: center; gap: 12px; }
+.q-stepper output { min-width: 30px; text-align: center; font-weight: 700; }
+.q-step { min-width: 52px; height: 42px; border: 1.5px solid var(--q-green); border-radius: 999px; background: #fff; color: #000; font: 700 15px 'Inter', sans-serif; cursor: pointer; }
+
+.q-toast {
+  position: fixed; left: 50%; bottom: calc(84px + env(safe-area-inset-bottom, 0px)); z-index: 120; max-width: 88vw; padding: 11px 18px;
+  background: #fff; color: #000; border: 1.5px solid var(--q-green); border-radius: 999px; font: 600 14px/1.3 'Inter', sans-serif;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .18); transform: translate(-50%, 12px); opacity: 0; pointer-events: none;
+}
+.q-toast.show { opacity: 1; transform: translate(-50%, 0); }
+@media (prefers-reduced-motion: no-preference) { .q-toast { transition: opacity .2s ease, transform .2s ease; } }
+@media (min-width: 760px) { .q-toast { bottom: 28px; } }
+body.q-lock { overflow: hidden; }
+
+@media (max-width: 380px) {
+  .q-names b { font-size: 18px; } .q-num { flex-basis: 42px; font-size: 22px; } .q-row { gap: 10px; }
+  .quran-page .q-arn { font-size: 24px; } .q-chip { padding: 10px 16px; font-size: 15px; } .q-tab { padding: 10px 16px; font-size: 16px; }
+}
+
+.q-searchbox input::-webkit-search-cancel-button, .q-searchbox input::-webkit-search-decoration { -webkit-appearance: none; appearance: none; display: none; }
+.q-item > a.q-row { display: flex; padding: 12px 16px 12px 10px; }

@@ -23,10 +23,6 @@
     footer ul { align-items: center; }
   }
 
-  @media (max-width: 480px) {
-    .social-float { right: 8px; gap: 9px; padding: 10px 7px; }
-    .social-float a { width: 36px; height: 36px; }
-  }
 
   @media (min-width: 760px) { .wa-wrap { bottom: 28px; } }
 

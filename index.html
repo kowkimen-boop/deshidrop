@@ -6,12 +6,14 @@
 <title>Deshi Drop — From Store to Door</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@500;600;700;800&family=Noto+Sans+Arabic:wght@500;700;800&family=Noto+Sans+Bengali:wght@500;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@500;600;700;800&family=Noto+Sans+Arabic:wght@500;700;800&family=Noto+Sans+Bengali:wght@400;500;700;800&family=Amiri:wght@400;700&family=Amiri+Quran&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/quran.css">
+<link rel="stylesheet" href="css/shop.css">
 </head>
 <body>
-
+<div id="view-home">
 <div class="lang-bar" dir="ltr">
   <button class="lang-opt active" data-lang="en" type="button">EN</button>
   <span class="lang-sep">|</span>
@@ -20,7 +22,7 @@
   <button class="lang-opt" data-lang="ar" type="button">العربية</button>
 </div>
 
-<header id="top">
+<header id="top" class="site-hdr">
   <div class="nav-row">
     <a class="brand" href="#top" style="display:flex; align-items:center; gap:10px; cursor:pointer;">
       <img src="" class="deshi-logo-img" alt="Deshi Drop" style="width:40px; height:40px; border-radius:50%; object-fit:cover;">
@@ -33,40 +35,54 @@
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
       <input type="text" data-i18n-ph="search_ph" placeholder="Search meat, produce, groceries…">
     </div>
-    <div style="display:flex; gap:8px;">
-      <div class="icon-btn">
+    <div class="nav-actions">
+      <a class="icon-btn" href="#/account" id="hdr-account" aria-label="My account">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21a8 8 0 1 0-16 0"/><circle cx="12" cy="7" r="4"/></svg>
-      </div>
-      <div class="icon-btn">
+      </a>
+      <button class="icon-btn" type="button" id="hdr-cart" aria-label="Open cart" aria-haspopup="dialog">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
-        <span class="cart-count">3</span>
-      </div>
+        <span class="cart-count" data-cart-count hidden>0</span>
+      </button>
     </div>
   </div>
+
+  <!-- Bar 1: next-prayer countdown (ids are driven by js/main.js) -->
+  <div class="pray-bar" id="dd-next" role="timer" aria-live="off" aria-label="Next prayer countdown">
+    <svg class="pb-ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+    <span class="dd-next-cap" id="dd-next-cap">Next</span>
+    <span class="dd-next-name" id="dd-next-name">Fajr</span>
+    <span class="dd-next-time" id="dd-next-time" dir="ltr">--:--:--</span>
+    <span class="pb-sep" aria-hidden="true">|</span>
+    <span class="dd-date" id="dd-date"></span>
+  </div>
+
+  <!-- Bar 2: social media, centred -->
+  <div class="social-wrap"><div>
+    <nav class="social-bar" aria-label="Social media">
+      <a href="https://www.facebook.com/share/1Gp9N11qcY/?mibextid=wwXIfr" rel="noopener" aria-label="Facebook" title="Facebook">
+        <span style="font-family:'Manrope',sans-serif; font-weight:800; font-size:19px; color:var(--fm-accent-dark);">f</span>
+      </a>
+      <a href="https://www.youtube.com/@DeshiDrop-q6v" rel="noopener" aria-label="YouTube" title="YouTube">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--fm-red)"><circle cx="12" cy="12" r="11" fill="none" stroke="var(--fm-red)" stroke-width="1.8"/><path d="M9.5 8v8l7-4z"/></svg>
+      </a>
+      <a href="https://instagram.com/__deshidrop__?psln=YXcybm81ZWM4Mzhx&amp;utm_source=qr" rel="noopener" aria-label="Instagram" title="Instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--fm-accent-dark)" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@deshidrop4?_r=1&amp;_t=ZT-9AZ3h5jp9TC" rel="noopener" aria-label="TikTok" title="TikTok">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="var(--fm-charcoal)"><path d="M14 3c.4 2.2 1.9 3.8 4.2 4v2.6c-1.5.1-2.9-.3-4.2-1.2v6.4a5.3 5.3 0 1 1-5.3-5.3c.3 0 .6 0 .9.1v2.7a2.6 2.6 0 1 0 1.8 2.5V3h2.6z"/></svg>
+      </a>
+    </nav>
+  </div></div>
+
   <div class="nav-links">
-    <a href="#" data-i18n="nav_all">All Products</a>
-    <a href="#" data-i18n="nav_meat">Meat & Poultry</a>
-    <a href="#" data-i18n="nav_produce">Produce</a>
-    <a href="#" data-i18n="nav_grocery">Grocery</a>
-    <a href="#" data-i18n="nav_deals">Deals</a>
+    <a href="#shop" data-i18n="nav_all">All Products</a>
+    <a href="#shop" data-i18n="nav_meat">Meat & Poultry</a>
+    <a href="#shop" data-i18n="nav_produce">Produce</a>
+    <a href="#shop" data-i18n="nav_grocery">Grocery</a>
+    <a href="#deals" data-i18n="nav_deals">Deals</a>
     <a href="#" data-i18n="nav_track">Track Order</a>
+    <a href="#/quran" data-i18n="nav_quran">Quran</a>
   </div>
-<section class="prayer-bar" aria-label="Prayer times">
-  <h2 class="prayer-title" data-i18n="pt_title">Prayer Time — Warren, MI</h2>
-  <div class="prayer-dates">
-    <span class="pd" id="pd-bn" lang="bn"></span>
-    <span class="pd" id="pd-en" lang="en"></span>
-    <span class="pd" id="pd-ar" lang="ar" dir="rtl"></span>
-  </div>
-  <ol class="prayer-row" id="prayer-row">
-    <li data-p="fajr"><span class="pn" data-i18n="pt_fajr">Fajr</span><span class="pt" dir="ltr">--:--</span></li>
-    <li data-p="sunrise"><span class="pn" data-i18n="pt_sunrise">Sunrise</span><span class="pt" dir="ltr">--:--</span></li>
-    <li data-p="dhuhr"><span class="pn" data-i18n="pt_dhuhr">Dhuhr</span><span class="pt" dir="ltr">--:--</span></li>
-    <li data-p="asr"><span class="pn" data-i18n="pt_asr">Asr</span><span class="pt" dir="ltr">--:--</span></li>
-    <li data-p="maghrib"><span class="pn" data-i18n="pt_maghrib">Maghrib</span><span class="pt" dir="ltr">--:--</span></li>
-    <li data-p="isha"><span class="pn" data-i18n="pt_isha">Isha</span><span class="pt" dir="ltr">--:--</span></li>
-  </ol>
-</section>
 </header>
 
 
@@ -89,7 +105,7 @@
           </li>
           <li>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--fm-accent-dark)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
-            <span data-i18n="biz_li2">Zabiha Halal beef, lamb, goat &amp; chicken available</span>
+            <span data-i18n="biz_li2">Hand Zabiha Halal beef, lamb, goat &amp; chicken available</span>
           </li>
           <li>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--fm-accent-dark)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
@@ -155,7 +171,7 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section" id="deals">
   <div class="promo">
     <div>
       <h3 data-i18n="promo_h3">Free delivery on your first order or on any order over 100 LB.</h3>
@@ -212,66 +228,158 @@
   </a>
 </div>
 
-<div class="social-float">
-  <a href="https://www.facebook.com/share/1Gp9N11qcY/?mibextid=wwXIfr" rel="noopener" aria-label="Facebook" title="Facebook">
-    <span style="font-family:'Manrope',sans-serif; font-weight:800; font-size:19px; color:var(--fm-accent-dark);">f</span>
-  </a>
-  <a href="https://www.youtube.com/@DeshiDrop-q6v" rel="noopener" aria-label="YouTube" title="YouTube">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--fm-red)"><circle cx="12" cy="12" r="11" fill="none" stroke="var(--fm-red)" stroke-width="1.8"/><path d="M9.5 8v8l7-4z"/></svg>
-  </a>
-  <a href="https://instagram.com/__deshidrop__?psln=YXcybm81ZWM4Mzhx&amp;utm_source=qr" rel="noopener" aria-label="Instagram" title="Instagram">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--fm-accent-dark)" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1"/></svg>
-  </a>
-  <a href="https://www.tiktok.com/@deshidrop4?_r=1&amp;_t=ZT-9AZ3h5jp9TC" rel="noopener" aria-label="TikTok" title="TikTok">
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="var(--fm-charcoal)"><path d="M14 3c.4 2.2 1.9 3.8 4.2 4v2.6c-1.5.1-2.9-.3-4.2-1.2v6.4a5.3 5.3 0 1 1-5.3-5.3c.3 0 .6 0 .9.1v2.7a2.6 2.6 0 1 0 1.8 2.5V3h2.6z"/></svg>
-  </a>
-</div>
 
-<div class="mobile-tabbar">
-  <div class="tab-item active">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-    <span data-i18n="tab_home">Home</span>
-  </div>
-  <div class="tab-item">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-    <span data-i18n="tab_search">Search</span>
-  </div>
-  <div class="tab-item">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
-    <span data-i18n="tab_cart">Cart</span>
-  </div>
-  <div class="tab-item">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21a8 8 0 1 0-16 0"/><circle cx="12" cy="7" r="4"/></svg>
-    <span data-i18n="tab_account">Account</span>
-  </div>
-</div>
+
 
 <div class="welcome-overlay" id="welcome" role="dialog" aria-modal="true" aria-labelledby="welcome-title" hidden>
   <div class="welcome-card">
-    <button class="welcome-close" id="welcome-close" type="button" aria-label="Close · বন্ধ করুন · إغلاق">&times;</button>
-    <h2 id="welcome-title">
-      <span lang="en">Welcome to Deshi Drop</span>
-      <span lang="bn">দেশি ড্রপে স্বাগতম</span>
-      <span lang="ar" dir="rtl">أهلًا بكم في ديشي دروب</span>
-    </h2>
-    <div class="wl-info">
-      <div lang="en"><p>Delivery Days: Saturday &amp; Sunday</p><p>Delivery Hours: 3:00 PM – 9:00 PM</p></div>
-      <div lang="bn"><p>ডেলিভারির দিন: শনিবার ও রবিবার</p><p>ডেলিভারির সময়: বিকেল ৩টা থেকে রাত ৯টা</p></div>
-      <div lang="ar" dir="rtl"><p>أيام التوصيل: السبت والأحد</p><p>وقت التوصيل: من الساعة ٣ مساءً إلى ٩ مساءً</p></div>
+    <button class="welcome-close" id="welcome-close" type="button" aria-label="Close">&times;</button>
+    <div class="wl-head wl-in" style="--i:0">
+      <img class="deshi-logo-img wl-logo" alt="" width="52" height="52">
+      <h2 id="welcome-title" class="fx-title"><span>Welcome to <b class="g">Deshi</b> <b class="r">Drop</b></span></h2>
+      <p class="wl-sub">From Store to Door</p>
     </div>
-    <figure class="verse">
+    <section class="wl-prayer wl-in" style="--i:1" aria-labelledby="wl-prayer-h">
+      <h3 id="wl-prayer-h" class="fx-h"><span>Prayer Time for Warren, MI</span></h3>
+      <ol class="wl-prayer-row" id="wl-prayer-row"><li data-p="fajr" style="--j:0"><span class="pn">Fajr</span><span class="pt" dir="ltr">--:--</span></li><li data-p="sunrise" style="--j:1"><span class="pn">Sunrise</span><span class="pt" dir="ltr">--:--</span></li><li data-p="dhuhr" style="--j:2"><span class="pn">Dhuhr</span><span class="pt" dir="ltr">--:--</span></li><li data-p="asr" style="--j:3"><span class="pn">Asr</span><span class="pt" dir="ltr">--:--</span></li><li data-p="maghrib" style="--j:4"><span class="pn">Maghrib</span><span class="pt" dir="ltr">--:--</span></li><li data-p="isha" style="--j:5"><span class="pn">Isha</span><span class="pt" dir="ltr">--:--</span></li></ol>
+    </section>
+    <figure class="verse wl-in" style="--i:2">
       <blockquote class="quran-ar" lang="ar" dir="rtl" id="verse-ar"></blockquote>
       <p lang="en" id="verse-en"></p>
       <p lang="bn" id="verse-bn"></p>
       <figcaption id="verse-ref"></figcaption>
     </figure>
-    <button class="welcome-btn" id="welcome-go" type="button">
-      <span lang="en">Start Shopping</span> · <span lang="bn">কেনাকাটা শুরু করুন</span> · <span lang="ar">ابدأ التسوق</span>
-    </button>
+    <div class="wl-cta wl-in" style="--i:3">
+      <button class="welcome-btn" id="welcome-go" type="button">Start Shopping</button>
+    </div>
+  </div>
+</div>
+</div><!-- /#view-home -->
+
+<!-- ============ QURAN VIEW (same site — shown when the URL is #/quran…) ============ -->
+<div id="view-quran" hidden>
+<div class="q-bg" aria-hidden="true"></div>
+
+<!-- App bar (content swapped by js/quran.js depending on the view) -->
+<div class="q-bar" role="banner">
+  <div class="q-bar-in">
+    <button class="q-ib" id="bar-left" type="button" aria-label="Menu"></button>
+    <div class="q-title" id="bar-title">Al Quran</div>
+    <button class="q-streak" id="bar-streak" type="button" aria-label="Reading streak"></button>
+    <button class="q-ib" id="bar-aa" type="button" aria-label="Reading settings" hidden>Aa</button>
+    <a class="q-ib" id="bar-search" href="#/quran/search" aria-label="Search the Quran"></a>
   </div>
 </div>
 
+<main class="q-shell" id="q-app" tabindex="-1"></main>
+
+<!-- Slide-in menu -->
+<div class="q-scrim" id="drawer-scrim" hidden></div>
+<aside class="q-drawer" id="drawer" aria-label="Quran menu" aria-hidden="true">
+  <div class="q-drawer-head">
+    <div>
+      <div class="q-drawer-title">Al Quran</div>
+      <div class="q-drawer-sub">Deshi Drop</div>
+    </div>
+    <button class="q-ib" id="drawer-close" type="button" aria-label="Close menu"></button>
+  </div>
+  <nav class="q-drawer-nav" id="drawer-nav"></nav>
+  <div class="q-sources">
+    <p>Arabic text: <a href="https://tanzil.net" target="_blank" rel="noopener">Tanzil Project</a> (Uthmani, Hafs).
+       English: Saheeh International. Bangla: Muhiuddin Khan.</p>
+  </div>
+</aside>
+
+<!-- Reading settings sheet -->
+<div class="q-scrim" id="sheet-scrim" hidden></div>
+<section class="q-sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" aria-hidden="true">
+  <div class="q-sheet-grab" aria-hidden="true"></div>
+  <div class="q-sheet-head">
+    <h2 id="sheet-title">Reading settings</h2>
+    <button class="q-ib" id="sheet-close" type="button" aria-label="Close settings"></button>
+  </div>
+  <div class="q-set">
+    <label class="q-switch"><input type="checkbox" id="set-ar"> <span>Arabic</span></label>
+    <label class="q-switch"><input type="checkbox" id="set-en"> <span>English translation</span></label>
+    <label class="q-switch"><input type="checkbox" id="set-bn"> <span>Bangla translation</span></label>
+  </div>
+  <div class="q-set q-steppers">
+    <div class="q-stepper"><span>Arabic size</span>
+      <div><button type="button" class="q-step" data-step="ar" data-d="-2" aria-label="Smaller Arabic text">A−</button>
+      <output id="out-ar">30</output>
+      <button type="button" class="q-step" data-step="ar" data-d="2" aria-label="Larger Arabic text">A+</button></div></div>
+    <div class="q-stepper"><span>Translation size</span>
+      <div><button type="button" class="q-step" data-step="tr" data-d="-1" aria-label="Smaller translation text">A−</button>
+      <output id="out-tr">16</output>
+      <button type="button" class="q-step" data-step="tr" data-d="1" aria-label="Larger translation text">A+</button></div></div>
+  </div>
+</section>
+
+<div class="q-toast" id="toast" role="status" aria-live="polite"></div>
+</div><!-- /#view-quran -->
+
+
+<!-- ============ ACCOUNT VIEW (#/account) ============ -->
+<div id="view-account" class="acct-page" hidden>
+  <div class="lang-bar" dir="ltr">
+    <button class="lang-opt active" data-lang="en" type="button">EN</button>
+    <span class="lang-sep">|</span>
+    <button class="lang-opt" data-lang="bn" type="button">বাংলা</button>
+    <span class="lang-sep">|</span>
+    <button class="lang-opt" data-lang="ar" type="button">العربية</button>
+  </div>
+  <div class="acct-top">
+    <a class="acct-back" href="#/">
+      <svg class="flip-rtl" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+      <span data-t="back_shop">Back to shop</span>
+    </a>
+    <a class="brand acct-brand" href="#/">
+      <img class="deshi-logo-img" alt="" width="34" height="34">
+      <span><span style="color:var(--fm-accent)">Deshi</span> <span style="color:var(--fm-red)">Drop</span></span>
+    </a>
+    <button class="icon-btn" type="button" data-open-cart aria-label="Open cart">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+      <span class="cart-count" data-cart-count hidden>0</span>
+    </button>
+  </div>
+  <main class="acct-main" id="acct-root" tabindex="-1"></main>
+</div>
+
+<!-- ============ CART DRAWER ============ -->
+<div class="cart-scrim" id="cart-scrim"></div>
+<aside class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title" aria-hidden="true"></aside>
+<div class="shop-toast" id="shop-toast" role="status" aria-live="polite"></div>
+
+<!-- Bottom navigation: Home, Quran, Search, Cart, Account (one site, two views) -->
+<div class="mobile-tabbar">
+  <a class="tab-item active" href="#/" data-tab="home" aria-current="page">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+    <span data-i18n="tab_home">Home</span>
+  </a>
+  <a class="tab-item" href="#/quran" data-tab="quran">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 6.5C10.3 5 8 4.5 4 4.5v13c4 0 6.3.5 8 2 1.7-1.5 4-2 8-2v-13c-4 0-6.3.5-8 2z"/><path d="M12 6.5v13"/></svg>
+    <span data-i18n="tab_quran">Quran</span>
+  </a>
+  <a class="tab-item" href="#/quran/search" data-tab="search">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <span data-i18n="tab_search">Search</span>
+  </a>
+  <button class="tab-item" type="button" data-tab="cart" aria-haspopup="dialog">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+    <span data-i18n="tab_cart">Cart</span>
+    <span class="cart-count" data-cart-count hidden>0</span>
+  </button>
+  <a class="tab-item" href="#/account" data-tab="account">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21a8 8 0 1 0-16 0"/><circle cx="12" cy="7" r="4"/></svg>
+    <span data-i18n="tab_account">Account</span>
+  </a>
+</div>
+
 <script src="js/verses.js"></script>
+<script src="js/config.js"></script>
 <script src="js/main.js"></script>
+<script src="js/shop.js"></script>
+<script src="js/quran-meta.js"></script>
+<script src="js/quran.js"></script>
 </body>
 </html>
