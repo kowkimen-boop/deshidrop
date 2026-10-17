@@ -107,3 +107,16 @@ Rebuild data: `python3 tools/build_quran_data.py`.
   stack folds to just the prayer name + time, and unfolds when you scroll up or pause.
 - **Home ↔ Quran** switching uses the View Transitions API (slide + fade, tab bar stays put) with a CSS fallback for
   browsers without it. The Quran text is preloaded in the background once you open Quran or hover/touch its tab.
+
+
+---
+
+## Deals carousel & popup (latest)
+
+- **Deals carousel** (`js/carousel.js`, section `#deals` above the product hero; the old promo banner was removed, and the
+  menu's "Deals" link jumps here): 5 slides — free delivery, Hand Zabiha Halal meats, fresh produce, frozen fish & pantry,
+  delivery area. Swipe, arrows, progress dots, pause button, keyboard arrows; autoplay stops on hover/focus/touch,
+  off-screen, hidden tab and *reduce motion*. Text keys `cs1_*`…`cs5_*` (EN in `index.html`, BN/AR in `js/main.js`).
+  Prices shown are the real ones from the product list.
+- **Welcome popup**: bigger logo (96px), tighter spacing, slogan "From Store to Door" sits 2px under the title.
+- **Header**: 2px gap between the "Deshi Drop" wordmark and its slogan.

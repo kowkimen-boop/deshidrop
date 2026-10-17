@@ -224,13 +224,13 @@ body.cart-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) { .ci, .acct-card, .cd-done .tick { animation: none; } .cart-drawer, .cart-scrim, .shop-toast { transition: none; } }
 
 /* ================= WELCOME POPUP — standard layout + before/after text effects ================= */
-.welcome-card { max-width: 480px; padding: 26px 22px 22px; font-weight: 500; color: #000; background: linear-gradient(160deg, #cfeadb 0%, #ffffff 46%); }
+.welcome-card { max-width: 480px; padding: 16px 20px 20px; font-weight: 500; color: #000; background: linear-gradient(160deg, #cfeadb 0%, #ffffff 46%); }
 .wl-head { text-align: center; padding: 0; }
-.wl-logo { width: 52px; height: 52px; margin: 0 auto 10px; border-radius: 50%; object-fit: cover; border: 2px solid #fff; box-shadow: 0 6px 16px rgba(20,79,44,.25); }
-.welcome-card h2.fx-title { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 0; font-size: 19px; line-height: 1.3; }
+.wl-logo { display: block; width: 96px; height: 96px; margin: 0 auto 6px; background: #fff; border-radius: 50%; object-fit: cover; border: 3px solid #fff; box-shadow: 0 0 0 3px var(--fm-accent), 0 8px 20px rgba(20,79,44,.28); }
+.welcome-card h2.fx-title { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 0; font-size: 19px; line-height: 1.15; }
 @media (min-width: 420px) { .welcome-card h2.fx-title { font-size: 21px; } }
 .fx-title b.g { color: var(--fm-accent); } .fx-title b.r { color: var(--fm-red); }
-.wl-sub { margin: 4px 0 0; font-size: 11px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; }
+.wl-sub { margin: 2px 0 0; line-height: 1.2; font-size: 11px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; }
 
 /* before/after pseudo-elements: lines that grow out from the title, diamonds on section headings */
 .fx-title::before, .fx-title::after { content: ""; flex: 1 1 0; min-width: 0; max-width: 46px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, transparent, var(--fm-accent)); }
@@ -265,3 +265,9 @@ body.cart-open { overflow: hidden; }
   @keyframes wlBracketL { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: none; } }
   @keyframes wlBracketR { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: none; } }
 }
+
+/* popup spacing: tight but even */
+.welcome-card .wl-prayer { margin-top: 10px; }
+.welcome-card .verse { margin-top: 10px; padding-top: 14px; }
+.welcome-card .wl-cta { bottom: -20px; margin: 8px -20px -20px; padding: 12px 20px 20px; }
+@media (max-width: 380px) { .wl-logo { width: 84px; height: 84px; } }
