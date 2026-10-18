@@ -120,3 +120,31 @@ Rebuild data: `python3 tools/build_quran_data.py`.
   Prices shown are the real ones from the product list.
 - **Welcome popup**: bigger logo (96px), tighter spacing, slogan "From Store to Door" sits 2px under the title.
 - **Header**: 2px gap between the "Deshi Drop" wordmark and its slogan.
+
+## Category menu (latest)
+
+- The hero text block was removed (the carousel replaces it). The category menu (`#cat-menu`, `css/filter.css`, `js/filter.js`)
+  shows **All · Meat & Poultry · Fish · Grocery · Bakery · Beverage** — two rows on phones, one row on desktop.
+  All filters the product grid with a smooth fade; Meat & Poultry shows meat only; Fish, Grocery, Bakery and Beverage show a
+  "Coming soon" panel. To open a section later, give it a filter in `FILTERS` (js/filter.js) and remove the `soon` class in `index.html`.
+
+## Meat menu from the flyer (latest)
+
+- Products now follow the price flyer: beef (Trip $6.00, Whole Head $3.50, Koliza $3.50, Meat Regular $4.50, Meat & Bones Zero Fat $5.50,
+  Meat Zero Fat $7.50 — per lb) and chicken (Soft $2.50/lb, Hard $5.00/piece, Leg with skin $1.50/lb, Leg without skin $2.00/lb,
+  Breast $3.50/lb). Edit them in `products` in `js/main.js` (EN, Bangla on the object, Arabic in `AR_NAMES`).
+- Every meat card carries a Halal seal (`#halal-seal` symbol in `index.html`, styles in `css/meat.css`).
+- "Meat & Poultry" in the menu shows All meat / Beef / Chicken chips plus the delivery note (free over 100 LB, $9.99 minimum, Sat & Sun 3–9 PM).
+- Flyer-based text: carousel slides, "Why shop with us", trust badges, shop heading. Delivery from $9.99 (Metro Detroit).
+
+## Gallery tab (latest)
+
+- New **Gallery** tab in the bottom bar (now six equal tabs: Home · Quran · Gallery · Search · Cart · Account) and a page at `#/gallery`.
+- **Add photos for every visitor:** copy the image into the `gallery/` folder, add one entry to `js/gallery-data.js` (id, src, cat, date,
+  title/caption in EN/BN/AR), upload to GitHub. Categories are defined at the top of the same file. `video:` entries are supported.
+- **Add photos from the page** (button "Add photos"): choose / drag / paste images, caption + category; they are compressed in the browser and
+  saved on that device only (IndexedDB) — handy for previews; delete them from the viewer.
+- Features: masonry or uniform grid, category chips, favourites (saved on the device), newest/oldest sort, lazy loading with fade-in,
+  full-screen viewer (swipe, pinch / double-tap / wheel zoom, keyboard arrows, thumbnails, slideshow, share, download, full screen),
+  shareable links `#/gallery/<id>`, shared-element open/close animation (View Transitions API with fallback), EN/BN/AR, reduced-motion aware.
+- Files: `css/gallery.css`, `js/gallery.js`, `js/gallery-data.js`, `gallery/`.

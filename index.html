@@ -7,11 +7,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@500;600;700;800&family=Noto+Sans+Arabic:wght@500;700;800&family=Noto+Sans+Bengali:wght@400;500;700;800&family=Amiri:wght@400;700&family=Amiri+Quran&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=20261017a">
-<link rel="stylesheet" href="css/responsive.css?v=20261017a">
-<link rel="stylesheet" href="css/quran.css?v=20261017a">
-<link rel="stylesheet" href="css/shop.css?v=20261017a">
-<link rel="stylesheet" href="css/carousel.css?v=20261017a">
+<link rel="stylesheet" href="css/style.css?v=20261020a">
+<link rel="stylesheet" href="css/responsive.css?v=20261020a">
+<link rel="stylesheet" href="css/quran.css?v=20261020a">
+<link rel="stylesheet" href="css/shop.css?v=20261020a">
+<link rel="stylesheet" href="css/carousel.css?v=20261020a">
+<link rel="stylesheet" href="css/filter.css?v=20261020a">
+<link rel="stylesheet" href="css/meat.css?v=20261020a">
+<link rel="stylesheet" href="css/gallery.css?v=20261020a">
 </head>
 <body>
 <div id="view-home">
@@ -23,6 +26,12 @@
   <button class="lang-opt" data-lang="ar" type="button">العربية</button>
 </div>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><symbol id="halal-seal" viewBox="0 0 64 64">
+  <circle cx="32" cy="32" r="31" fill="#144f2c"/><circle cx="32" cy="32" r="27.5" fill="none" stroke="#fff" stroke-width="1.4"/><circle cx="32" cy="32" r="25" fill="none" stroke="#e9c46a" stroke-width=".8" stroke-dasharray="1.6 2.2"/>
+  <path d="M26 15c2.6-1.2 5.2-1 7 .8-2.4 1.4-5 1.6-7-.8z" fill="#8fd1a4"/>
+  <text x="32" y="35" text-anchor="middle" font-family="Amiri,'Noto Naskh Arabic','Noto Sans Arabic',serif" font-weight="700" font-size="19" fill="#fff">حلال</text>
+  <text x="32" y="47.5" text-anchor="middle" font-family="Inter,sans-serif" font-weight="800" font-size="8.6" letter-spacing="1.4" fill="#fff">HALAL</text>
+  <rect x="21" y="50.5" width="22" height="3.2" rx="1.6" fill="#c8202f"/></symbol></defs></svg>
 <header id="top" class="site-hdr">
   <div class="nav-row">
     <a class="brand" href="#top" style="display:flex; align-items:center; gap:10px; cursor:pointer;">
@@ -122,16 +131,17 @@
         <!-- 2 · Hand Zabiha Halal meats -->
         <article class="cs-slide cs-s2" role="group" aria-roledescription="slide" aria-label="2 of 5">
           <div class="cs-copy">
-            <span class="cs-tag" data-i18n="cs2_tag">Zabiha Halal</span>
-            <p class="cs-h" data-i18n="cs2_h">Hand Zabiha Halal meats</p>
-            <p class="cs-p" data-i18n="cs2_p">Beef, lamb, goat &amp; chicken.</p>
-            <a class="cs-cta" href="#shop" data-i18n="cs2_cta">Shop Meat</a>
+            <span class="cs-tag" data-i18n="cs2_tag">100% Zabiha Halal</span>
+            <p class="cs-h" data-i18n="cs2_h">Farm fresh Zabiha Halal meat</p>
+            <p class="cs-p" data-i18n="cs2_p">Hand slaughtered, cleaned &amp; cut ready to cook.</p>
+            <a class="cs-cta" href="#shop" data-i18n="cs2_cta">Order Your Meat Now</a>
           </div>
           <div class="cs-art arches" aria-hidden="true">
-            <div class="cs-arch t1" style="--k:1"><img class="cs-photo" data-photo-key="lamb" alt=""></div>
+            <span class="halal-seal xl"><svg viewBox="0 0 64 64"><use href="#halal-seal"/></svg></span>
+            <div class="cs-arch t1" style="--k:1"><img class="cs-photo" data-photo-key="fl_cubes" alt=""></div>
             <div class="cs-arch t2" style="--k:0"><img class="cs-photo" data-photo-key="beef" alt=""></div>
             <div class="cs-arch t3" style="--k:2"><img class="cs-photo" data-photo-key="onion" alt=""></div>
-            <span class="cs-price"><span class="pl" data-i18n="cs2_pl">Whole chicken</span><span class="pv"><b>$2.99</b><small data-i18n="cs_lb">/lb</small></span></span>
+            <span class="cs-price"><span class="pl" data-i18n="cs2_pl">Chicken leg</span><span class="pv"><b>$1.50</b><small data-i18n="cs_lb">/lb</small></span></span>
           </div>
         </article>
 
@@ -154,10 +164,10 @@
         <!-- 4 · Fish + pantry -->
         <article class="cs-slide cs-s4" role="group" aria-roledescription="slide" aria-label="4 of 5">
           <div class="cs-copy">
-            <span class="cs-tag" data-i18n="cs4_tag">Frozen &amp; pantry</span>
-            <p class="cs-h" data-i18n="cs4_h">Frozen fish &amp; sea fish</p>
-            <p class="cs-p" data-i18n="cs4_p">Plus every pantry staple — rice, lentils, flour &amp; oil.</p>
-            <a class="cs-cta" href="#shop" data-i18n="cs4_cta">Shop Grocery</a>
+            <span class="cs-tag" data-i18n="cs4_tag">Coming soon</span>
+            <p class="cs-h" data-i18n="cs4_h">Monthly grocery items</p>
+            <p class="cs-p" data-i18n="cs4_p">Oil, rice, lentils &amp; pantry staples — plus frozen fish. Coming soon.</p>
+            <a class="cs-cta" href="#shop" data-i18n="cs4_cta">Browse products</a>
           </div>
           <div class="cs-art arches" aria-hidden="true">
             <div class="cs-arch t1" style="--k:1"><img class="cs-photo" data-photo-key="lentils" alt=""></div>
@@ -173,7 +183,7 @@
                 <circle cx="22" cy="24" r="4" fill="rgba(255,255,255,.55)"/><circle cx="34" cy="12" r="2.6" fill="rgba(255,255,255,.45)"/><circle cx="100" cy="100" r="3.4" fill="rgba(255,255,255,.5)"/>
               </svg>
             </div>
-            <span class="cs-price"><span class="pl" data-i18n="cs4_pl">Basmati rice</span><span class="pv"><b>$14.99</b><small data-i18n="cs4_u">/10 lb</small></span></span>
+            <span class="cs-price"><span class="pl" data-i18n="cs4_pl">Grocery &amp; fish</span><span class="pv"><b data-i18n="cs4_soon">Soon</b></span></span>
           </div>
         </article>
 
@@ -181,8 +191,8 @@
         <article class="cs-slide cs-s5" role="group" aria-roledescription="slide" aria-label="5 of 5">
           <div class="cs-copy">
             <span class="cs-tag" data-i18n="cs5_tag">We deliver</span>
-            <p class="cs-h" data-i18n="cs5_h">Delivery from $10</p>
-            <p class="cs-p" data-i18n="cs5_p">Detroit, Hamtramck, Warren, Sterling Heights, Troy, Shelby Township</p>
+            <p class="cs-h" data-i18n="cs5_h">Delivery from $9.99</p>
+            <p class="cs-p" data-i18n="cs5_p">Metro Detroit · Saturday &amp; Sunday, 3&nbsp;PM – 9&nbsp;PM</p>
             <a class="cs-cta" href="#shop" data-i18n="cs5_cta">Order Now</a>
           </div>
           <div class="cs-art arches" aria-hidden="true">
@@ -220,13 +230,6 @@
 
 <section class="hero">
   <div class="hero-inner">
-    <div>
-      <div class="eyebrow" data-i18n="eyebrow">Fresh daily · Delivered to your door</div>
-      <h1 data-i18n="hero_h1">Groceries, meat &amp; produce — the easy way.</h1>
-      <p data-i18n="hero_p">Hand-picked meat, fresh produce, and pantry staples from trusted local suppliers, delivered on your schedule.</p>
-      <a class="btn btn-primary" href="#shop" data-i18n="btn_shop">Shop Now</a>
-      <a class="btn btn-ghost" href="#categories" data-i18n="btn_browse">Browse Categories</a>
-    </div>
     <div class="hero-art">
       <div class="biz-card">
         <h3 data-i18n="biz_h3">Why shop with us</h3>
@@ -237,58 +240,50 @@
           </li>
           <li>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--fm-accent-dark)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
-            <span data-i18n="biz_li2">Hand Zabiha Halal beef, lamb, goat &amp; chicken available</span>
+            <span data-i18n="biz_li2">Hand-slaughtered Zabiha Halal beef &amp; chicken</span>
           </li>
           <li>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--fm-accent-dark)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
-            <span data-i18n="biz_li3">Frozen fish &amp; sea fish</span>
+            <span data-i18n="biz_li3">Perfectly cut &amp; cleaned — ready-to-cook sizes</span>
           </li>
           <li>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--fm-accent-dark)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
-            <span data-i18n="biz_li4">All kinds of grocery items</span>
+            <span data-i18n="biz_li4">Monthly grocery items</span>
           </li>
         </ul>
         <div class="biz-divider"></div>
         <div class="biz-areas">
           <b data-i18n="biz_area_label">Delivery area:</b> <span data-i18n="biz_area_cities">Detroit, Hamtramck, Warren, Sterling Heights, Troy, Shelby Township</span>
         </div>
-        <span class="biz-fee" data-i18n="biz_fee">Delivery from $10</span>
+        <div class="biz-areas"><b data-i18n="biz_days_label">Delivery days:</b> <span data-i18n="biz_days">Saturday &amp; Sunday, 3&nbsp;PM – 9&nbsp;PM</span></div>
+        <span class="biz-fee" data-i18n="biz_fee">Minimum delivery charge $9.99 (Metro Detroit)</span>
       </div>
     </div>
   </div>
 </section>
 
-<section style="padding:26px 20px; border-top:1px solid var(--fm-border); border-bottom:1px solid var(--fm-border);">
-  <div class="wrap" style="display:flex; flex-wrap:wrap; gap:22px; justify-content:space-between;">
-    <div style="display:flex; align-items:center; gap:10px; font-size:13px; font-weight:600; color:var(--fm-muted);">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--fm-accent-dark)" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
-      <span data-i18n="trust_1">Same-day fresh delivery</span>
-    </div>
-    <div style="display:flex; align-items:center; gap:10px; font-size:13px; font-weight:600; color:var(--fm-muted);">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--fm-accent-dark)" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-      <span data-i18n="trust_2">Secure checkout</span>
-    </div>
-    <div style="display:flex; align-items:center; gap:10px; font-size:13px; font-weight:600; color:var(--fm-muted);">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--fm-accent-dark)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-      <span data-i18n="trust_3">Order tracking</span>
-    </div>
-    <div style="display:flex; align-items:center; gap:10px; font-size:13px; font-weight:600; color:var(--fm-muted);">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--fm-accent-dark)" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-      <span data-i18n="trust_4">Trusted local suppliers</span>
-    </div>
+<section class="trust-badges" aria-label="Why choose Deshi Drop meat">
+  <div class="wrap">
+    <ul class="tb-row">
+      <li class="tb-item"><svg class="tb-seal" viewBox="0 0 64 64" aria-hidden="true"><use href="#halal-seal"/></svg><span data-i18n="tb1">100% Halal Zabiha Meat</span></li>
+      <li class="tb-item"><span class="tb-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14"/><path d="M5 19c3-5 6-8 10-10"/></svg></span><span data-i18n="tb2">Farm Fresh</span></li>
+      <li class="tb-item"><span class="tb-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 11V6a1.5 1.5 0 0 1 3 0v4m0-1V4.5a1.5 1.5 0 0 1 3 0V10m0-.5V6a1.5 1.5 0 0 1 3 0v6m0-3a1.5 1.5 0 0 1 3 0v5c0 4-3 7-7 7-3 0-5-1.5-6.5-4L4 14c-.6-1.3.8-2.4 2-1.4L7 14"/></svg></span><span data-i18n="tb3">Hand Slaughtered</span></li>
+      <li class="tb-item"><span class="tb-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="m9 9 2 2 4-4M8.5 14 7 21l5-3 5 3-1.5-7"/></svg></span><span data-i18n="tb4">High Quality</span></li>
+      <li class="tb-item"><span class="tb-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.5" y="6" width="13" height="10" rx="1.5"/><path d="M14.5 9h4l3 3.5V16h-7"/><circle cx="6" cy="17.5" r="2"/><circle cx="18" cy="17.5" r="2"/></svg></span><span data-i18n="tb5">Safe &amp; Hygienic Delivery</span></li>
+    </ul>
+    <p class="tb-line" data-i18n="tb_line">Fresh meat. Trusted source. Delivered to your door.</p>
   </div>
 </section>
 
 <section class="section" id="categories">
   <div class="wrap">
-    <div class="cat-scroll">
-      <div class="cat-pill active" data-i18n="cat_all">All</div>
-      <div class="cat-pill" data-i18n="nav_meat">Meat & Poultry</div>
-      <div class="cat-pill" data-i18n="cat_produce">Fresh Produce</div>
-      <div class="cat-pill" data-i18n="cat_dairy">Dairy & Eggs</div>
-      <div class="cat-pill" data-i18n="cat_pantry">Pantry</div>
-      <div class="cat-pill" data-i18n="cat_bakery">Bakery</div>
-      <div class="cat-pill" data-i18n="cat_bev">Beverages</div>
+    <div class="cat-menu" id="cat-menu" role="group" aria-label="Shop by category">
+      <button class="cat-pill active" type="button" data-cat="all" aria-pressed="true"><span class="cp-t" data-i18n="cat_all">All</span></button>
+      <button class="cat-pill" type="button" data-cat="meat" aria-pressed="false"><span class="cp-t" data-i18n="nav_meat">Meat &amp; Poultry</span></button>
+      <button class="cat-pill soon" type="button" data-cat="fish" aria-pressed="false"><span class="cp-t" data-i18n="cat_fish">Fish</span><em class="cp-soon" data-i18n="cat_soon_badge">Soon</em></button>
+      <button class="cat-pill soon" type="button" data-cat="grocery" aria-pressed="false"><span class="cp-t" data-i18n="nav_grocery">Grocery</span><em class="cp-soon" data-i18n="cat_soon_badge">Soon</em></button>
+      <button class="cat-pill soon" type="button" data-cat="bakery" aria-pressed="false"><span class="cp-t" data-i18n="cat_bakery">Bakery</span><em class="cp-soon" data-i18n="cat_soon_badge">Soon</em></button>
+      <button class="cat-pill soon" type="button" data-cat="beverage" aria-pressed="false"><span class="cp-t" data-i18n="cat_bev">Beverage</span><em class="cp-soon" data-i18n="cat_soon_badge">Soon</em></button>
     </div>
   </div>
 </section>
@@ -296,10 +291,30 @@
 <section class="section" id="shop">
   <div class="wrap">
     <div class="section-head">
-      <h2 data-i18n="featured_h2">Featured This Week</h2>
+      <h2 data-i18n="featured_h2">Farm Fresh. Zabiha Halal.</h2>
       <a href="#" data-i18n="view_all">View all →</a>
     </div>
+    <p class="shop-sub" data-i18n="featured_p">Healthy, hygienic &amp; high quality meat delivered to your doorstep.</p>
+    <div class="meat-tools" id="meat-tools" hidden>
+      <div class="sub-menu" id="sub-menu" role="group" aria-label="Meat type">
+        <button class="sub-chip active" type="button" data-sub="all" aria-pressed="true" data-i18n="sub_all">All meat</button>
+        <button class="sub-chip" type="button" data-sub="Beef" aria-pressed="false" data-i18n="sub_beef">Beef</button>
+        <button class="sub-chip" type="button" data-sub="Chicken" aria-pressed="false" data-i18n="sub_chicken">Chicken</button>
+      </div>
+      <ul class="meat-note">
+        <li data-i18n="mn_free">Over 100 LB — FREE delivery</li>
+        <li data-i18n="mn_min">Minimum delivery charge $9.99 (Metro Detroit)</li>
+        <li data-i18n="mn_days">Sat &amp; Sun · 3&nbsp;PM – 9&nbsp;PM</li>
+      </ul>
+    </div>
     <div class="grid" id="product-grid"></div>
+    <div class="soon-panel" id="soon-panel" hidden role="status">
+      <div class="soon-ico" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+      <h3 data-i18n="soon_h">Coming soon</h3>
+      <p class="soon-cat"></p>
+      <p data-i18n="soon_p">We're getting this section ready. Check back soon!</p>
+      <a class="btn btn-primary" href="#categories" data-i18n="soon_btn" onclick="document.querySelector('#cat-menu [data-cat=all]').click();return false;">Browse all products</a>
+    </div>
   </div>
 </section>
 
@@ -468,6 +483,97 @@
   <main class="acct-main" id="acct-root" tabindex="-1"></main>
 </div>
 
+<!-- ============ GALLERY VIEW (#/gallery) ============ -->
+<div id="view-gallery" class="gal-page" hidden>
+  <div class="lang-bar" dir="ltr">
+    <button class="lang-opt active" data-lang="en" type="button">EN</button>
+    <span class="lang-sep">|</span>
+    <button class="lang-opt" data-lang="bn" type="button">বাংলা</button>
+    <span class="lang-sep">|</span>
+    <button class="lang-opt" data-lang="ar" type="button">العربية</button>
+  </div>
+  <div class="acct-top">
+    <a class="acct-back" href="#/">
+      <svg class="flip-rtl" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+      <span data-g="back">Back to shop</span>
+    </a>
+    <a class="brand acct-brand" href="#/">
+      <img class="deshi-logo-img" alt="" width="34" height="34">
+      <span><span style="color:var(--fm-accent)">Deshi</span> <span style="color:var(--fm-red)">Drop</span></span>
+    </a>
+    <button class="icon-btn" type="button" data-open-cart aria-label="Open cart">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+      <span class="cart-count" data-cart-count hidden>0</span>
+    </button>
+  </div>
+
+  <main class="gal-main" id="gal-root" tabindex="-1">
+    <header class="gal-hero">
+      <span class="gal-eyebrow" data-g="eyebrow">Photo gallery</span>
+      <h1 data-g="title">Gallery</h1>
+      <p data-g="sub">Fresh from our store — meat, produce and deliveries.</p>
+    </header>
+
+    <div class="gal-bar" id="gal-bar">
+      <div class="gal-chips" id="gal-chips" role="group" aria-label="Photo categories"></div>
+      <div class="gal-tools">
+        <button class="gal-tool" id="gal-fav" type="button" aria-pressed="false"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-8-5.2-8-11a4.6 4.6 0 0 1 8-3 4.6 4.6 0 0 1 8 3c0 5.800-8 11-8 11z"/></svg><span data-g="fav">Favorites</span><em id="gal-favn">0</em></button>
+        <button class="gal-tool" id="gal-sort" type="button"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4v16m0 0-3-3m3 3 3-3M17 20V4m0 0-3 3m3-3 3 3"/></svg><span id="gal-sort-l">Newest</span></button>
+        <button class="gal-tool" id="gal-layout" type="button"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg><span id="gal-layout-l">Masonry</span></button>
+        <button class="gal-tool gal-add" id="gal-add" type="button"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span data-g="add">Add photos</span></button>
+      </div>
+    </div>
+    <p class="gal-count" id="gal-count" aria-live="polite"></p>
+    <div class="gal-grid" id="gal-grid"></div>
+    <div class="gal-empty" id="gal-empty" hidden>
+      <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.8"/><path d="m21 16-5-5-9 9"/></svg>
+      <p id="gal-empty-t"></p>
+    </div>
+  </main>
+
+  <!-- Viewer -->
+  <div class="gal-lb" id="gal-lb" role="dialog" aria-modal="true" aria-label="Photo viewer" dir="ltr" hidden>
+    <div class="gl-top">
+      <span class="gl-count" id="gl-count" aria-live="polite"></span>
+      <div class="gl-actions">
+        <button type="button" class="gl-btn" id="gl-fav" aria-label="Favorite" aria-pressed="false"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 21s-8-5.2-8-11a4.6 4.6 0 0 1 8-3 4.6 4.6 0 0 1 8 3c0 5.800-8 11-8 11z"/></svg></button>
+        <button type="button" class="gl-btn" id="gl-play" aria-label="Start slideshow"><svg class="i-play" width="21" height="21" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.2v13.6a1 1 0 0 0 1.5.9l11-6.8a1 1 0 0 0 0-1.8l-11-6.8A1 1 0 0 0 8 5.2z"/></svg><svg class="i-pause" width="21" height="21" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4.5" height="14" rx="1.2"/><rect x="13.5" y="5" width="4.5" height="14" rx="1.2"/></svg></button>
+        <button type="button" class="gl-btn" id="gl-share" aria-label="Share"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg></button>
+        <a class="gl-btn" id="gl-dl" aria-label="Download" download><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg></a>
+        <button type="button" class="gl-btn" id="gl-full" aria-label="Full screen"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+        <button type="button" class="gl-btn" id="gl-del" aria-label="Delete" hidden><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg></button>
+        <button type="button" class="gl-btn" id="gl-close" aria-label="Close"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      </div>
+    </div>
+    <div class="gl-progress" id="gl-progress" hidden><i></i></div>
+    <div class="gl-stage" id="gl-stage">
+      <button type="button" class="gl-nav gl-prev" id="gl-prev" aria-label="Previous photo"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <div class="gl-media" id="gl-media"></div>
+      <button type="button" class="gl-nav gl-next" id="gl-next" aria-label="Next photo"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+    </div>
+    <div class="gl-info" id="gl-info" dir="auto"></div>
+    <div class="gl-thumbs" id="gl-thumbs" role="tablist" aria-label="Photos"></div>
+  </div>
+
+  <!-- Add photos -->
+  <div class="gal-modal" id="gal-modal" role="dialog" aria-modal="true" aria-labelledby="gm-title" hidden>
+    <div class="gm-card">
+      <button type="button" class="gm-x" id="gm-x" aria-label="Close">&times;</button>
+      <h2 id="gm-title" data-g="add_title">Add photos</h2>
+      <label class="gm-drop" id="gm-drop" for="gm-file">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4m0 0-4 4m4-4 4 4M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
+        <b data-g="drop">Tap to choose photos, or drag them here</b>
+        <small data-g="drop2">You can also paste an image · JPG, PNG, WebP</small>
+        <input id="gm-file" type="file" accept="image/*" multiple>
+      </label>
+      <ul class="gm-list" id="gm-list"></ul>
+      <p class="gm-note" data-g="local_note">Photos you add here are saved on this device only. To show them to every visitor, put the files in the gallery/ folder and list them in js/gallery-data.js.</p>
+      <button type="button" class="gm-go" id="gm-go" disabled>Add photos</button>
+    </div>
+  </div>
+  <div class="gal-toast" id="gal-toast" role="status" aria-live="polite"></div>
+</div>
+
 <!-- ============ CART DRAWER ============ -->
 <div class="cart-scrim" id="cart-scrim"></div>
 <aside class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title" aria-hidden="true"></aside>
@@ -482,6 +588,10 @@
   <a class="tab-item" href="#/quran" data-tab="quran">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 6.5C10.3 5 8 4.5 4 4.5v13c4 0 6.3.5 8 2 1.7-1.5 4-2 8-2v-13c-4 0-6.3.5-8 2z"/><path d="M12 6.5v13"/></svg>
     <span data-i18n="tab_quran">Quran</span>
+  </a>
+  <a class="tab-item" href="#/gallery" data-tab="gallery">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.8"/><path d="m21 16-5-5-9 9"/></svg>
+    <span data-i18n="tab_gallery">Gallery</span>
   </a>
   <a class="tab-item" href="#/quran/search" data-tab="search">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
@@ -498,12 +608,15 @@
   </a>
 </div>
 
-<script src="js/verses.js?v=20261017a"></script>
-<script src="js/config.js?v=20261017a"></script>
-<script src="js/main.js?v=20261017a"></script>
-<script src="js/carousel.js?v=20261017a"></script>
-<script src="js/shop.js?v=20261017a"></script>
-<script src="js/quran-meta.js?v=20261017a"></script>
-<script src="js/quran.js?v=20261017a"></script>
+<script src="js/verses.js?v=20261020a"></script>
+<script src="js/config.js?v=20261020a"></script>
+<script src="js/main.js?v=20261020a"></script>
+<script src="js/carousel.js?v=20261020a"></script>
+<script src="js/filter.js?v=20261020a"></script>
+<script src="js/shop.js?v=20261020a"></script>
+<script src="js/gallery-data.js?v=20261020a"></script>
+<script src="js/gallery.js?v=20261020a"></script>
+<script src="js/quran-meta.js?v=20261020a"></script>
+<script src="js/quran.js?v=20261020a"></script>
 </body>
 </html>
