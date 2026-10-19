@@ -148,3 +148,11 @@ Rebuild data: `python3 tools/build_quran_data.py`.
   full-screen viewer (swipe, pinch / double-tap / wheel zoom, keyboard arrows, thumbnails, slideshow, share, download, full screen),
   shareable links `#/gallery/<id>`, shared-element open/close animation (View Transitions API with fallback), EN/BN/AR, reduced-motion aware.
 - Files: `css/gallery.css`, `js/gallery.js`, `js/gallery-data.js`, `gallery/`.
+
+## Deals section & carousel buttons
+- `js/deals-data.js` lists the sale items (`name` must match a product in `js/main.js`, `pct` = percent off). Sale price is computed automatically and used on cards, in the Deals section and in the cart. The 20% values are placeholders.
+- Carousel buttons jump to the matching category: "Order Your Meat Now" shows the meat section only; produce/grocery/fish slides open their "Coming soon" panel.
+
+### Deals pages (dashboard-ready)
+The Deals section shows 4 products per page with numbered pages, arrows and swipe; extra pages appear automatically (11 deals → 4 + 4 + 3). `js/deals-data.js` holds `pageSize` and the ordered deal list (`name`, `pct`, optional `active`, `from`, `until`).
+When the backend exists: set `endpoint` in `window.__DEALS_CONFIG` to a URL returning `{ "pageSize": 4, "deals": [ {name, pct, active, from, until} ] }`, or call `window.__setDeals(list, { pageSize })` from the dashboard script.

@@ -40,6 +40,14 @@
     grid.classList.add('swapping'); busy = setTimeout(run, 200);
   }));
   pills.forEach((b) => b.addEventListener('click', () => { if (!b.classList.contains('active')) apply(b.dataset.cat, b); }));
+  // carousel buttons: jump to a category (meat shows the meat section only), then scroll to the menu
+  window.__goCat = function (key, label) {
+    const pill = pills.find((b) => b.dataset.cat === key) || pills[0];
+    if (pill.dataset.cat === 'meat' && sub !== 'all') { sub = 'all'; chips.forEach((x) => { const on = x.dataset.sub === 'all'; x.classList.toggle('active', on); x.setAttribute('aria-pressed', on ? 'true' : 'false'); }); if (pill.classList.contains('active')) { window.__catFilter = FILTERS.meat; window.__renderProductsForLang(window.__currentProductLang || 'en'); } }
+    if (!pill.classList.contains('active')) apply(pill.dataset.cat, pill);
+    const sec = document.getElementById('categories'); if (sec) sec.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    if (pill.classList.contains('soon')) setTimeout(() => { panel.querySelector('.soon-cat').textContent = label || pill.querySelector('.cp-t').textContent; }, reduce ? 0 : 260);
+  };
   // keep the panel's category name in step when the language changes
   const origLang = window.__onLangChange;
   document.querySelectorAll('[data-lang]').forEach((el) => el.addEventListener('click', () => setTimeout(() => {

@@ -73,6 +73,12 @@
     }, 90);
   }, { passive: true });
 
+  root.addEventListener('click', (e) => {
+    const a = e.target.closest && e.target.closest('.cs-cta[data-go]'); if (!a || !window.__goCat) return;
+    e.preventDefault();
+    const pl = a.dataset.goLabel && a.closest('.cs-slide').querySelector('.cs-price .pl');
+    window.__goCat(a.dataset.go, pl ? pl.textContent : '');
+  });
   prev.addEventListener('click', () => go(idx - 1));
   next.addEventListener('click', () => go(idx + 1));
   dots.forEach((d, k) => d.addEventListener('click', () => go(k)));

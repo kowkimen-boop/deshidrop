@@ -83,18 +83,40 @@
   const pName = (p,l) => l==='bn' ? (p.name_bn||p.name) : l==='ar' ? (AR_NAMES[p.name]||p.name) : p.name;
   const pCat  = (p,l) => l==='bn' ? (p.cat_bn||p.cat) : l==='ar' ? (AR_CATS[p.cat]||p.cat) : p.cat;
   const pTag  = (p,l) => (TAGS[p.tag] && TAGS[p.tag][l]) || p.tag;
+  // ---- Deals: data comes from js/deals-data.js today, from the dashboard/backend later (see README) ----
+  const DEALS_CFG = Object.assign({ pageSize: 4, endpoint: '' }, window.__DEALS_CONFIG || {});
+  let dealOrder = [], dealPage = 0;
+  function dealLive(d) {
+    const now = Date.now();
+    if (!d || d.active === false) return false;
+    if (d.from && Date.parse(d.from) > now) return false;
+    if (d.until && Date.parse(d.until) < now) return false;
+    return true;
+  }
+  function applyDeals(list) {
+    products.forEach((p) => { delete p.deal; delete p.salePrice; });
+    dealOrder = [];
+    (list || []).forEach((d) => {
+      if (!dealLive(d)) return;
+      const i = products.findIndex((x) => x.name === d.name); if (i < 0 || products[i].deal) return;
+      const pct = Math.min(90, Math.max(1, Math.round(+d.pct) || 0)); if (!pct) return;
+      const p = products[i], base = parseFloat(String(p.price).replace(/[^0-9.]/g, ''));
+      p.deal = pct; p.salePrice = '$' + (Math.round(base * (100 - pct)) / 100).toFixed(2);
+      dealOrder.push(i);                       // the deals list decides the order shown in the section
+    });
+  }
+  applyDeals(window.__DEALS);
   window.__DD = { products, pName, pCat, icons, fallbackIcon };  // used by js/shop.js (cart)
 
   const grid = document.getElementById('product-grid');
   window.__currentProductLang = 'en';
 
-  function renderProducts(lang) {
-    window.__currentProductLang = lang;
-    grid.innerHTML = products.map((p,i) => (window.__catFilter && !window.__catFilter(p)) ? '' : `
+  function cardHTML(p, i, lang) { return `
       <div class="card fade-in visible ${p.photo ? 'tilt-card' : ''}" style="transition-delay:${(i % 8) * 60}ms">
         <div class="card-img ${p.photo ? 'has-photo' : ''}">
           ${p.tag ? `<span class="tag">${pTag(p,lang)}</span>` : ''}
           ${p.cat === 'Meat' ? '<span class="halal-seal" title="100% Halal" aria-label="100% Halal"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#halal-seal"/></svg></span>' : ''}
+          ${p.deal ? `<span class="deal-ribbon">-${p.deal}%</span>` : ''}
           ${p.photo
             ? `<img class="product-photo" src="" data-photo-key="${p.photo}" alt="${p.name}">`
             : (icons[p.icon] || fallbackIcon).replace('<svg ', '<svg width="56" height="56" ')}
@@ -103,12 +125,71 @@
           <div class="card-cat">${pCat(p,lang)}</div>
           <div class="card-name">${pName(p,lang)}</div>
           <div class="card-bottom">
-            <div class="price">${p.price}</div>
+            ${p.deal ? `<div class="price has-deal"><s class="was">${p.price}</s><span class="now">${p.salePrice}</span></div>` : `<div class="price">${p.price}</div>`}
             <button class="add-btn" type="button" data-pid="${i}" aria-label="Add to cart">+</button>
           </div>
         </div>
-      </div>
-    `).join('');
+      </div>`; }
+
+  const dealGrid = document.getElementById('deal-grid'), dealPager = document.getElementById('deal-pager');
+  const PG_TXT = {
+    en: (a, b, n) => `Showing ${a}–${b} of ${n}`,
+    bn: (a, b, n) => `${n}টির মধ্যে ${a}–${b}`,
+    ar: (a, b, n) => `عرض ${a}–${b} من ${n}`
+  };
+  const PG_ARIA = { en: ['Previous page', 'Next page', 'Page'], bn: ['আগের পৃষ্ঠা', 'পরের পৃষ্ঠা', 'পৃষ্ঠা'], ar: ['الصفحة السابقة', 'الصفحة التالية', 'صفحة'] };
+  const pageSize = () => Math.max(1, parseInt(DEALS_CFG.pageSize, 10) || 4);
+  function renderDeals(lang, dir) {
+    const sec = document.getElementById('deal-list'); if (!dealGrid) return;
+    const total = dealOrder.length, size = pageSize(), pages = Math.max(1, Math.ceil(total / size));
+    dealPage = Math.min(Math.max(0, dealPage), pages - 1);
+    if (sec) sec.hidden = !total;
+    const n = document.getElementById('deal-n'); if (n) n.textContent = total;
+    const from = dealPage * size, slice = dealOrder.slice(from, from + size);
+    dealGrid.innerHTML = slice.map((i) => cardHTML(products[i], i, lang)).join('');
+    dealGrid.classList.remove('pg-next', 'pg-prev');
+    if (dir) { void dealGrid.offsetWidth; dealGrid.classList.add(dir > 0 ? 'pg-next' : 'pg-prev'); }
+    // keep the grid height steady so the page doesn't jump when the last page has fewer cards
+    if (dealGrid.offsetHeight > (parseFloat(dealGrid.style.minHeight) || 0)) dealGrid.style.minHeight = dealGrid.offsetHeight + 'px';
+    if (!dealPager) return;
+    dealPager.hidden = pages < 2; if (pages < 2) return;
+    const L = PG_ARIA[lang] || PG_ARIA.en, rtl = lang === 'ar';
+    const chev = (d) => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${d}"/></svg>`;
+    let nums = '';
+    for (let k = 0; k < pages; k++) nums += `<button class="pg-num${k === dealPage ? ' on' : ''}" type="button" data-pg="${k}" aria-label="${L[2]} ${k + 1}"${k === dealPage ? ' aria-current="page"' : ''}>${k + 1}</button>`;
+    dealPager.innerHTML =
+      `<div class="pg-row"><button class="pg-arrow" type="button" data-pg="${dealPage - 1}" aria-label="${L[0]}"${dealPage === 0 ? ' disabled' : ''}>${chev(rtl ? 'M9 18l6-6-6-6' : 'M15 18l-6-6 6-6')}</button>` +
+      `<div class="pg-nums">${nums}</div>` +
+      `<button class="pg-arrow" type="button" data-pg="${dealPage + 1}" aria-label="${L[1]}"${dealPage === pages - 1 ? ' disabled' : ''}>${chev(rtl ? 'M15 18l-6-6 6-6' : 'M9 18l6-6-6-6')}</button></div>` +
+      `<p class="pg-info" aria-live="polite">${(PG_TXT[lang] || PG_TXT.en)(from + 1, from + slice.length, total)}</p>`;
+  }
+  function dealGo(k) {
+    const pages = Math.ceil(dealOrder.length / pageSize()); if (k < 0 || k >= pages || k === dealPage) return;
+    const dir = k > dealPage ? 1 : -1; dealPage = k;
+    renderDeals(window.__currentProductLang || 'en', dir); fillProductPhotos(); attachTiltHandlers();
+    const sec = document.getElementById('deal-list'); if (sec && sec.getBoundingClientRect().top < 0) sec.scrollIntoView({ block: 'start' });
+  }
+  if (dealPager) dealPager.addEventListener('click', (e) => { const b = e.target.closest('[data-pg]'); if (b && !b.disabled) dealGo(+b.dataset.pg); });
+  if (dealGrid) { // swipe left/right on touch screens to change page
+    let sx = 0, sy = 0, st = 0;
+    dealGrid.addEventListener('touchstart', (e) => { const t = e.touches[0]; sx = t.clientX; sy = t.clientY; st = Date.now(); }, { passive: true });
+    dealGrid.addEventListener('touchend', (e) => {
+      const t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy;
+      if (Math.abs(dx) < 60 || Math.abs(dy) > Math.abs(dx) * .6 || Date.now() - st > 700) return;
+      const rtl = document.documentElement.dir === 'rtl'; dealGo(dealPage + ((dx < 0) !== rtl ? 1 : -1));
+    }, { passive: true });
+  }
+  // Dashboard / backend hook:  window.__setDeals([{name, pct, ...}], { pageSize })  → re-renders the section + prices.
+  window.__setDeals = function (list, cfg) {
+    if (cfg && cfg.pageSize) DEALS_CFG.pageSize = cfg.pageSize;
+    if (dealGrid) dealGrid.style.minHeight = '';
+    applyDeals(list); dealPage = 0; renderProducts(window.__currentProductLang || 'en');
+  };
+
+  function renderProducts(lang) {
+    window.__currentProductLang = lang;
+    grid.innerHTML = products.map((p,i) => (window.__catFilter && !window.__catFilter(p)) ? '' : cardHTML(p,i,lang)).join('');
+    renderDeals(lang);
     fillProductPhotos();
     attachTiltHandlers();
   }
@@ -150,6 +231,9 @@
 
   window.__renderProductsForLang = renderProducts;
   renderProducts('en');
+  if (DEALS_CFG.endpoint && window.fetch) {     // future backend: GET → { pageSize?, deals:[{ name, pct, active?, from?, until? }] }
+    fetch(DEALS_CFG.endpoint, { headers: { Accept: 'application/json' } }).then((r) => r.ok ? r.json() : Promise.reject()).then((j) => window.__setDeals(j.deals || j, j)).catch(() => {});
+  }
 
 /* ---- block ---- */
   // Logo embedded once here and reused for every <img class="deshi-logo-img">
@@ -245,16 +329,22 @@
     "cs_lb": "/পাউন্ড",
     "cs3_tag": "প্রতিদিন তাজা",
     "cs3_h": "আপনার জন্য বাছাই করা তাজা সবজি",
-    "cs3_p": "পালং শাক, পেঁয়াজ, ক্যাপসিকাম, আলু ও আরও অনেক কিছু।",
+    "cs3_p": "পালং শাক, পেঁয়াজ, আলু ও আরও অনেক কিছু — শীঘ্রই আসছে।",
     "cs3_cta": "সবজি কিনুন",
-    "cs3_pl": "তাজা পালং শাক",
+    "cs3_pl": "তাজা সবজি",
     "cs_bunch": "/আঁটি",
     "cs4_tag": "শীঘ্রই আসছে",
     "cs4_h": "মাসিক মুদি সামগ্রী",
-    "cs4_p": "তেল, চাল, ডাল ও নিত্যপ্রয়োজনীয় মুদি — সঙ্গে ফ্রোজেন মাছ। শীঘ্রই আসছে।",
+    "cs4_p": "চাল, ডাল, দুধ, ডিম ও নিত্যপ্রয়োজনীয় মুদি। শীঘ্রই আসছে।",
     "cs4_cta": "পণ্য দেখুন",
-    "cs4_pl": "মুদি ও মাছ",
+    "cs4_pl": "মুদি সামগ্রী",
     "cs4_u": "/১০ পাউন্ড",
+    "cs_see": "কী আসছে দেখুন",
+    "cs6_h": "ফ্রোজেন ও সামুদ্রিক মাছ",
+    "cs6_p": "তাজা মাছ, পরিষ্কার করে রান্নার জন্য প্রস্তুত। শীঘ্রই আসছে।",
+    "cs6_pl": "মাছ",
+    "deal_h": "অফার",
+    "deal_sub": "টি পণ্যে ছাড়",
     "cs5_tag": "আমরা ডেলিভারি দিই",
     "cs5_h": "ডেলিভারি $৯.৯৯ থেকে",
     "cs5_p": "মেট্রো ডেট্রয়েট · শনি ও রবিবার, বিকেল ৩টা – রাত ৯টা",
@@ -350,16 +440,22 @@
     "cs_lb": "/رطل",
     "cs3_tag": "طازج يوميًا",
     "cs3_h": "خضار طازجة مختارة لك",
-    "cs3_p": "سبانخ وبصل وفلفل وبطاطس والمزيد.",
+    "cs3_p": "سبانخ وبصل وبطاطس والمزيد — قريبًا.",
     "cs3_cta": "تسوق الخضار",
-    "cs3_pl": "سبانخ طازجة",
+    "cs3_pl": "خضار طازجة",
     "cs_bunch": "/حزمة",
     "cs4_tag": "قريبًا",
     "cs4_h": "مواد البقالة الشهرية",
-    "cs4_p": "زيت وأرز وعدس ومؤن المطبخ — إضافةً إلى السمك المجمّد. قريبًا.",
+    "cs4_p": "أرز وعدس وحليب وبيض ومؤن المطبخ. قريبًا.",
     "cs4_cta": "تصفّح المنتجات",
-    "cs4_pl": "بقالة وسمك",
+    "cs4_pl": "مواد بقالة",
     "cs4_u": "/١٠ رطل",
+    "cs_see": "اكتشف ما سيأتي",
+    "cs6_h": "سمك مجمّد وبحري",
+    "cs6_p": "سمك طازج منظّف وجاهز للطهي. قريبًا.",
+    "cs6_pl": "سمك",
+    "deal_h": "العروض",
+    "deal_sub": "منتجات بخصم",
     "cs5_tag": "نوصّل إليك",
     "cs5_h": "التوصيل يبدأ من ٩٫٩٩$",
     "cs5_p": "ديترويت الكبرى · السبت والأحد، ٣ مساءً – ٩ مساءً",

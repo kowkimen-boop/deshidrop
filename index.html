@@ -7,14 +7,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@500;600;700;800&family=Noto+Sans+Arabic:wght@500;700;800&family=Noto+Sans+Bengali:wght@400;500;700;800&family=Amiri:wght@400;700&family=Amiri+Quran&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=20261020a">
-<link rel="stylesheet" href="css/responsive.css?v=20261020a">
-<link rel="stylesheet" href="css/quran.css?v=20261020a">
-<link rel="stylesheet" href="css/shop.css?v=20261020a">
-<link rel="stylesheet" href="css/carousel.css?v=20261020a">
-<link rel="stylesheet" href="css/filter.css?v=20261020a">
-<link rel="stylesheet" href="css/meat.css?v=20261020a">
-<link rel="stylesheet" href="css/gallery.css?v=20261020a">
+<link rel="stylesheet" href="css/style.css?v=20261022a">
+<link rel="stylesheet" href="css/responsive.css?v=20261022a">
+<link rel="stylesheet" href="css/quran.css?v=20261022a">
+<link rel="stylesheet" href="css/shop.css?v=20261022a">
+<link rel="stylesheet" href="css/carousel.css?v=20261022a">
+<link rel="stylesheet" href="css/filter.css?v=20261022a">
+<link rel="stylesheet" href="css/meat.css?v=20261022a">
+<link rel="stylesheet" href="css/gallery.css?v=20261022a">
 </head>
 <body>
 <div id="view-home">
@@ -89,7 +89,7 @@
     <a href="#shop" data-i18n="nav_meat">Meat & Poultry</a>
     <a href="#shop" data-i18n="nav_produce">Produce</a>
     <a href="#shop" data-i18n="nav_grocery">Grocery</a>
-    <a href="#deals" data-i18n="nav_deals">Deals</a>
+    <a href="#deal-list" data-i18n="nav_deals">Deals</a>
     <a href="#" data-i18n="nav_track">Track Order</a>
     <a href="#/quran" data-i18n="nav_quran">Quran</a>
   </div>
@@ -103,12 +103,12 @@
       <div class="cs-track" id="cs-track" tabindex="0" aria-label="Deals — swipe or use the left and right arrow keys">
 
         <!-- 1 · Free delivery -->
-        <article class="cs-slide cs-s1" role="group" aria-roledescription="slide" aria-label="1 of 5">
+        <article class="cs-slide cs-s1" role="group" aria-roledescription="slide" aria-label="1 of 6">
           <div class="cs-copy">
             <span class="cs-tag" data-i18n="cs1_tag">Welcome offer</span>
             <p class="cs-h" data-i18n="cs1_h">Free delivery on your first order</p>
             <p class="cs-p" data-i18n="cs1_p">Or on any order over 100 LB.</p>
-            <a class="cs-cta" href="#shop" data-i18n="cs1_cta">Start Shopping</a>
+            <a class="cs-cta" href="#categories" data-go="all" data-i18n="cs1_cta">Start Shopping</a>
           </div>
           <div class="cs-art sit" aria-hidden="true">
             <svg class="cs-truck" viewBox="0 0 340 200" focusable="false">
@@ -129,12 +129,12 @@
         </article>
 
         <!-- 2 · Hand Zabiha Halal meats -->
-        <article class="cs-slide cs-s2" role="group" aria-roledescription="slide" aria-label="2 of 5">
+        <article class="cs-slide cs-s2" role="group" aria-roledescription="slide" aria-label="2 of 6">
           <div class="cs-copy">
             <span class="cs-tag" data-i18n="cs2_tag">100% Zabiha Halal</span>
             <p class="cs-h" data-i18n="cs2_h">Farm fresh Zabiha Halal meat</p>
             <p class="cs-p" data-i18n="cs2_p">Hand slaughtered, cleaned &amp; cut ready to cook.</p>
-            <a class="cs-cta" href="#shop" data-i18n="cs2_cta">Order Your Meat Now</a>
+            <a class="cs-cta" href="#categories" data-go="meat" data-i18n="cs2_cta">Order Your Meat Now</a>
           </div>
           <div class="cs-art arches" aria-hidden="true">
             <span class="halal-seal xl"><svg viewBox="0 0 64 64"><use href="#halal-seal"/></svg></span>
@@ -145,55 +145,64 @@
           </div>
         </article>
 
-        <!-- 3 · Fresh produce -->
-        <article class="cs-slide cs-s3" role="group" aria-roledescription="slide" aria-label="3 of 5">
+        <!-- 3 · Fresh produce (coming soon) -->
+        <article class="cs-slide cs-s3 is-soon" role="group" aria-roledescription="slide" aria-label="3 of 6">
           <div class="cs-copy">
-            <span class="cs-tag" data-i18n="cs3_tag">Fresh daily</span>
+            <span class="cs-tag" data-i18n="cs4_tag">Coming soon</span>
             <p class="cs-h" data-i18n="cs3_h">Fresh produce, picked for you</p>
-            <p class="cs-p" data-i18n="cs3_p">Spinach, onions, peppers, potatoes &amp; more.</p>
-            <a class="cs-cta" href="#shop" data-i18n="cs3_cta">Shop Produce</a>
+            <p class="cs-p" data-i18n="cs3_p">Spinach, onions, potatoes &amp; more — arriving soon.</p>
+            <a class="cs-cta cs-soon-cta" href="#categories" data-go="grocery" data-go-label="1" data-i18n="cs_see">See what's coming</a>
           </div>
           <div class="cs-art arches" aria-hidden="true">
             <div class="cs-arch t1" style="--k:1"><img class="cs-photo" data-photo-key="milk" alt=""></div>
             <div class="cs-arch t2" style="--k:0"><img class="cs-photo" data-photo-key="chicken_breast" alt=""></div>
             <div class="cs-arch t3" style="--k:2"><img class="cs-photo" data-photo-key="chicken_whole" alt=""></div>
-            <span class="cs-price"><span class="pl" data-i18n="cs3_pl">Fresh spinach</span><span class="pv"><b>$2.29</b><small data-i18n="cs_bunch">/bunch</small></span></span>
+            <span class="cs-price"><span class="pl" data-i18n="cs3_pl">Fresh produce</span><span class="pv"><b data-i18n="soon_h">Coming soon</b></span></span>
           </div>
         </article>
 
-        <!-- 4 · Fish + pantry -->
-        <article class="cs-slide cs-s4" role="group" aria-roledescription="slide" aria-label="4 of 5">
+        <!-- 4 · Monthly grocery (coming soon) -->
+        <article class="cs-slide cs-s4 is-soon" role="group" aria-roledescription="slide" aria-label="4 of 6">
           <div class="cs-copy">
             <span class="cs-tag" data-i18n="cs4_tag">Coming soon</span>
             <p class="cs-h" data-i18n="cs4_h">Monthly grocery items</p>
-            <p class="cs-p" data-i18n="cs4_p">Oil, rice, lentils &amp; pantry staples — plus frozen fish. Coming soon.</p>
-            <a class="cs-cta" href="#shop" data-i18n="cs4_cta">Browse products</a>
+            <p class="cs-p" data-i18n="cs4_p">Rice, lentils, milk, eggs &amp; pantry staples. Coming soon.</p>
+            <a class="cs-cta cs-soon-cta" href="#categories" data-go="grocery" data-i18n="cs_see">See what's coming</a>
           </div>
           <div class="cs-art arches" aria-hidden="true">
             <div class="cs-arch t1" style="--k:1"><img class="cs-photo" data-photo-key="lentils" alt=""></div>
-            <div class="cs-arch t2 cs-fisharch" style="--k:0">
-              <svg class="cs-fish" viewBox="0 0 120 120" focusable="false">
-                <g transform="translate(0 20) rotate(-28 60 40)">
-                  <path d="M10 40C30 8 72 8 94 40 72 72 30 72 10 40Z" fill="#fff"/>
-                  <path d="M90 40 118 17 110 40 118 63Z" fill="#fff"/>
-                  <path d="M46 20C38 32 38 48 46 60" fill="none" stroke="#c8202f" stroke-width="3.5" stroke-linecap="round"/>
-                  <path d="M58 24c4 8 4 24 0 32M70 26c3 7 3 21 0 28" fill="none" stroke="#f0cfd1" stroke-width="2.5" stroke-linecap="round"/>
-                  <circle cx="28" cy="35" r="4.2" fill="#c8202f"/>
-                </g>
-                <circle cx="22" cy="24" r="4" fill="rgba(255,255,255,.55)"/><circle cx="34" cy="12" r="2.6" fill="rgba(255,255,255,.45)"/><circle cx="100" cy="100" r="3.4" fill="rgba(255,255,255,.5)"/>
-              </svg>
-            </div>
-            <span class="cs-price"><span class="pl" data-i18n="cs4_pl">Grocery &amp; fish</span><span class="pv"><b data-i18n="cs4_soon">Soon</b></span></span>
+            <div class="cs-arch t2" style="--k:0"><img class="cs-photo" data-photo-key="spinach" alt=""></div>
+            <div class="cs-arch t3" style="--k:2"><img class="cs-photo" data-photo-key="pepper" alt=""></div>
+            <span class="cs-price"><span class="pl" data-i18n="cs4_pl">Grocery items</span><span class="pv"><b data-i18n="soon_h">Coming soon</b></span></span>
+          </div>
+        </article>
+
+        <!-- 5 · Fish (coming soon, animated) -->
+        <article class="cs-slide cs-s6 is-soon" role="group" aria-roledescription="slide" aria-label="5 of 6">
+          <div class="cs-copy">
+            <span class="cs-tag" data-i18n="cs4_tag">Coming soon</span>
+            <p class="cs-h" data-i18n="cs6_h">Frozen &amp; sea fish</p>
+            <p class="cs-p" data-i18n="cs6_p">Fresh catch, cleaned and ready to cook. Coming soon.</p>
+            <a class="cs-cta cs-soon-cta" href="#categories" data-go="fish" data-i18n="cs_see">See what's coming</a>
+          </div>
+          <div class="cs-art arches" aria-hidden="true">
+            <div class="cs-arch t1 cs-fisharch" style="--k:1"><svg class="cs-fish f1" viewBox="0 0 120 120" focusable="false"><g class="fsw"><path class="ftail" d="M92 62 118 40 109 62 118 84Z" fill="#ff7043"/><path d="M20 62C38 34 78 34 96 62 78 90 38 90 20 62Z" fill="#ff8a65"/><path d="M26 66C44 80 74 80 92 64 74 84 40 86 26 66Z" fill="#ffd5c2"/><path d="M50 40 62 24 76 40Z" fill="#e64a19"/><path d="M48 44C42 56 42 68 48 80" fill="none" stroke="#e64a19" stroke-width="3.5" stroke-linecap="round"/><circle cx="35" cy="56" r="4.6" fill="#fff"/><circle cx="34" cy="56" r="2.2" fill="#24231f"/></g>
+                <circle class="bub b1" cx="26" cy="38" r="3.2"/><circle class="bub b2" cx="38" cy="30" r="2.2"/><circle class="bub b3" cx="20" cy="26" r="1.8"/></svg></div>
+            <div class="cs-arch t2 cs-fisharch" style="--k:0"><svg class="cs-fish f2" viewBox="0 0 120 120" focusable="false"><g class="fsw"><path class="ftail" d="M100 62 120 44 113 62 120 80Z" fill="#78909c"/><path d="M6 62C28 48 84 46 104 62 84 78 28 76 6 62Z" fill="#e3ecf1"/><path d="M12 64C34 72 80 72 100 64 82 76 30 78 12 64Z" fill="#fff"/><path d="M52 50 62 38 74 49Z" fill="#78909c"/><path d="M44 52c4 8 4 16 0 22M58 52c4 8 4 16 0 22M72 52c4 8 4 16 0 22" fill="none" stroke="#b0bec5" stroke-width="2.4" stroke-linecap="round"/><circle cx="22" cy="58" r="4" fill="#fff"/><circle cx="21" cy="58" r="2" fill="#24231f"/></g>
+                <circle class="bub b1" cx="26" cy="38" r="3.2"/><circle class="bub b2" cx="38" cy="30" r="2.2"/><circle class="bub b3" cx="20" cy="26" r="1.8"/></svg></div>
+            <div class="cs-arch t3 cs-fisharch" style="--k:2"><svg class="cs-fish f3" viewBox="0 0 120 120" focusable="false"><g class="fsw"><path class="ftail" d="M82 62 108 44 101 62 108 80Z" fill="#fb8c00"/><path d="M22 62C28 38 70 34 86 54 90 58 90 66 86 70 70 90 30 86 22 62Z" fill="#ffd54f"/><path d="M40 38 52 26 64 38Z" fill="#fb8c00"/><path d="M40 84 52 96 62 84Z" fill="#fb8c00"/><path d="M42 44c-4 10-4 20 0 30M58 42c-4 12-4 24 0 34" fill="none" stroke="#fb8c00" stroke-width="3" stroke-linecap="round"/><circle cx="36" cy="56" r="4.4" fill="#fff"/><circle cx="35" cy="56" r="2.1" fill="#24231f"/></g>
+                <circle class="bub b1" cx="26" cy="38" r="3.2"/><circle class="bub b2" cx="38" cy="30" r="2.2"/><circle class="bub b3" cx="20" cy="26" r="1.8"/></svg></div>
+            <span class="cs-price"><span class="pl" data-i18n="cs6_pl">Fish</span><span class="pv"><b data-i18n="soon_h">Coming soon</b></span></span>
           </div>
         </article>
 
         <!-- 5 · Delivery area -->
-        <article class="cs-slide cs-s5" role="group" aria-roledescription="slide" aria-label="5 of 5">
+        <article class="cs-slide cs-s5" role="group" aria-roledescription="slide" aria-label="6 of 6">
           <div class="cs-copy">
             <span class="cs-tag" data-i18n="cs5_tag">We deliver</span>
             <p class="cs-h" data-i18n="cs5_h">Delivery from $9.99</p>
             <p class="cs-p" data-i18n="cs5_p">Metro Detroit · Saturday &amp; Sunday, 3&nbsp;PM – 9&nbsp;PM</p>
-            <a class="cs-cta" href="#shop" data-i18n="cs5_cta">Order Now</a>
+            <a class="cs-cta" href="#categories" data-go="all" data-i18n="cs5_cta">Order Now</a>
           </div>
           <div class="cs-art arches" aria-hidden="true">
             <div class="cs-arch t2 cs-maparch" style="--k:0">
@@ -217,6 +226,7 @@
           <button class="cs-dot" type="button" aria-label="Go to slide 3" aria-current="false"><span class="cs-pip"></span></button>
           <button class="cs-dot" type="button" aria-label="Go to slide 4" aria-current="false"><span class="cs-pip"></span></button>
           <button class="cs-dot" type="button" aria-label="Go to slide 5" aria-current="false"><span class="cs-pip"></span></button>
+          <button class="cs-dot" type="button" aria-label="Go to slide 6" aria-current="false"><span class="cs-pip"></span></button>
         </div>
         <button class="cs-nav" id="cs-next" type="button" aria-label="Next slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
         <button class="cs-nav cs-pp" id="cs-pp" type="button" aria-label="Pause slideshow">
@@ -225,6 +235,18 @@
         </button>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ===== DEALS: sale items with a red ribbon (edit js/deals-data.js) ===== -->
+<section class="section deal-list" id="deal-list" aria-labelledby="deal-h">
+  <div class="wrap">
+    <div class="deal-head">
+      <h2 id="deal-h"><span class="deal-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.4" fill="currentColor"/></svg></span><span data-i18n="deal_h">Deals</span></h2>
+      <span class="deal-count"><b id="deal-n">0</b> <span data-i18n="deal_sub">items on sale</span></span>
+    </div>
+    <div class="grid deal-grid" id="deal-grid"></div>
+    <nav class="deal-pager" id="deal-pager" aria-label="Deals pages" hidden></nav>
   </div>
 </section>
 
@@ -338,7 +360,7 @@
     </div>
     <div>
       <h4 data-i18n="foot_shop_h">Shop</h4>
-      <ul><li><a href="#" data-i18n="nav_meat">Meat & Poultry</a></li><li><a href="#" data-i18n="nav_produce">Produce</a></li><li><a href="#" data-i18n="nav_grocery">Grocery</a></li><li><a href="#" data-i18n="nav_deals">Deals</a></li></ul>
+      <ul><li><a href="#" data-i18n="nav_meat">Meat & Poultry</a></li><li><a href="#" data-i18n="nav_produce">Produce</a></li><li><a href="#" data-i18n="nav_grocery">Grocery</a></li><li><a href="#deal-list" data-i18n="nav_deals">Deals</a></li></ul>
     </div>
     <div>
       <h4 data-i18n="foot_support_h">Support</h4>
@@ -608,15 +630,16 @@
   </a>
 </div>
 
-<script src="js/verses.js?v=20261020a"></script>
-<script src="js/config.js?v=20261020a"></script>
-<script src="js/main.js?v=20261020a"></script>
-<script src="js/carousel.js?v=20261020a"></script>
-<script src="js/filter.js?v=20261020a"></script>
-<script src="js/shop.js?v=20261020a"></script>
-<script src="js/gallery-data.js?v=20261020a"></script>
-<script src="js/gallery.js?v=20261020a"></script>
-<script src="js/quran-meta.js?v=20261020a"></script>
-<script src="js/quran.js?v=20261020a"></script>
+<script src="js/verses.js?v=20261022a"></script>
+<script src="js/config.js?v=20261022a"></script>
+<script src="js/deals-data.js?v=20261022a"></script>
+<script src="js/main.js?v=20261022a"></script>
+<script src="js/carousel.js?v=20261022a"></script>
+<script src="js/filter.js?v=20261022a"></script>
+<script src="js/shop.js?v=20261022a"></script>
+<script src="js/gallery-data.js?v=20261022a"></script>
+<script src="js/gallery.js?v=20261022a"></script>
+<script src="js/quran-meta.js?v=20261022a"></script>
+<script src="js/quran.js?v=20261022a"></script>
 </body>
 </html>

@@ -126,7 +126,7 @@
   const CART_KEY = 'dd_cart';
   let cart = LS.get(CART_KEY, {});                       // { englishProductName: qty }
   let cview = 'cart', lastOrder = null;
-  const cents = (p) => Math.round(parseFloat(String(p.price).replace(/[^0-9.]/g, '')) * 100) || 0;
+  const cents = (p) => Math.round(parseFloat(String(p.salePrice || p.price).replace(/[^0-9.]/g, '')) * 100) || 0;
   const money = (c) => '$' + (c / 100).toFixed(2);
   const pidOf = (name) => DD().products.findIndex((p) => p.name === name);
 
