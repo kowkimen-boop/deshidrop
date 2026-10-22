@@ -19,7 +19,7 @@
   const photos = window.__PRODUCT_PHOTOS__ || {};
   root.querySelectorAll('.cs-photo[data-photo-key]').forEach((img) => {
     const d = photos[img.dataset.photoKey];
-    if (d) img.src = 'data:image/jpeg;base64,' + d;
+    if (d) img.src = d;
   });
   root.style.setProperty('--cs-iv', INTERVAL + 'ms');
   if (mq.matches) root.classList.add('no-auto');
@@ -73,6 +73,12 @@
     }, 90);
   }, { passive: true });
 
+  root.addEventListener('click', (e) => {
+    const a = e.target.closest && e.target.closest('.cs-cta[data-go]'); if (!a || !window.__goCat) return;
+    e.preventDefault();
+    const pl = a.dataset.goLabel && a.closest('.cs-slide').querySelector('.cs-price .pl');
+    window.__goCat(a.dataset.go, pl ? pl.textContent : '');
+  });
   prev.addEventListener('click', () => go(idx - 1));
   next.addEventListener('click', () => go(idx + 1));
   dots.forEach((d, k) => d.addEventListener('click', () => go(k)));

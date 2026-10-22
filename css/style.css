@@ -456,3 +456,5 @@
     .vt-in-fwd { animation: ddVtIn .34s cubic-bezier(.2,.8,.2,1) both; }
     .vt-in-back { animation: ddVtInBack .34s cubic-bezier(.2,.8,.2,1) both; }
   }
+
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}

@@ -107,3 +107,7 @@ html[dir="rtl"] .deal-ribbon { left: auto; right: 0; padding: 5px 10px 5px 12px;
   @keyframes pgPop { from { transform: scale(.8); } to { transform: scale(1); } }
 }
 @media (min-width: 760px) { .deal-grid { grid-template-columns: repeat(4, 1fr); } }
+
+/* sold-out products (set "in stock" off in the dashboard) */
+.card.sold-out .card-img { filter: grayscale(.85); opacity: .75; }
+.sold-tag { padding: 5px 10px; border-radius: 999px; background: #eee8dd; color: #5a5a54; font: 700 11.5px/1 'Inter', sans-serif; }

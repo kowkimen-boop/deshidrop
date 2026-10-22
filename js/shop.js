@@ -22,7 +22,7 @@
       back_shop: 'Back to shop', close: 'Close', add_to_cart: 'Add to cart', added: 'added to cart', view_cart: 'View cart',
       open_cart: 'Open cart', my_account: 'My account', item: 'item', items: 'items',
       cart_title: 'Your Cart', cart_empty: 'Your cart is empty', cart_empty_sub: 'Add fresh meat, produce and groceries to get started.',
-      cart_start: 'Start Shopping', cart_subtotal: 'Subtotal', cart_note: 'Delivery fee is calculated at checkout (from $10).',
+      cart_start: 'Start Shopping', cart_subtotal: 'Subtotal', cart_note: 'Delivery fee is calculated at checkout (from $9.99).',
       cart_checkout: 'Checkout', cart_clear: 'Clear cart', remove: 'Remove', each: 'each', dec: 'Decrease quantity', inc: 'Increase quantity',
       co_title: 'Confirm Order', co_address: 'Delivery address', co_phone: 'Phone', co_notes: 'Notes (optional)', co_place: 'Place order', co_back: 'Back to cart',
       co_proto: 'Prototype: your order is saved on this device only and payment is not connected yet.', co_total: 'Total (before delivery)',
@@ -44,7 +44,7 @@
       back_shop: 'দোকানে ফিরুন', close: 'বন্ধ করুন', add_to_cart: 'কার্টে যোগ করুন', added: 'কার্টে যোগ হয়েছে', view_cart: 'কার্ট দেখুন',
       open_cart: 'কার্ট খুলুন', my_account: 'আমার অ্যাকাউন্ট', item: 'টি পণ্য', items: 'টি পণ্য',
       cart_title: 'আপনার কার্ট', cart_empty: 'আপনার কার্ট খালি', cart_empty_sub: 'তাজা মাংস, সবজি ও মুদি পণ্য যোগ করে শুরু করুন।',
-      cart_start: 'কেনাকাটা শুরু করুন', cart_subtotal: 'সাবটোটাল', cart_note: 'ডেলিভারি ফি চেকআউটে হিসাব হবে (১০ ডলার থেকে)।',
+      cart_start: 'কেনাকাটা শুরু করুন', cart_subtotal: 'সাবটোটাল', cart_note: 'ডেলিভারি ফি চেকআউটে হিসাব হবে (৯.৯৯ ডলার থেকে)।',
       cart_checkout: 'চেকআউট', cart_clear: 'কার্ট খালি করুন', remove: 'সরান', each: 'প্রতিটি', dec: 'পরিমাণ কমান', inc: 'পরিমাণ বাড়ান',
       co_title: 'অর্ডার নিশ্চিত করুন', co_address: 'ডেলিভারির ঠিকানা', co_phone: 'ফোন', co_notes: 'নোট (ঐচ্ছিক)', co_place: 'অর্ডার করুন', co_back: 'কার্টে ফিরুন',
       co_proto: 'প্রোটোটাইপ: আপনার অর্ডার শুধু এই ডিভাইসে সংরক্ষিত হবে এবং পেমেন্ট এখনও যুক্ত হয়নি।', co_total: 'মোট (ডেলিভারি ছাড়া)',
@@ -66,7 +66,7 @@
       back_shop: 'العودة إلى المتجر', close: 'إغلاق', add_to_cart: 'أضف إلى السلة', added: 'أُضيف إلى السلة', view_cart: 'عرض السلة',
       open_cart: 'فتح السلة', my_account: 'حسابي', item: 'منتج', items: 'منتجات',
       cart_title: 'سلة التسوق', cart_empty: 'سلتك فارغة', cart_empty_sub: 'أضف اللحوم والخضروات الطازجة والبقالة للبدء.',
-      cart_start: 'ابدأ التسوق', cart_subtotal: 'المجموع الفرعي', cart_note: 'تُحتسب رسوم التوصيل عند إتمام الطلب (ابتداءً من 10$).',
+      cart_start: 'ابدأ التسوق', cart_subtotal: 'المجموع الفرعي', cart_note: 'تُحتسب رسوم التوصيل عند إتمام الطلب (ابتداءً من 9.99$).',
       cart_checkout: 'إتمام الطلب', cart_clear: 'إفراغ السلة', remove: 'إزالة', each: 'للقطعة', dec: 'تقليل الكمية', inc: 'زيادة الكمية',
       co_title: 'تأكيد الطلب', co_address: 'عنوان التوصيل', co_phone: 'الهاتف', co_notes: 'ملاحظات (اختياري)', co_place: 'إرسال الطلب', co_back: 'العودة إلى السلة',
       co_proto: 'نموذج أولي: يُحفظ طلبك على هذا الجهاز فقط والدفع غير متصل بعد.', co_total: 'الإجمالي (قبل التوصيل)',
@@ -85,6 +85,35 @@
       demo_note: 'تسجيل دخول تجريبي: أضف معرّف تطبيق {p} في js/config.js لاستخدام حسابات {p} الحقيقية.', status_received: 'تم الاستلام', order_n: 'طلب', addr: 'التوصيل إلى'
     }
   };
+
+  Object.assign(T.en, {
+    confirm_email: 'Account created! Check your email and click the confirmation link, then sign in.', reset_sent: 'If that email has an account, a password reset link is on its way.',
+    e_backend: 'Something went wrong. Please try again.', e_unconfirmed: 'Please confirm your email first — check your inbox.', e_taken: 'An account with this email already exists. Try signing in.',
+    new_pw_h: 'Choose a new password', new_pw_btn: 'Save new password', pw_updated: 'Password updated. You are signed in.', tiktok_na: 'TikTok sign-in is not available yet.',
+    status_new: 'Received', status_confirmed: 'Confirmed', status_packing: 'Being packed', status_out_for_delivery: 'Out for delivery', status_delivered: 'Delivered', status_cancelled: 'Cancelled',
+    co_pay: 'Payment: cash on delivery', co_delivery_note: 'Delivery from $9.99 — free on your first order or 100+ LB. Your final total is shown once the order is placed.',
+    co_done_live: 'Order {id} received. Total {total} (delivery {fee}). Pay cash on delivery — we will contact you to confirm.', fee_free: 'free', orders_loading: 'Loading your orders…',
+    e_stock: 'One of the items is no longer available. Please check your cart.', e_signin_again: 'Please sign in again to place your order.', role_admin: 'Admin', role_staff: 'Staff', role_driver: 'Driver'
+  });
+  Object.assign(T.bn, {
+    confirm_email: 'অ্যাকাউন্ট তৈরি হয়েছে! আপনার ইমেইলে গিয়ে নিশ্চিতকরণ লিংকে ক্লিক করুন, তারপর সাইন ইন করুন।', reset_sent: 'ওই ইমেইলে অ্যাকাউন্ট থাকলে পাসওয়ার্ড রিসেট লিংক পাঠানো হয়েছে।',
+    e_backend: 'কিছু একটা সমস্যা হয়েছে। আবার চেষ্টা করুন।', e_unconfirmed: 'আগে আপনার ইমেইল নিশ্চিত করুন — ইনবক্স দেখুন।', e_taken: 'এই ইমেইলে আগেই অ্যাকাউন্ট আছে। সাইন ইন করুন।',
+    new_pw_h: 'নতুন পাসওয়ার্ড দিন', new_pw_btn: 'নতুন পাসওয়ার্ড সংরক্ষণ', pw_updated: 'পাসওয়ার্ড বদলানো হয়েছে। আপনি সাইন ইন আছেন।', tiktok_na: 'টিকটক সাইন ইন এখনও চালু হয়নি।',
+    status_new: 'গৃহীত', status_confirmed: 'নিশ্চিত', status_packing: 'প্যাক হচ্ছে', status_out_for_delivery: 'ডেলিভারির পথে', status_delivered: 'পৌঁছে গেছে', status_cancelled: 'বাতিল',
+    co_pay: 'পেমেন্ট: ডেলিভারির সময় নগদ', co_delivery_note: 'ডেলিভারি $৯.৯৯ থেকে — প্রথম অর্ডারে বা ১০০+ পাউন্ডে ফ্রি। অর্ডার করার পর চূড়ান্ত মোট দেখানো হবে।',
+    co_done_live: 'অর্ডার {id} গৃহীত হয়েছে। মোট {total} (ডেলিভারি {fee})। ডেলিভারির সময় নগদ দিন — নিশ্চিত করতে আমরা যোগাযোগ করব।', fee_free: 'ফ্রি', orders_loading: 'আপনার অর্ডার লোড হচ্ছে…',
+    e_stock: 'একটি পণ্য আর পাওয়া যাচ্ছে না। কার্ট দেখে নিন।', e_signin_again: 'অর্ডার করতে আবার সাইন ইন করুন।', role_admin: 'অ্যাডমিন', role_staff: 'স্টাফ', role_driver: 'ড্রাইভার'
+  });
+  Object.assign(T.ar, {
+    confirm_email: 'تم إنشاء الحساب! تحقق من بريدك الإلكتروني واضغط على رابط التأكيد، ثم سجّل الدخول.', reset_sent: 'إذا كان لهذا البريد حساب، فقد أُرسل إليه رابط إعادة تعيين كلمة المرور.',
+    e_backend: 'حدث خطأ ما. حاول مرة أخرى.', e_unconfirmed: 'يرجى تأكيد بريدك الإلكتروني أولًا — تحقق من صندوق الوارد.', e_taken: 'يوجد حساب بهذا البريد بالفعل. جرّب تسجيل الدخول.',
+    new_pw_h: 'اختر كلمة مرور جديدة', new_pw_btn: 'حفظ كلمة المرور الجديدة', pw_updated: 'تم تحديث كلمة المرور. أنت مسجّل الدخول.', tiktok_na: 'تسجيل الدخول عبر تيك توك غير متاح بعد.',
+    status_new: 'تم الاستلام', status_confirmed: 'مؤكد', status_packing: 'قيد التجهيز', status_out_for_delivery: 'في الطريق إليك', status_delivered: 'تم التسليم', status_cancelled: 'ملغي',
+    co_pay: 'الدفع: نقدًا عند التسليم', co_delivery_note: 'التوصيل من ٩٫٩٩$ — مجاني لطلبك الأول أو لأكثر من ١٠٠ رطل. يظهر الإجمالي النهائي بعد تقديم الطلب.',
+    co_done_live: 'تم استلام الطلب {id}. الإجمالي {total} (التوصيل {fee}). الدفع نقدًا عند التسليم — سنتصل بك للتأكيد.', fee_free: 'مجاني', orders_loading: 'جارٍ تحميل طلباتك…',
+    e_stock: 'أحد المنتجات لم يعد متوفرًا. يرجى مراجعة السلة.', e_signin_again: 'يرجى تسجيل الدخول مرة أخرى لإتمام الطلب.', role_admin: 'مدير', role_staff: 'موظف', role_driver: 'سائق'
+  });
+  const BE = () => (window.DDB && window.DDB.enabled ? window.DDB : null);   // real backend (null = offline demo mode)
   const lang = () => { const l = document.documentElement.lang; return T[l] ? l : 'en'; };
   const t = (k, v) => {
     let s = (T[lang()] && T[lang()][k]) || T.en[k] || k;
@@ -126,7 +155,7 @@
   const CART_KEY = 'dd_cart';
   let cart = LS.get(CART_KEY, {});                       // { englishProductName: qty }
   let cview = 'cart', lastOrder = null;
-  const cents = (p) => Math.round(parseFloat(String(p.price).replace(/[^0-9.]/g, '')) * 100) || 0;
+  const cents = (p) => Math.round(parseFloat(String(p.salePrice || p.price).replace(/[^0-9.]/g, '')) * 100) || 0;
   const money = (c) => '$' + (c / 100).toFixed(2);
   const pidOf = (name) => DD().products.findIndex((p) => p.name === name);
 
@@ -151,7 +180,8 @@
 
   function thumb(p) {
     const photos = window.__PRODUCT_PHOTOS__ || {};
-    if (p.photo && photos[p.photo]) return '<img alt="" src="data:image/jpeg;base64,' + photos[p.photo] + '">';
+    if (p.image_url && window.__ddSafeImg && window.__ddSafeImg(p.image_url)) return '<img alt="" src="' + window.__ddSafeImg(p.image_url) + '">';
+    if (p.photo && photos[p.photo]) return '<img alt="" src="' + photos[p.photo] + '">';
     return (DD().icons[p.icon] || DD().fallbackIcon).replace('<svg ', '<svg width="40" height="40" ');
   }
   const ICON_BAG = '<svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>';
@@ -171,7 +201,7 @@
 
     if (cview === 'done') {
       body = '<div class="cd-done"><div class="tick"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>' +
-        '<h3>' + esc(t('co_done')) + '</h3><p>' + esc(t('co_done_sub', { id: lastOrder ? lastOrder.id : '' })) + '</p>' +
+        '<h3>' + esc(t('co_done')) + '</h3><p>' + esc(lastOrder && lastOrder.live ? t('co_done_live', { id: lastOrder.id, total: money(lastOrder.total), fee: lastOrder.fee ? money(Math.round(lastOrder.fee * 100)) : t('fee_free') }) : t('co_done_sub', { id: lastOrder ? lastOrder.id : '' })) + '</p>' +
         '<button class="cd-btn" type="button" data-act="orders">' + esc(t('co_orders')) + '</button>' +
         '<button class="cd-btn ghost" type="button" data-act="shop">' + esc(t('keep_shopping')) + '</button></div>';
     } else if (cview === 'checkout' && ls.length) {
@@ -182,7 +212,7 @@
         field('co-addr', t('co_address'), 'text', { auto: 'street-address', val: u.address || '' }) +
         field('co-phone', t('co_phone'), 'tel', { auto: 'tel', val: u.phone || '', mode: 'tel' }) +
         '<div class="fld"><label for="co-notes">' + esc(t('co_notes')) + '</label><textarea id="co-notes" rows="2"></textarea></div>' +
-        '<p class="co-proto">' + esc(t('co_proto')) + '</p></form>';
+        (BE() ? '<p class="co-proto"><b>' + esc(t('co_pay')) + '</b><br>' + esc(t('co_delivery_note')) + '</p>' : '<p class="co-proto">' + esc(t('co_proto')) + '</p>') + '</form>';
       foot = '<button class="cd-btn" type="submit" form="co-form">' + esc(t('co_place')) + ' · ' + money(subtotal()) + '</button>' +
         '<button class="cd-btn ghost" type="button" data-act="back">' + esc(t('co_back')) + '</button>';
     } else if (!ls.length) {
@@ -240,11 +270,27 @@
     check(ph, ph.value.replace(/\D/g, '').length >= 7, t('e_phone'));
     if (bad) return;
     const s = session(), ls = lines();
+    if (BE()) { placeLive(a.value.trim(), ph.value.trim(), $('co-notes').value.trim(), ls, e.target.closest('form')); return; }
     const order = { id: 'DD-' + Date.now().toString(36).toUpperCase().slice(-6), ts: Date.now(), total: subtotal(), address: a.value.trim(), phone: ph.value.trim(), notes: $('co-notes').value.trim(),
       items: ls.map((l) => ({ name: l.p.name, qty: l.qty, unit: l.unit })) };
     const all = LS.get('dd_orders', {}); (all[s.key] = all[s.key] || []).unshift(order); LS.set('dd_orders', all);
     const users = LS.get('dd_users', {}); if (users[s.key]) { users[s.key].address = order.address; users[s.key].phone = order.phone; LS.set('dd_users', users); }
     lastOrder = order; cart = {}; persist(); cview = 'done'; renderCart();
+  }
+
+  async function placeLive(address, phone, notes, ls, form) {
+    const btn = document.querySelector('button[form="co-form"]'); if (btn) btn.disabled = true;
+    try {
+      const s = session();
+      const r = await BE().placeOrder({ items: ls.map((l) => ({ name: l.p.name, qty: l.qty })), name: (s && s.name) || '', phone, address, notes, pay: 'cod' });
+      lastOrder = { id: r.code, live: true, total: Math.round(Number(r.total) * 100), fee: Number(r.delivery_fee) };
+      BE().saveProfile({ phone, address }).catch(() => {});
+      beAt = 0; cart = {}; persist(); cview = 'done'; renderCart();
+    } catch (err) {
+      const m = String(err && err.message || '');
+      toast(/not available|stock|unknown product/i.test(m) ? t('e_stock') : /sign|auth|jwt/i.test(m) ? t('e_signin_again') : t('e_backend') + (m ? ' (' + m + ')' : ''));
+      if (btn) btn.disabled = false;
+    }
   }
 
   /* ------------------------------------------------------------------ fields (shared by checkout + account) */
@@ -291,11 +337,19 @@
     renderAccount();
   }
 
-  let mode = 'signin', msgHtml = '';
+  let mode = 'signin', msgHtml = '', beAt = 0;
   function renderAccount() {
     const root = $('acct-root'); if (!root) return;
     const s = session();
-    if (s) { root.innerHTML = dashboardHTML(s); return; }
+    if (BE() && mode === 'recover' && s) {
+      root.innerHTML = '<div class="acct-hero"><h1>' + esc(t('new_pw_h')) + '</h1></div><section class="acct-card"><form class="acct-form" id="auth-form" novalidate>' + (msgHtml || '<div id="form-msg"></div>') +
+        field('a-pass', t('f_pass'), 'password', { auto: 'new-password' }) + field('a-pass2', t('f_pass2'), 'password', { auto: 'new-password' }) +
+        '<button class="cd-btn" type="submit">' + esc(t('new_pw_btn')) + '</button></form></section>'; return;
+    }
+    if (s) {
+      if (BE() && Date.now() - beAt > 20000) { beAt = Date.now(); BE().loadOrders().then(() => { if (wasAcc && session()) root.innerHTML = dashboardHTML(session()); }).catch(() => {}); }
+      root.innerHTML = dashboardHTML(s); return;
+    }
     const su = mode === 'signup';
     root.innerHTML =
       '<div class="acct-hero"><div class="eyebrow">' + esc(t('acct_eyebrow')) + '</div><h1>' + esc(t('acct_h1')) + '</h1><p>' + esc(t('acct_sub')) + '</p></div>' +
@@ -325,16 +379,16 @@
   function showMsg(kind, text) { const m = $('form-msg'); if (m) m.outerHTML = msg(kind, text); }
 
   function dashboardHTML(s) {
-    const L = lang(), orders = (LS.get('dd_orders', {})[s.key]) || [];
+    const L = lang(), orders = BE() ? (BE().orders || []) : ((LS.get('dd_orders', {})[s.key]) || []);
     const loc = { en: 'en-US', bn: 'bn-BD', ar: 'ar-u-ca-gregory' }[L];
     const prov = s.provider === 'email' ? t('p_email') : PN[s.provider] || s.provider;
     const av = s.picture ? '<img alt="" src="' + esc(s.picture) + '" referrerpolicy="no-referrer">' : esc((s.name || '?').trim().charAt(0).toUpperCase());
     return '<section class="acct-card"><div class="profile"><div class="avatar">' + av + '</div><div><h2>' + esc(t('welcome', { name: s.name })) + '</h2>' +
-      (s.email ? '<p>' + esc(s.email) + '</p>' : '') + '<span class="badge">' + esc(t('signed_via', { p: prov })) + '</span></div></div>' +
+      (s.email ? '<p>' + esc(s.email) + '</p>' : '') + '<span class="badge">' + esc(t('signed_via', { p: prov })) + '</span>' + (s.role && s.role !== 'customer' ? ' <span class="badge">' + esc(t('role_' + s.role)) + '</span>' : '') + '</div></div>' +
       (s.demo ? '<p class="demo-tag">' + esc(t('demo_note', { p: PN[s.provider] || '' })) + '</p>' : '') +
       '<div class="acct-sec"><h3>' + esc(t('orders_h')) + '</h3>' +
       (orders.length ? '<ul class="orders">' + orders.map((o) => '<li><details class="order"><summary><span><b>' + esc(t('order_n')) + ' ' + esc(o.id) + '</b><small>' +
-        esc(new Date(o.ts).toLocaleDateString(loc, { year: 'numeric', month: 'short', day: 'numeric' })) + ' · ' + esc(t('status_received')) + '</small></span><span class="o-tot">' + money(o.total) + '</span></summary>' +
+        esc(new Date(o.ts).toLocaleDateString(loc, { year: 'numeric', month: 'short', day: 'numeric' })) + ' · ' + esc(o.status ? t('status_' + o.status) : t('status_received')) + '</small></span><span class="o-tot">' + money(o.total) + '</span></summary>' +
         '<ul>' + o.items.map((i) => { const p = DD().products.find((x) => x.name === i.name); return '<li><span>' + i.qty + ' × ' + esc(p ? DD().pName(p, L) : i.name) + '</span><span>' + money(i.qty * i.unit) + '</span></li>'; }).join('') + '</ul>' +
         '<div class="o-addr">' + esc(t('addr')) + ': ' + esc(o.address) + '</div></details></li>').join('') + '</ul>'
         : '<div class="empty-note">' + esc(t('orders_none')) + '</div>') + '</div>' +
@@ -343,6 +397,7 @@
 
   async function submitAuth(e) {
     e.preventDefault();
+    if (BE() && mode === 'recover') return submitRecover(e);
     const su = mode === 'signup', users = LS.get(USERS, {});
     const email = $('a-email').value.trim(), pw = $('a-pass').value; let bad = false;
     const flag = (id, m) => { setErr(id, m); if (m && !bad) { $(id).focus(); bad = true; } };
@@ -356,6 +411,20 @@
     if (bad) return;
     const key = email.toLowerCase(), btn = e.target.querySelector('button[type="submit"]'); btn.disabled = true;
     try {
+      if (BE()) {
+        try {
+          if (su) {
+            const r = await BE().signUp($('a-name').value.trim(), email, pw, $('a-phone').value.trim());
+            if (r.needsConfirm) { mode = 'signin'; msgHtml = msg('ok', t('confirm_email')); renderAccount(); return; }
+            toast(t('created'));
+          } else { await BE().signIn(email, pw); toast(t('signed_in')); }
+          afterLogin();
+        } catch (err) {
+          const m = String(err.message || '');
+          showMsg('err', /invalid login/i.test(m) ? t('e_bad') : /not confirmed/i.test(m) ? t('e_unconfirmed') : /already|registered/i.test(m) ? t('e_taken') : t('e_backend') + ' (' + m + ')');
+        }
+        return;
+      }
       if (su) {
         if (users[key]) { showMsg('err', t('e_exists')); return; }
         const salt = rnd();
@@ -369,6 +438,27 @@
       }
     } finally { btn.disabled = false; }
   }
+
+  async function submitRecover(e) {
+    const pw = $('a-pass').value; let bad = false;
+    setErr('a-pass', pw.length < 8 ? t('e_pass') : ''); setErr('a-pass2', $('a-pass2').value !== pw ? t('e_pass2') : '');
+    if (pw.length < 8 || $('a-pass2').value !== pw) return;
+    try { await BE().updatePassword(pw); mode = 'signin'; msgHtml = ''; toast(t('pw_updated')); renderAccount(); }
+    catch (err) { showMsg('err', t('e_backend') + ' (' + (err.message || '') + ')'); }
+  }
+  function afterLogin() {
+    mode = 'signin'; msgHtml = ''; beAt = 0; updateBadges();
+    if (SS.get('dd_after_login')) { SS.del('dd_after_login'); location.hash = '#/'; setTimeout(() => openCart(), 400); return; }
+    renderAccount();
+  }
+  // sign-in / sign-out that happens outside our own forms (Google/Facebook return, session expiry, other tab)
+  document.addEventListener('ddauth', (e) => {
+    const d = e.detail || {};
+    if (d.event === 'PASSWORD_RECOVERY') { mode = 'recover'; if (location.hash !== '#/account') location.hash = '#/account'; renderAccount(); return; }
+    if (d.event === 'SIGNED_IN' && d.fresh) { afterLogin(); if (!wasAcc && !SS.get('dd_after_login')) location.hash = '#/account'; return; }
+    updateBadges(); if (wasAcc) renderAccount();
+    if (d.event === 'DATA' && isOpen()) renderCart();
+  });
 
   /* ---- social sign-in: real SDKs when configured in js/config.js, otherwise a clearly-labelled demo ---- */
   const CFG = (window.DD_CONFIG && window.DD_CONFIG.auth) || {};
@@ -469,9 +559,14 @@
     else if (act === 'shop') { closeCart(); if (wasAcc) location.hash = '#/'; else { const s = $('shop'); if (s) s.scrollIntoView({ behavior: 'smooth' }); } }
     else if (act === 'orders') { closeCart(); cview = 'cart'; if (location.hash !== '#/account') location.hash = '#/account'; }
     else if (act === 'mode') { mode = b.dataset.mode; msgHtml = ''; renderAccount(); }
-    else if (act === 'forgot') { msgHtml = msg('ok', t('forgot_msg')); renderAccount(); }
-    else if (act === 'signout') { LS.set(SESS, null); mode = 'signin'; renderAccount(); toast(t('signed_out')); }
-    else if (act === 'social') socialLogin(b.dataset.p, b);
+    else if (act === 'forgot') {
+      if (!BE()) { msgHtml = msg('ok', t('forgot_msg')); renderAccount(); return; }
+      const em = ($('a-email') || {}).value ? $('a-email').value.trim() : '';
+      if (!validEmail(em)) { setErr('a-email', t('e_email')); $('a-email').focus(); return; }
+      BE().resetPassword(em).then(() => { msgHtml = msg('ok', t('reset_sent')); renderAccount(); }).catch((err) => showMsg('err', t('e_backend') + ' (' + (err.message || '') + ')'));
+    }
+    else if (act === 'signout') { if (BE()) { BE().signOut().then(() => { beAt = 0; mode = 'signin'; renderAccount(); toast(t('signed_out')); }); } else { LS.set(SESS, null); mode = 'signin'; renderAccount(); toast(t('signed_out')); } }
+    else if (act === 'social') { if (BE()) { if (b.dataset.p === 'tiktok') toast(t('tiktok_na')); else BE().oauth(b.dataset.p).catch((err) => toast(t('e_backend') + ' (' + (err.message || '') + ')')); } else socialLogin(b.dataset.p, b); }
     else if (act === 'pw') {
       const i = $(b.dataset.for), show = i.type === 'password'; i.type = show ? 'text' : 'password';
       b.textContent = t(show ? 'hide' : 'show'); b.setAttribute('aria-label', b.textContent);

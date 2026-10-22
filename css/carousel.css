@@ -28,6 +28,7 @@
   .cs-s3 { background: linear-gradient(135deg, #e6f2e9 0%, #b9e1c6 100%); color: #0f3d21;
     --cs-pat: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%231c6b3c' stroke-width='1.3'%3E%3Crect x='14' y='14' width='28' height='28'/%3E%3Crect x='14' y='14' width='28' height='28' transform='rotate(45 28 28)'/%3E%3C/g%3E%3C/svg%3E"); }
   .cs-s4 { background: radial-gradient(110% 90% at 100% 0%, #e0524a 0%, rgba(224,82,74,0) 55%), linear-gradient(135deg, #9d1822 0%, #c8202f 100%); }
+  .cs-s6 { background: radial-gradient(110% 90% at 100% 0%, #31b0cf 0%, rgba(49,176,207,0) 58%), linear-gradient(135deg, #0b4d6b 0%, #137a9c 100%); }
   .cs-s5 { background: radial-gradient(110% 90% at 0% 100%, #1c6b3c 0%, rgba(28,107,60,0) 60%), linear-gradient(135deg, #24231f 0%, #17261d 100%); color: #f3ece0; }
 
   .cs-copy { position: relative; z-index: 2; max-width: 540px; }
@@ -44,6 +45,7 @@
   .cs-cta:focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
   .cs-s2 .cs-cta, .cs-s3 .cs-cta { background: #1c6b3c; color: #fff; }
   .cs-s4 .cs-cta { color: #a1181f; }
+  .cs-s6 .cs-cta { color: #0b4d6b; }
   .cs-s5 .cs-cta { color: #24231f; }
 
   /* art side: product photos in arch frames rising from the bottom edge, red hang-tag price */
@@ -56,8 +58,19 @@
   .cs-s2 .cs-arch, .cs-s3 .cs-arch { border-color: #fff; }
   .cs-arch img { display: block; width: 100%; height: 100%; object-fit: cover; }
   .cs-arch.t1 { height: 116px; } .cs-arch.t2 { height: 156px; } .cs-arch.t3 { height: 128px; }
+  /* animated fish (coming-soon fish slide) */
   .cs-fisharch { background: rgba(255,255,255,.14); display: grid; place-items: center; }
-  .cs-fish { width: 112%; height: auto; margin-top: 10px; }
+  .cs-fish { width: 118%; max-width: none; height: auto; margin-top: 6px; overflow: visible; }
+  .cs-fish .bub { fill: rgba(255,255,255,.6); }
+  .cs-fish .ftail { transform-box: fill-box; transform-origin: 0% 50%; }
+  .cs-fish .fsw { transform-box: fill-box; transform-origin: 50% 50%; }
+  /* coming-soon buttons: outlined, quieter than a live "Shop" button */
+  .cs-soon-cta { background: transparent !important; color: inherit !important; box-shadow: none !important; border: 2px solid currentColor; padding-top: 10px; padding-bottom: 10px; }
+  .cs-soon-cta::after { content: "→"; margin-inline-start: 8px; transition: transform .2s ease; }
+  .cs-soon-cta:hover { background: rgba(255,255,255,.18) !important; }
+  .cs-s3 .cs-soon-cta:hover { background: rgba(28,107,60,.1) !important; }
+  html[dir="rtl"] .cs-soon-cta::after { content: "←"; }
+  .cs-s3 .cs-soon-cta { color: #144f2c !important; }
   .cs-maparch { flex: 0 1 46%; max-width: 170px; height: 164px; display: grid; place-items: center; background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.5); }
   .cs-pin { position: relative; width: 62px; height: auto; margin-top: 18px; }
   .cs-ring { position: absolute; left: 50%; top: 56%; width: 120px; height: 120px; margin: -60px 0 0 -60px; border-radius: 50%; border: 2px solid rgba(255,255,255,.4); }
@@ -134,6 +147,15 @@
   }
 
   @media (prefers-reduced-motion: no-preference) {
+    .cs-slide.is-active .cs-fish .fsw { animation: csSwim 3.4s ease-in-out infinite; }
+    .cs-slide.is-active .cs-fisharch.t2 .fsw { animation-duration: 4s; animation-delay: -1.2s; }
+    .cs-slide.is-active .cs-fisharch.t3 .fsw { animation-duration: 3s; animation-delay: -.6s; }
+    .cs-slide.is-active .cs-fish .ftail { animation: csTail .7s ease-in-out infinite alternate; }
+    .cs-slide.is-active .cs-fish .bub { animation: csBub 3s ease-in infinite; }
+    .cs-slide.is-active .cs-fish .b2 { animation-delay: .9s; } .cs-slide.is-active .cs-fish .b3 { animation-delay: 1.8s; }
+    @keyframes csSwim { 0%,100% { transform: translate(-5px, 4px) rotate(-2deg); } 50% { transform: translate(7px, -6px) rotate(2deg); } }
+    @keyframes csTail { from { transform: rotate(-14deg); } to { transform: rotate(14deg); } }
+    @keyframes csBub { 0% { transform: translateY(14px); opacity: 0; } 25% { opacity: 1; } 100% { transform: translateY(-34px); opacity: 0; } }
     .cs-slide.is-active .cs-arch { animation: csArch .8s cubic-bezier(.2,.8,.2,1) both; animation-delay: calc(.08s + var(--k, 0) * .09s); }
     .cs-slide.is-active .cs-price { animation: csTag .7s cubic-bezier(.2,1.3,.4,1) .45s both; }
     .cs-slide.is-active .cs-badge { animation: csStamp .65s cubic-bezier(.2,1.4,.4,1) .3s both; }

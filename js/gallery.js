@@ -43,7 +43,7 @@
 
   /* ------------------------------------------------------------ items */
   const photos = () => window.__PRODUCT_PHOTOS__ || {};
-  const srcOf = (it) => it.src && !it.photo ? it.src : (photos()[it.photo] ? 'data:image/jpeg;base64,' + photos()[it.photo] : (it.src || ''));
+  const srcOf = (it) => it.src && !it.photo ? it.src : (photos()[it.photo] ? photos()[it.photo] : (it.src || ''));
   let locals = [];                                     // photos added on this device
   const base = () => DATA.items.map((x) => Object.assign({ date: '2000-01-01' }, x)).concat(locals);
   const state = { cat: 'all', fav: false, sort: store.get('dd_gal_sort', 'new'), layout: store.get('dd_gal_layout', 'masonry'), favs: new Set(store.get('dd_gal_fav', [])) };
