@@ -22,7 +22,7 @@
       back_shop: 'Back to shop', close: 'Close', add_to_cart: 'Add to cart', added: 'added to cart', view_cart: 'View cart',
       open_cart: 'Open cart', my_account: 'My account', item: 'item', items: 'items',
       cart_title: 'Your Cart', cart_empty: 'Your cart is empty', cart_empty_sub: 'Add fresh meat, produce and groceries to get started.',
-      cart_start: 'Start Shopping', cart_subtotal: 'Subtotal', cart_note: 'Delivery fee is calculated at checkout (from $9.99).',
+      cart_start: 'Start Shopping', cart_subtotal: 'Subtotal', cart_note: 'Delivery fee is calculated at checkout (from $10).',
       cart_checkout: 'Checkout', cart_clear: 'Clear cart', remove: 'Remove', each: 'each', dec: 'Decrease quantity', inc: 'Increase quantity',
       co_title: 'Confirm Order', co_address: 'Delivery address', co_phone: 'Phone', co_notes: 'Notes (optional)', co_place: 'Place order', co_back: 'Back to cart',
       co_proto: 'Prototype: your order is saved on this device only and payment is not connected yet.', co_total: 'Total (before delivery)',
@@ -44,7 +44,7 @@
       back_shop: 'দোকানে ফিরুন', close: 'বন্ধ করুন', add_to_cart: 'কার্টে যোগ করুন', added: 'কার্টে যোগ হয়েছে', view_cart: 'কার্ট দেখুন',
       open_cart: 'কার্ট খুলুন', my_account: 'আমার অ্যাকাউন্ট', item: 'টি পণ্য', items: 'টি পণ্য',
       cart_title: 'আপনার কার্ট', cart_empty: 'আপনার কার্ট খালি', cart_empty_sub: 'তাজা মাংস, সবজি ও মুদি পণ্য যোগ করে শুরু করুন।',
-      cart_start: 'কেনাকাটা শুরু করুন', cart_subtotal: 'সাবটোটাল', cart_note: 'ডেলিভারি ফি চেকআউটে হিসাব হবে (৯.৯৯ ডলার থেকে)।',
+      cart_start: 'কেনাকাটা শুরু করুন', cart_subtotal: 'সাবটোটাল', cart_note: 'ডেলিভারি ফি চেকআউটে হিসাব হবে (১০ ডলার থেকে)।',
       cart_checkout: 'চেকআউট', cart_clear: 'কার্ট খালি করুন', remove: 'সরান', each: 'প্রতিটি', dec: 'পরিমাণ কমান', inc: 'পরিমাণ বাড়ান',
       co_title: 'অর্ডার নিশ্চিত করুন', co_address: 'ডেলিভারির ঠিকানা', co_phone: 'ফোন', co_notes: 'নোট (ঐচ্ছিক)', co_place: 'অর্ডার করুন', co_back: 'কার্টে ফিরুন',
       co_proto: 'প্রোটোটাইপ: আপনার অর্ডার শুধু এই ডিভাইসে সংরক্ষিত হবে এবং পেমেন্ট এখনও যুক্ত হয়নি।', co_total: 'মোট (ডেলিভারি ছাড়া)',
@@ -66,7 +66,7 @@
       back_shop: 'العودة إلى المتجر', close: 'إغلاق', add_to_cart: 'أضف إلى السلة', added: 'أُضيف إلى السلة', view_cart: 'عرض السلة',
       open_cart: 'فتح السلة', my_account: 'حسابي', item: 'منتج', items: 'منتجات',
       cart_title: 'سلة التسوق', cart_empty: 'سلتك فارغة', cart_empty_sub: 'أضف اللحوم والخضروات الطازجة والبقالة للبدء.',
-      cart_start: 'ابدأ التسوق', cart_subtotal: 'المجموع الفرعي', cart_note: 'تُحتسب رسوم التوصيل عند إتمام الطلب (ابتداءً من 9.99$).',
+      cart_start: 'ابدأ التسوق', cart_subtotal: 'المجموع الفرعي', cart_note: 'تُحتسب رسوم التوصيل عند إتمام الطلب (ابتداءً من 10$).',
       cart_checkout: 'إتمام الطلب', cart_clear: 'إفراغ السلة', remove: 'إزالة', each: 'للقطعة', dec: 'تقليل الكمية', inc: 'زيادة الكمية',
       co_title: 'تأكيد الطلب', co_address: 'عنوان التوصيل', co_phone: 'الهاتف', co_notes: 'ملاحظات (اختياري)', co_place: 'إرسال الطلب', co_back: 'العودة إلى السلة',
       co_proto: 'نموذج أولي: يُحفظ طلبك على هذا الجهاز فقط والدفع غير متصل بعد.', co_total: 'الإجمالي (قبل التوصيل)',
@@ -126,7 +126,7 @@
   const CART_KEY = 'dd_cart';
   let cart = LS.get(CART_KEY, {});                       // { englishProductName: qty }
   let cview = 'cart', lastOrder = null;
-  const cents = (p) => Math.round(parseFloat(String(p.salePrice || p.price).replace(/[^0-9.]/g, '')) * 100) || 0;
+  const cents = (p) => Math.round(parseFloat(String(p.price).replace(/[^0-9.]/g, '')) * 100) || 0;
   const money = (c) => '$' + (c / 100).toFixed(2);
   const pidOf = (name) => DD().products.findIndex((p) => p.name === name);
 
