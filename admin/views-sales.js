@@ -3,7 +3,7 @@
 'use strict';
 const D = window.__DDA, { S, $, $$, esc, money, money0, STATUS, FLOW, dayKey, fmtDT, photo, toast, must, fail, ACT, VIEWS, overlay, closeOv, isAdmin } = D;
 const mapUrl = (a) => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(a || '');
-const live = (o) => o.status !== 'cancelled';
+const live = (o) => o.status !== 'cancelled' && !(o.pay_method === 'card' && o.pay_status === 'unpaid');
 
 /* ---------- tiny SVG charts (no libraries, so the strict security policy stays strict) ---------- */
 function barLine(labels, bars, line, o = {}) {
@@ -35,7 +35,7 @@ VIEWS.overview = async () => {
   const prevStart = new Date(start); prevStart.setDate(prevStart.getDate() - days);
   $('#va').innerHTML = `<div class="seg" id="rg">${[7, 30, 90, 365].map((d) => `<button data-act="range" data-d="${d}" class="${d === days ? 'on' : ''}">${d === 365 ? '1y' : d + 'd'}</button>`).join('')}</div>`;
   const [ord, exp, items] = await Promise.all([
-    S.sb.from('orders').select('id,code,status,total,subtotal,delivery_fee,pay_method,created_at,customer_name').gte('created_at', prevStart.toISOString()).order('created_at', { ascending: false }).limit(5000),
+    S.sb.from('orders').select('id,code,status,total,subtotal,delivery_fee,pay_method,pay_status,created_at,customer_name').gte('created_at', prevStart.toISOString()).order('created_at', { ascending: false }).limit(5000),
     isAdmin() ? S.sb.from('expenses').select('*').gte('spent_on', dayKey(prevStart)).limit(5000) : Promise.resolve({ data: [] }),
     S.sb.from('order_items').select('name,qty,unit_price,photo_key,image_url,orders!inner(created_at,status)').gte('orders.created_at', start.toISOString()).neq('orders.status', 'cancelled').limit(5000)
   ]);
@@ -106,19 +106,43 @@ function orderDrawer(id) {
     <dt>Address</dt><dd>${esc(o.address || '—')} ${o.address ? `<a href="${mapUrl(o.address)}" target="_blank" rel="noopener noreferrer">map ↗</a>` : ''}</dd>${o.notes ? `<dt>Notes</dt><dd>${esc(o.notes)}</dd>` : ''}</dl>
     <h3>Items</h3>${items.map((i) => `<div class="item"><img class="thumb" src="${esc(photo(i))}" alt=""><div class="grow"><b>${esc(i.name)}</b><div class="mute small">${Number(i.qty)} × ${money(i.unit_price)}${Number(i.list_price) > Number(i.unit_price) ? ` <s>${money(i.list_price)}</s>` : ''}</div></div><b>${money(i.qty * i.unit_price)}</b></div>`).join('')}
     <div class="row sp mt small"><span>Subtotal</span><span>${money(o.subtotal)}</span></div><div class="row sp small"><span>Delivery</span><span>${money(o.delivery_fee)}</span></div><div class="row sp"><b>Total</b><b style="font-size:20px">${money(o.total)}</b></div>
+    ${o.pay_method === 'card' && (o.stripe_payment_intent || o.pay_status === 'unpaid') ? cardBox(o) : ''}
     ${canDrive ? `<h3 class="mt">Update</h3><div class="row wrap">${FLOW.map((k) => `<button class="btn sm ${o.status === k ? '' : 'ghost'}" data-act="ostatus" data-id="${o.id}" data-s="${k}">${STATUS[k]}</button>`).join('')}<button class="btn red sm" data-act="ostatus" data-id="${o.id}" data-s="cancelled">Cancel order</button></div>
     <div class="f mt"><div><label>Driver</label><select id="od-dr"><option value="">— none —</option>${drivers.map((d) => `<option value="${d.id}" ${o.driver_id === d.id ? 'selected' : ''}>${esc(d.full_name || d.id.slice(0, 6))}</option>`).join('')}</select></div>
-    <div><label>Payment</label><select id="od-ps">${['unpaid', 'authorized', 'paid', 'refunded', 'failed'].map((s) => `<option ${o.pay_status === s ? 'selected' : ''}>${s}</option>`).join('')}</select></div></div>
+    ${o.pay_method === 'card' ? '' : `<div><label>Payment</label><select id="od-ps">${['unpaid', 'paid', 'refunded', 'failed'].map((s) => `<option ${o.pay_status === s ? 'selected' : ''}>${s}</option>`).join('')}</select></div>`}</div>
     <div class="row mt"><button class="btn sm" data-act="osave" data-id="${o.id}">Save driver & payment</button>${isAdmin() ? `<button class="btn red sm ghost" data-act="odelete" data-id="${o.id}">Delete order</button>` : ''}</div>` : ''}</div>`);
   return ov;
 }
+const cardBox = (o) => {
+  const st = o.pay_status, brand = o.card_brand ? `${esc(o.card_brand)} ••${esc(o.card_last4 || '')}` : '';
+  const info = { unpaid: ['s-new', 'Awaiting card payment — the customer has not finished paying yet.'], authorized: ['s-confirmed', `Card hold placed: ${money(o.authorized_amount)} held. Charge the final amount after weighing.`], paid: ['s-delivered', `Paid by card: ${money(o.captured_amount)} charged.`], refunded: ['s-cancelled', 'Refunded or hold released.'], failed: ['s-cancelled', 'Hold expired or failed.'] }[st] || ['', st];
+  let btns = '';
+  if (isAdmin() && st === 'authorized') btns = `<button class="btn sm" data-act="card-cap" data-id="${o.id}">Charge ${money(Math.min(Number(o.total), Number(o.authorized_amount)))}</button><button class="btn ghost sm" data-act="card-cap" data-id="${o.id}" data-ask="1">Charge other amount…</button><button class="btn red ghost sm" data-act="card-rel" data-id="${o.id}">Release hold</button>`;
+  else if (isAdmin() && st === 'paid') btns = `<button class="btn red ghost sm" data-act="card-ref" data-id="${o.id}">Refund full amount</button>`;
+  else if (st === 'authorized') btns = '<span class="mute small">Only the owner can charge the card.</span>';
+  return `<div class="card" style="box-shadow:none;border:1px solid var(--line);margin-top:14px"><div class="row sp"><b>💳 Card payment ${brand}</b><span class="pill ${info[0]}">${esc(st)}</span></div><p class="small mute" style="margin:8px 0">${esc(info[1])}</p><div class="row wrap">${btns}</div></div>`;
+};
+const payCall = async (body, okMsg) => {
+  const { data, error } = await S.sb.functions.invoke('capture-payment', { body });
+  if (error) { let m = error.message; try { const j = await error.context.json(); if (j && j.error) m = j.error; } catch (e) { /* keep */ } throw new Error(m); }
+  toast(okMsg(data)); closeOv(); D.go(S.view);
+};
+ACT['card-cap'] = async (a) => {
+  let amount; if (a.dataset.ask) { const v = prompt('Final amount to charge ($). It cannot be more than the amount held.'); if (v === null) return; amount = Number(v); if (!(amount > 0)) throw new Error('Enter an amount'); }
+  a.disabled = true; try { await payCall({ order_id: a.dataset.id, action: 'capture', amount }, (r) => 'Charged ' + money(r.charged)); } finally { a.disabled = false; }
+};
+ACT['card-rel'] = async (a) => { if (!confirm('Release the hold? The customer will not be charged.')) return; await payCall({ order_id: a.dataset.id, action: 'release' }, () => 'Hold released'); };
+ACT['card-ref'] = async (a) => { if (!confirm('Refund the full amount to the customer’s card?')) return; await payCall({ order_id: a.dataset.id, action: 'refund' }, () => 'Refunded'); };
 ACT.ostatus = async (a) => {
+  const oo = S.orders.find((x) => x.id === a.dataset.id) || (S.mine || []).find((x) => x.id === a.dataset.id);
+  if (oo && oo.pay_method === 'card' && oo.pay_status === 'unpaid' && a.dataset.s !== 'cancelled' && !confirm('This card order has not been paid yet. Continue anyway?')) return;
   if (a.dataset.s === 'cancelled' && !confirm('Cancel this order?')) return;
   must(await S.sb.rpc('driver_set_status', { p_order: a.dataset.id, p_status: a.dataset.s }));
   toast('Status updated'); closeOv(); D.go(S.view);
 };
 ACT.osave = async (a) => {
-  must(await S.sb.from('orders').update({ driver_id: $('#od-dr').value || null, pay_status: $('#od-ps').value }).eq('id', a.dataset.id));
+  const patch = { driver_id: $('#od-dr').value || null }; if ($('#od-ps')) patch.pay_status = $('#od-ps').value;
+  must(await S.sb.from('orders').update(patch).eq('id', a.dataset.id));
   toast('Saved'); closeOv(); D.go(S.view);
 };
 ACT.odelete = async (a) => { if (!confirm('Delete this order permanently? Sales totals will change.')) return; must(await S.sb.from('orders').delete().eq('id', a.dataset.id)); toast('Deleted'); closeOv(); D.go('orders'); };

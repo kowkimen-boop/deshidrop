@@ -76,6 +76,7 @@
   root.addEventListener('click', (e) => {
     const a = e.target.closest && e.target.closest('.cs-cta[data-go]'); if (!a || !window.__goCat) return;
     e.preventDefault();
+    if (a.dataset.wa) { window.open('https://wa.me/19473764749?text=' + encodeURIComponent('Hi Deshi Drop, I would like to ask about catering orders.'), '_blank', 'noopener'); return; }
     const pl = a.dataset.goLabel && a.closest('.cs-slide').querySelector('.cs-price .pl');
     window.__goCat(a.dataset.go, pl ? pl.textContent : '');
   });

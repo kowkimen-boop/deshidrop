@@ -7,7 +7,7 @@
   const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const tools = document.getElementById('meat-tools'), chips = Array.from(document.querySelectorAll('#sub-menu .sub-chip'));
   let sub = 'all';
-  const FILTERS = { all: null, meat: (p) => p.cat === 'Meat' && (sub === 'all' || p.sub === sub) };
+  const FILTERS = { all: null, fish: (p) => p.cat === 'Fish', meat: (p) => p.cat === 'Meat' && (sub === 'all' || p.sub === sub) };
   let busy = 0;
   function apply(key, pill) {
     const soon = pill.classList.contains('soon');
@@ -20,7 +20,7 @@
         panel.hidden = false; grid.hidden = true; if (tools) tools.hidden = true;
       } else {
         panel.hidden = true; grid.hidden = false;
-        window.__catFilter = FILTERS[key] || null;
+        window.__catFilter = FILTERS[key] || null; if (window.__resetProdPage) window.__resetProdPage();
         if (tools) tools.hidden = key !== 'meat';
         if (window.__renderProductsForLang) window.__renderProductsForLang(window.__currentProductLang || 'en');
       }
@@ -35,7 +35,7 @@
     sub = c.dataset.sub;
     chips.forEach((x) => { const on = x === c; x.classList.toggle('active', on); x.setAttribute('aria-pressed', on ? 'true' : 'false'); });
     clearTimeout(busy);
-    const run = () => { window.__catFilter = FILTERS.meat; window.__renderProductsForLang(window.__currentProductLang || 'en'); requestAnimationFrame(() => grid.classList.remove('swapping')); };
+    const run = () => { window.__catFilter = FILTERS.meat; if (window.__resetProdPage) window.__resetProdPage(); window.__renderProductsForLang(window.__currentProductLang || 'en'); requestAnimationFrame(() => grid.classList.remove('swapping')); };
     if (reduce) return run();
     grid.classList.add('swapping'); busy = setTimeout(run, 200);
   }));

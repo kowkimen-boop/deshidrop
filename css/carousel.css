@@ -176,3 +176,10 @@
     @keyframes csTagRtl { from { opacity: 0; transform: rotate(-5deg) scale(.5); } to { opacity: 1; transform: rotate(-5deg) scale(1); } }
     @keyframes csStampRtl { from { opacity: 0; transform: rotate(-14deg) scale(1.9); } to { opacity: 1; transform: rotate(12deg) scale(1); } }
   }
+
+/* offer slides: chicken (buy 5 get 1), koliza (free with 100 lb), catering */
+.cs-s7 { background: radial-gradient(110% 90% at 100% 0%, #f7c948 0%, rgba(247,201,72,0) 55%), linear-gradient(135deg, #144f2c 0%, #1c6b3c 100%); }
+.cs-s8 { background: radial-gradient(110% 90% at 0% 0%, #e8b84a 0%, rgba(232,184,74,0) 50%), linear-gradient(135deg, #7a1620 0%, #a1181f 100%); }
+.cs-s9 { background: radial-gradient(110% 90% at 100% 100%, #2f8a52 0%, rgba(47,138,82,0) 60%), linear-gradient(135deg, #1b2a20 0%, #123d24 100%); }
+.cs-s7 .cs-cta { color: #144f2c; } .cs-s8 .cs-cta { color: #8a131b; } .cs-s9 .cs-cta { color: #123d24; }
+.cs-s7 .cs-price, .cs-s8 .cs-price { background: #f7c948; color: #24231f; }

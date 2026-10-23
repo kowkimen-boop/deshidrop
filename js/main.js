@@ -25,6 +25,7 @@
     pepper: `<svg viewBox="0 0 64 64"><path d="M26 16c2-4 8-4 9 0l2 6c6 1 10 7 9 14-1 9-9 16-18 15-8-1-14-9-12-17 1-5 4-9 8-12z" fill="var(--fm-accent)"/><path d="M32 16c6-2 10 2 9 7" fill="none" stroke="var(--fm-red)" stroke-width="2.5" stroke-linecap="round"/></svg>`,
     onion: `<svg viewBox="0 0 64 64"><path d="M32 12c10 6 14 16 12 26-2 10-8 16-12 16s-10-6-12-16c-2-10 2-20 12-26z" fill="var(--fm-beige-dark)"/><path d="M32 12c4 8 4 16 0 24M32 12c-4 8-4 16 0 24" stroke="var(--fm-accent-dark)" stroke-width="1.2" fill="none" opacity=".5"/><path d="M30 10c0-4 1-7 2-7s2 3 2 7" stroke="var(--fm-accent)" stroke-width="2" stroke-linecap="round"/></svg>`,
   };
+  icons.fish = `<svg viewBox="0 0 64 64"><path d="M10 32c8-12 24-14 34-4l10-8-3 12 3 12-10-8c-10 10-26 8-34-4z" fill="#4aa3c7" stroke="var(--fm-accent-dark)" stroke-width="2" stroke-linejoin="round"/><circle cx="20" cy="29" r="2" fill="#fff"/></svg>`;
   const fallbackIcon = `<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="20" fill="var(--fm-beige-dark)"/></svg>`;
 
   const products = [
@@ -39,6 +40,22 @@
     { name: "Chicken Leg – with skin (per lb)", name_bn: "চামড়াসহ মুরগির রান (প্রতি পাউন্ড)", cat: "Meat", cat_bn: "মাংস", sub: "Chicken", price: "$1.50", icon: "chicken" },
     { name: "Chicken Leg – without skin (per lb)", name_bn: "চামড়া ছাড়া মুরগির রান (প্রতি পাউন্ড)", cat: "Meat", cat_bn: "মাংস", sub: "Chicken", price: "$2.00", icon: "chicken" },
     { name: "Chicken Breast (per lb)", name_bn: "মুরগির ব্রেস্ট (প্রতি পাউন্ড)", cat: "Meat", cat_bn: "মাংস", sub: "Chicken", price: "$3.50", icon: "chicken", photo: "potato" },
+    { name: "Mrigal Fish – 2 kg up (per lb)", name_bn: "মৃগেল মাছ – ২ কেজি+ (প্রতি পাউন্ড)", cat: "Fish", cat_bn: "মাছ", cat_ar: "السمك", sub: "Mrigal", price: "$3.49", icon: "fish" },
+    { name: "Mrigal Fish – 3 kg up (per lb)", name_bn: "মৃগেল মাছ – ৩ কেজি+ (প্রতি পাউন্ড)", cat: "Fish", cat_bn: "মাছ", cat_ar: "السمك", sub: "Mrigal", price: "$3.99", icon: "fish" },
+    { name: "Mrigal Fish – 4 kg up (per lb)", name_bn: "মৃগেল মাছ – ৪ কেজি+ (প্রতি পাউন্ড)", cat: "Fish", cat_bn: "মাছ", cat_ar: "السمك", sub: "Mrigal", price: "$4.49", icon: "fish" },
+    { name: "Mrigal Fish – 5 kg up (per lb)", name_bn: "মৃগেল মাছ – ৫ কেজি+ (প্রতি পাউন্ড)", cat: "Fish", cat_bn: "মাছ", cat_ar: "السمك", sub: "Mrigal", price: "$4.99", icon: "fish" },
+    { name: "Mrigal Fish – 6 kg up (per lb)", name_bn: "মৃগেল মাছ – ৬ কেজি+ (প্রতি পাউন্ড)", cat: "Fish", cat_bn: "মাছ", cat_ar: "السمك", sub: "Mrigal", price: "$5.49", icon: "fish" },
+    { name: "Rohu Fish – 2 kg up (per lb)", name_bn: "রুই মাছ – ২ কেজি+ (প্রতি পাউন্ড)", cat: "Fish", cat_bn: "মাছ", cat_ar: "السمك", sub: "Rohu", price: "$2.59", icon: "fish" },
+    { name: "Rohu Fish – 3 kg up (per lb)", name_bn: "রুই মাছ – ৩ কেজি+ (প্রতি পাউন্ড)", cat: "Fish", cat_bn: "মাছ", cat_ar: "السمك", sub: "Rohu", price: "$2.75", icon: "fish" },
+    { name: "Rohu Fish – 4 kg up (per lb)", name_bn: "রুই মাছ – ৪ কেজি+ (প্রতি পাউন্ড)", cat: "Fish", cat_bn: "মাছ", cat_ar: "السمك", sub: "Rohu", price: "$2.95", icon: "fish" },
+    { name: "Rohu Fish – 5 kg up (per lb)", name_bn: "রুই মাছ – ৫ কেজি+ (প্রতি পাউন্ড)", cat: "Fish", cat_bn: "মাছ", cat_ar: "السمك", sub: "Rohu", price: "$3.57", icon: "fish" },
+    { name: "Rohu Fish – 6 kg up (per lb)", name_bn: "রুই মাছ – ৬ কেজি+ (প্রতি পাউন্ড)", cat: "Fish", cat_bn: "মাছ", cat_ar: "السمك", sub: "Rohu", price: "$3.99", icon: "fish" },
+    { name: "Showl Fish (per lb)", name_bn: "শোল মাছ (প্রতি পাউন্ড)", cat: "Fish", cat_bn: "মাছ", cat_ar: "السمك", sub: "Showl", price: "$6.49", icon: "fish" },
+    { name: "Karfu Fish (per lb)", name_bn: "কার্ফু মাছ (প্রতি পাউন্ড)", cat: "Fish", cat_bn: "মাছ", cat_ar: "السمك", sub: "Karfu", price: "$2.99", icon: "fish" },
+    { name: "Shrimp 31/40 – BMR Classic (2 lb bag)", name_bn: "চিংড়ি ৩১/৪০ – বিএমআর ক্লাসিক (২ পাউন্ড ব্যাগ)", cat: "Fish", cat_bn: "মাছ", cat_ar: "السمك", sub: "Shrimp", price: "$15.49", icon: "fish", tag: "New", photo: "shrimp_bmr" },
+    { name: "Shrimp 31/40 – CenSea (2 lb bag)", name_bn: "চিংড়ি ৩১/৪০ – সেনসি (২ পাউন্ড ব্যাগ)", cat: "Fish", cat_bn: "মাছ", cat_ar: "السمك", sub: "Shrimp", price: "$15.99", icon: "fish", tag: "New", photo: "shrimp_censea" },
+    { name: "Shrimp 31/40 – Dufer's (2 lb bag)", name_bn: "চিংড়ি ৩১/৪০ – ডুফার্স (২ পাউন্ড ব্যাগ)", cat: "Fish", cat_bn: "মাছ", cat_ar: "السمك", sub: "Shrimp", price: "$15.49", icon: "fish", tag: "New", photo: "shrimp_dufers" },
+    { name: "Shrimp 20/30 – Dufer's (4 lb box)", name_bn: "চিংড়ি ২০/৩০ – ডুফার্স (৪ পাউন্ড বক্স)", cat: "Fish", cat_bn: "মাছ", cat_ar: "السمك", sub: "Shrimp", price: "$18.00", icon: "fish", tag: "New", photo: "shrimp_box" },
     { name: "Roma Tomatoes (1 lb)", name_bn: "টমেটো (১ পাউন্ড)", cat: "Produce", cat_bn: "সবজি", price: "$1.99", tag: "New", icon: "tomato" },
     { name: "Russet Potatoes (5 lb)", name_bn: "আলু (৫ পাউন্ড)", cat: "Produce", cat_bn: "সবজি", price: "$3.99", icon: "potato", photo: "chicken_breast" },
     { name: "Fresh Spinach (bunch)", name_bn: "তাজা পালং শাক (আঁটি)", cat: "Produce", cat_bn: "সবজি", price: "$2.29", icon: "spinach", photo: "milk" },
@@ -76,9 +93,25 @@
     "Basmati Rice (10 lb)":"أرز بسمتي (١٠ أرطال)","Red Lentils (2 lb)":"عدس أحمر (٢ رطل)",
     "Cooking Oil (1L)":"زيت طبخ (١ لتر)","Granulated Sugar (4 lb)":"سكر ناعم (٤ أرطال)",
     "All-Purpose Flour (5 lb)":"دقيق متعدد الاستعمالات (٥ أرطال)","Black Tea Bags (100 ct)":"أكياس شاي أسود (١٠٠ كيس)",
-    "Whole Milk (1 gal)":"حليب كامل الدسم (١ غالون)","Large Eggs (dozen)":"بيض كبير (دزينة)"
+    "Whole Milk (1 gal)":"حليب كامل الدسم (١ غالون)","Large Eggs (dozen)":"بيض كبير (دزينة)",
+    "Mrigal Fish – 2 kg up (per lb)":"سمك مريغال – ٢ كجم فأكثر (للرطل)",
+    "Mrigal Fish – 3 kg up (per lb)":"سمك مريغال – ٣ كجم فأكثر (للرطل)",
+    "Mrigal Fish – 4 kg up (per lb)":"سمك مريغال – ٤ كجم فأكثر (للرطل)",
+    "Mrigal Fish – 5 kg up (per lb)":"سمك مريغال – ٥ كجم فأكثر (للرطل)",
+    "Mrigal Fish – 6 kg up (per lb)":"سمك مريغال – ٦ كجم فأكثر (للرطل)",
+    "Rohu Fish – 2 kg up (per lb)":"سمك روهو – ٢ كجم فأكثر (للرطل)",
+    "Rohu Fish – 3 kg up (per lb)":"سمك روهو – ٣ كجم فأكثر (للرطل)",
+    "Rohu Fish – 4 kg up (per lb)":"سمك روهو – ٤ كجم فأكثر (للرطل)",
+    "Rohu Fish – 5 kg up (per lb)":"سمك روهو – ٥ كجم فأكثر (للرطل)",
+    "Rohu Fish – 6 kg up (per lb)":"سمك روهو – ٦ كجم فأكثر (للرطل)",
+    "Showl Fish (per lb)":"سمك شول (للرطل)",
+    "Karfu Fish (per lb)":"سمك كارفو (للرطل)",
+    "Shrimp 31/40 – BMR Classic (2 lb bag)":"جمبري ٣١/٤٠ – بي إم آر كلاسيك (كيس ٢ رطل)",
+    "Shrimp 31/40 – CenSea (2 lb bag)":"جمبري ٣١/٤٠ – سينسي (كيس ٢ رطل)",
+    "Shrimp 31/40 – Dufer's (2 lb bag)":"جمبري ٣١/٤٠ – دوفرز (كيس ٢ رطل)",
+    "Shrimp 20/30 – Dufer's (4 lb box)":"جمبري ٢٠/٣٠ – دوفرز (علبة ٤ رطل)"
   };
-  const AR_CATS = {"Meat":"لحوم","Produce":"خضار وفواكه","Grocery":"بقالة","Dairy & Eggs":"ألبان وبيض"};
+  const AR_CATS = {"Meat":"لحوم","Produce":"خضار وفواكه","Grocery":"بقالة","Dairy & Eggs":"ألبان وبيض","Fish":"السمك"};
   const TAGS = {Fresh:{bn:"তাজা",ar:"طازج"},New:{bn:"নতুন",ar:"جديد"},Popular:{bn:"জনপ্রিয়",ar:"الأكثر طلبًا"}};
   // Text that can come from the database is always escaped before it goes into HTML.
   const escH = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -110,7 +143,7 @@
     });
   }
   applyDeals(window.__DEALS);
-  window.__DD = { products, pName, pCat, icons, fallbackIcon };  // used by js/shop.js (cart)
+  window.__DD = { dealLive, products, pName, pCat, icons, fallbackIcon };  // used by js/shop.js (cart)
 
   const grid = document.getElementById('product-grid');
   window.__currentProductLang = 'en';
@@ -145,6 +178,16 @@
   };
   const PG_ARIA = { en: ['Previous page', 'Next page', 'Page'], bn: ['আগের পৃষ্ঠা', 'পরের পৃষ্ঠা', 'পৃষ্ঠা'], ar: ['الصفحة السابقة', 'الصفحة التالية', 'صفحة'] };
   const pageSize = () => Math.max(1, parseInt(DEALS_CFG.pageSize, 10) || 4);
+  function pagerHTML(page, pages, lang, from, len, total) {
+    const L = PG_ARIA[lang] || PG_ARIA.en, rtl = lang === 'ar';
+    const chev = (d) => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${d}"/></svg>`;
+    let nums = '';
+    for (let k = 0; k < pages; k++) nums += `<button class="pg-num${k === page ? ' on' : ''}" type="button" data-pg="${k}" aria-label="${L[2]} ${k + 1}"${k === page ? ' aria-current="page"' : ''}>${k + 1}</button>`;
+    return `<div class="pg-row"><button class="pg-arrow" type="button" data-pg="${page - 1}" aria-label="${L[0]}"${page === 0 ? ' disabled' : ''}>${chev(rtl ? 'M9 18l6-6-6-6' : 'M15 18l-6-6 6-6')}</button>` +
+      `<div class="pg-nums">${nums}</div>` +
+      `<button class="pg-arrow" type="button" data-pg="${page + 1}" aria-label="${L[1]}"${page === pages - 1 ? ' disabled' : ''}>${chev(rtl ? 'M15 18l-6-6 6-6' : 'M9 18l6-6-6-6')}</button></div>` +
+      `<p class="pg-info" aria-live="polite">${(PG_TXT[lang] || PG_TXT.en)(from + 1, from + len, total)}</p>`;
+  }
   function renderDeals(lang, dir) {
     const sec = document.getElementById('deal-list'); if (!dealGrid) return;
     const total = dealOrder.length, size = pageSize(), pages = Math.max(1, Math.ceil(total / size));
@@ -192,12 +235,34 @@
     applyDeals(list); dealPage = 0; renderProducts(window.__currentProductLang || 'en');
   };
 
-  function renderProducts(lang) {
+  // ---- products: most popular first, 10 per page ----
+  const PROD_PAGE = 10; let prodPage = 0, popSold = {};
+  const prodPager = document.getElementById('prod-pager');
+  function popOrder() {   // indexes of `products`, best sellers first (real sales when the backend is on, "Popular" tag otherwise)
+    return products.map((p, i) => i).sort((a, b) => {
+      const A = products[a], B = products[b], sa = popSold[A.name] || 0, sb = popSold[B.name] || 0;
+      return (sb - sa) || ((B.tag === 'Popular') - (A.tag === 'Popular')) || (a - b);
+    });
+  }
+  window.__setPopularity = function (rows) { popSold = {}; (rows || []).forEach((r) => { popSold[r.name] = +r.sold || 0; }); prodPage = 0; renderProducts(window.__currentProductLang || 'en'); };
+  window.__resetProdPage = function () { prodPage = 0; };
+  function prodGo(k) {
+    prodPage = k; renderProducts(window.__currentProductLang || 'en', k > 0 ? 1 : -1);
+    const sec = document.getElementById('categories'); if (sec) sec.scrollIntoView({ block: 'start' });
+  }
+  if (prodPager) prodPager.addEventListener('click', (e) => { const b = e.target.closest('[data-pg]'); if (b && !b.disabled) prodGo(+b.dataset.pg); });
+  function renderProducts(lang, dir) {
     window.__currentProductLang = lang;
-    grid.innerHTML = products.map((p,i) => (window.__catFilter && !window.__catFilter(p)) ? '' : cardHTML(p,i,lang)).join('');
+    const list = popOrder().filter((i) => !(window.__catFilter && !window.__catFilter(products[i])));
+    const pages = Math.max(1, Math.ceil(list.length / PROD_PAGE)); prodPage = Math.min(Math.max(0, prodPage), pages - 1);
+    const from = prodPage * PROD_PAGE, slice = list.slice(from, from + PROD_PAGE);
+    grid.innerHTML = slice.map((i, k) => cardHTML(products[i], k, lang)).join('');
+    grid.classList.remove('pg-next', 'pg-prev'); if (dir) { void grid.offsetWidth; grid.classList.add(dir > 0 ? 'pg-next' : 'pg-prev'); }
+    if (prodPager) { prodPager.hidden = pages < 2; prodPager.innerHTML = pages < 2 ? '' : pagerHTML(prodPage, pages, lang, from, slice.length, list.length); }
     renderDeals(lang);
     fillProductPhotos();
     attachTiltHandlers();
+    if (window.__ddSearchRefresh) window.__ddSearchRefresh();
   }
 
   function fillProductPhotos() {
@@ -262,7 +327,15 @@
     "onion": "img/p/onion.jpg",
     "potato": "img/p/potato.jpg",
     "milk": "img/p/milk.jpg",
-    "lentils": "img/p/lentils.jpg"
+    "lentils": "img/p/lentils.jpg",
+    "shrimp_bmr": "img/p/shrimp_bmr.jpg",
+    "shrimp_censea": "img/p/shrimp_censea.jpg",
+    "shrimp_dufers": "img/p/shrimp_dufers.jpg",
+    "shrimp_box": "img/p/shrimp_box.jpg",
+    "promo_chicken_row": "img/p/promo_chicken_row.jpg",
+    "promo_koliza": "img/p/promo_koliza.jpg",
+    "cater_meat": "img/p/cater_meat.jpg",
+    "cater_chicken": "img/p/cater_chicken.jpg"
   };
   fillProductPhotos();   // first render ran before the photos existed — fill them in now
 
@@ -346,9 +419,30 @@
     "cs4_pl": "মুদি সামগ্রী",
     "cs4_u": "/১০ পাউন্ড",
     "cs_see": "কী আসছে দেখুন",
-    "cs6_h": "ফ্রোজেন ও সামুদ্রিক মাছ",
-    "cs6_p": "তাজা মাছ, পরিষ্কার করে রান্নার জন্য প্রস্তুত। শীঘ্রই আসছে।",
+    "cs6_h": "তাজা ও ফ্রোজেন মাছ",
+    "cs6_p": "রুই, মৃগেল, শোল, কার্ফু ও চিংড়ি — পরিষ্কার ও রান্নার জন্য প্রস্তুত।",
     "cs6_pl": "মাছ",
+    "cs6_tag": "তাজা ও ফ্রোজেন",
+    "cs6_cta": "মাছ কিনুন",
+    "cs_from": "শুরু",
+    "cs7_tag": "সীমিত সময়ের অফার",
+    "cs7_h": "৫টি শক্ত মুরগি কিনলে ১টি ফ্রি",
+    "cs7_p": "খামার-তাজা জবিহা হালাল। বৃহস্পতিবারের মধ্যে অর্ডার করুন — শনি ও রবিবার ডেলিভারি।",
+    "cs7_cta": "অফারটি নিন",
+    "cs7_pl": "৫টি কিনলে",
+    "cs7_pv": "১টি ফ্রি",
+    "cs8_tag": "ফ্রি উপহার",
+    "cs8_h": "পুরো একটি কলিজা ফ্রি",
+    "cs8_p": "যেকোনো মাংস ১০০ পাউন্ড বা তার বেশি অর্ডারে। অফার ৩১ অক্টোবর ২০২৬ পর্যন্ত।",
+    "cs8_cta": "১০০ পাউন্ড+ অর্ডার",
+    "cs8_pl": "১০০ পাউন্ডে",
+    "cs8_pv": "কলিজা ফ্রি",
+    "cs9_tag": "ক্যাটারিং",
+    "cs9_h": "ক্যাটারিং করছেন? মাংস আমরা পৌঁছে দিই",
+    "cs9_p": "জবিহা হালাল গরু ও মুরগি, রান্নার উপযোগী করে কাটা। প্রথম ৩টি অর্ডারে বিশেষ ছাড় ও ফ্রি ডেলিভারি।",
+    "cs9_cta": "ক্যাটারিং জানুন",
+    "cs9_pl": "প্রথম ৩টি অর্ডার",
+    "cs9_pv": "বিশেষ ছাড়",
     "deal_h": "অফার",
     "deal_sub": "টি পণ্যে ছাড়",
     "cs5_tag": "আমরা ডেলিভারি দিই",
@@ -368,6 +462,7 @@
     "foot_terms": "শর্তাবলী",
     "foot_privacy": "গোপনীয়তা",
     "foot_copyright": "© ২০২৬ দেশি ড্রপ। সর্বস্বত্ব সংরক্ষিত।",
+    "foot_tag": "হালাল গ্রোসারি · মেট্রো ডেট্রয়েট",
     "tab_home": "হোম",
     "tab_gallery": "গ্যালারি",
     "tab_quran": "কুরআন",
@@ -457,9 +552,30 @@
     "cs4_pl": "مواد بقالة",
     "cs4_u": "/١٠ رطل",
     "cs_see": "اكتشف ما سيأتي",
-    "cs6_h": "سمك مجمّد وبحري",
-    "cs6_p": "سمك طازج منظّف وجاهز للطهي. قريبًا.",
+    "cs6_h": "سمك طازج ومجمّد",
+    "cs6_p": "روهو ومريغال وشول وكارفو وجمبري — منظّف وجاهز للطهي.",
     "cs6_pl": "سمك",
+    "cs6_tag": "طازج ومجمّد",
+    "cs6_cta": "تسوّق السمك",
+    "cs_from": "من",
+    "cs7_tag": "عرض لفترة محدودة",
+    "cs7_h": "اشترِ ٥ دجاجات قاسية واحصل على واحدة مجانًا",
+    "cs7_p": "ذبيحة حلال طازجة من المزرعة. اطلب قبل الخميس — التوصيل السبت والأحد.",
+    "cs7_cta": "احصل على العرض",
+    "cs7_pl": "عند شراء ٥",
+    "cs7_pv": "١ مجانًا",
+    "cs8_tag": "هدية مجانية",
+    "cs8_h": "كبدة كاملة مجانًا",
+    "cs8_p": "عند طلب ١٠٠ رطل أو أكثر من أي لحم. العرض حتى ٣١ أكتوبر ٢٠٢٦.",
+    "cs8_cta": "اطلب ١٠٠ رطل+",
+    "cs8_pl": "١٠٠ رطل+",
+    "cs8_pv": "كبدة مجانًا",
+    "cs9_tag": "تموين",
+    "cs9_h": "تعمل في التموين؟ نوصّل لك اللحم",
+    "cs9_p": "لحم بقري ودجاج ذبيحة حلال مقطّع جاهز للطهي. خصم خاص وتوصيل مجاني لأول ٣ طلبات.",
+    "cs9_cta": "اسأل عن التموين",
+    "cs9_pl": "أول ٣ طلبات",
+    "cs9_pv": "خصم خاص",
     "deal_h": "العروض",
     "deal_sub": "منتجات بخصم",
     "cs5_tag": "نوصّل إليك",
@@ -479,6 +595,7 @@
     "foot_terms": "الشروط",
     "foot_privacy": "الخصوصية",
     "foot_copyright": "© ٢٠٢٦ ديشي دروب. جميع الحقوق محفوظة.",
+    "foot_tag": "بقالة حلال · ديترويت الكبرى",
     "tab_home": "الرئيسية",
     "tab_gallery": "المعرض",
     "tab_quran": "القرآن",
@@ -502,6 +619,13 @@
   });
 
   const dbText = (lang, key) => { const T = window.__DD_TEXT; return T && T[lang] && T[lang][key] || ''; };
+  /* delivery fee shown in texts follows Dashboard -> Settings (built-in texts say 9.99) */
+  window.__ddFee = (s, lang) => {
+    const f = window.__DD_SETTINGS && Number(window.__DD_SETTINGS.delivery_fee);
+    if (!(f >= 0) || f === 9.99 || typeof s !== 'string') return s;
+    const n = f.toFixed(2), bn = n.replace(/\d/g, (d) => '০১২৩৪৫৬৭৮৯'[d]), ar = n.replace(/\d/g, (d) => '٠١٢٣٤٥٦٧٨٩'[d]).replace('.', '٫');
+    return s.split('9.99').join(n).split('৯.৯৯').join(bn).split('٩٫٩٩').join(ar);
+  };
   function setLang(lang) {
     document.documentElement.lang = lang;
     document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
@@ -509,7 +633,7 @@
     if (window.__renderProductsForLang) window.__renderProductsForLang(lang);
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
-      el.textContent = dbText(lang, key) || (D && D[key]) || EN[key];
+      el.textContent = window.__ddFee(dbText(lang, key) || (D && D[key]) || EN[key], lang);
     });
     document.querySelectorAll('[data-i18n-ph]').forEach(el => {
       const key = el.getAttribute('data-i18n-ph');
@@ -533,7 +657,25 @@
     }
     if (d.settings && +d.settings.deals_page_size > 0) DEALS_CFG.pageSize = +d.settings.deals_page_size;
     if (d.settings) window.__DD_SETTINGS = d.settings;
+    if (d.settings) {
+      const okU = (u) => /^https:\/\//i.test(String(u || '')), SI = d.settings.site_images, GE = d.settings.gallery_extra;
+      if (SI && typeof SI === 'object') {
+        if (okU(SI.logo)) { window.__DD_LOGO = SI.logo; document.querySelectorAll('.deshi-logo-img').forEach((i) => { i.src = SI.logo; }); }
+        if (SI.slides) document.querySelectorAll('.cs-slide').forEach((sl, si) => [1, 2, 3].forEach((n) => {
+          const u = SI.slides[(sl.dataset.sk || 's' + (si + 1)) + 't' + n], im = sl.querySelector('.cs-arch.t' + n + ' img.cs-photo'); if (u && okU(u) && im) im.src = u;
+        }));
+      }
+      const G = window.DD_GALLERY;
+      if (G && Array.isArray(G.items)) {
+        const hide = (SI && Array.isArray(SI.gallery_hidden)) ? SI.gallery_hidden : [];
+        G.items.forEach((it) => { const u = SI && SI.gallery && SI.gallery[it.id]; if (okU(u)) { it.src = u; delete it.photo; } });
+        if (hide.length) G.items = G.items.filter((it) => hide.indexOf(it.id) < 0);
+        if (Array.isArray(GE)) GE.forEach((x) => { if (x && okU(x.src) && !G.items.some((it) => it.id === x.id)) G.items.push({ id: String(x.id), src: x.src, cat: x.cat || 'offers', date: x.date || '2026-01-01', title: x.title || { en: '' }, caption: x.caption || { en: '' } }); });
+      }
+    }
     if (d.content) window.__DD_TEXT = d.content;
+    if (d.promos) window.__PROMOS = d.promos;
+    if (d.popular) window.__setPopularity(d.popular);
     if (d.deals) { if (dealGrid) dealGrid.style.minHeight = ''; applyDeals(d.deals); dealPage = 0; }
     setLang(window.__currentProductLang || document.documentElement.lang || 'en');
   };

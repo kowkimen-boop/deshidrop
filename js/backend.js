@@ -65,11 +65,13 @@
   async function loadPublic() {
     try {
       const q = DDB.client;
-      const [pr, de, co, se] = await Promise.all([
+      const [pr, de, co, se, pm, po] = await Promise.all([
         q.from('products').select('*').eq('active', true).order('sort', { ascending: true }),
         q.from('deals').select('pct,active,starts_at,ends_at,sort,products(name)').order('sort', { ascending: true }),
         q.from('site_content').select('key,en,bn,ar'),
-        q.from('settings').select('key,value')
+        q.from('settings').select('key,value'),
+        q.from('promos').select('kind,title,buy_qty,free_qty,min_lb,active,starts_at,ends_at,product:products!promos_product_id_fkey(name),free:products!promos_free_product_id_fkey(name)'),
+        q.rpc('popular_products')
       ]);
       const data = {};
       if (!pr.error && pr.data && pr.data.length) data.products = pr.data;
@@ -78,6 +80,8 @@
         data.content = { en: {}, bn: {}, ar: {} };
         co.data.forEach((r) => ['en', 'bn', 'ar'].forEach((l) => { if (r[l]) data.content[l][r.key] = r[l]; }));
       }
+      if (!pm.error && pm.data) data.promos = pm.data.map((r) => ({ kind: r.kind, title: r.title, name: r.product && r.product.name, buy: r.buy_qty, free: r.free_qty, minLb: Number(r.min_lb), freeName: (r.free && r.free.name) || (r.product && r.product.name), active: r.active, from: r.starts_at, until: r.ends_at }));
+      if (!po.error && po.data) data.popular = po.data;
       if (!se.error && se.data) { data.settings = {}; se.data.forEach((r) => { data.settings[r.key] = r.value; }); }
       if (window.__ddBackendData) window.__ddBackendData(data);
       DDB.loaded = true; emit('DATA', {});
@@ -118,12 +122,18 @@
     if (error) fail(error);
     DDB.orders = []; return data;
   };
+  DDB.startCheckout = async (orderId) => {
+    const c = await need();
+    const { data, error } = await c.functions.invoke('create-checkout', { body: { order_id: orderId, return_url: location.origin + location.pathname } });
+    if (error) { let m = error.message; try { const j = await error.context.json(); if (j && j.error) m = j.error; } catch (e) { /* keep message */ } throw new Error(m); }
+    return data;
+  };
   DDB.loadOrders = async () => {
     const c = await need(); if (!DDB.user) return [];
     const { data, error } = await c.from('orders').select('*, order_items(*)').order('created_at', { ascending: false });
     if (error) fail(error);
     DDB.orders = (data || []).map((r) => ({
-      id: r.code, ts: Date.parse(r.created_at), total: Math.round(Number(r.total) * 100), fee: Number(r.delivery_fee), status: r.status, address: r.address,
+      id: r.code, uuid: r.id, pay: r.pay_method, payStatus: r.pay_status, ts: Date.parse(r.created_at), total: Math.round(Number(r.total) * 100), fee: Number(r.delivery_fee), status: r.status, address: r.address,
       items: (r.order_items || []).map((i) => ({ name: i.name, qty: Number(i.qty), unit: Math.round(Number(i.unit_price) * 100) }))
     }));
     return DDB.orders;

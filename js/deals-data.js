@@ -24,3 +24,10 @@ window.__DEALS = [
   { name: "Beef Trip (per lb)", pct: 20 },
   { name: "Whole Head (per lb)", pct: 25 }
 ];
+
+/* Free-item offers (used until the database is on; then the dashboard's promos table replaces this list).
+   kind "buy_get":  buy `buy` of `name`, get `free` more of it free.      kind "free_item":  `minLb` lb or more → `free` of `freeName` free. */
+window.__PROMOS = [
+  { kind: "buy_get", name: "Chicken Hard (per piece)", buy: 5, free: 1 },
+  { kind: "free_item", freeName: "Beef Koliza (per lb)", minLb: 100, free: 1, until: "2026-11-01T00:00:00-04:00" }
+];

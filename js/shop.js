@@ -21,6 +21,7 @@
     en: {
       back_shop: 'Back to shop', close: 'Close', add_to_cart: 'Add to cart', added: 'added to cart', view_cart: 'View cart',
       open_cart: 'Open cart', my_account: 'My account', item: 'item', items: 'items',
+      free_lbl: 'FREE', promo_more: 'Add {n} more lb of meat to get a free {item}', promo_more_buy: 'Add {n} more to get 1 free',
       cart_title: 'Your Cart', cart_empty: 'Your cart is empty', cart_empty_sub: 'Add fresh meat, produce and groceries to get started.',
       cart_start: 'Start Shopping', cart_subtotal: 'Subtotal', cart_note: 'Delivery fee is calculated at checkout (from $9.99).',
       cart_checkout: 'Checkout', cart_clear: 'Clear cart', remove: 'Remove', each: 'each', dec: 'Decrease quantity', inc: 'Increase quantity',
@@ -43,6 +44,7 @@
     bn: {
       back_shop: 'দোকানে ফিরুন', close: 'বন্ধ করুন', add_to_cart: 'কার্টে যোগ করুন', added: 'কার্টে যোগ হয়েছে', view_cart: 'কার্ট দেখুন',
       open_cart: 'কার্ট খুলুন', my_account: 'আমার অ্যাকাউন্ট', item: 'টি পণ্য', items: 'টি পণ্য',
+      free_lbl: 'ফ্রি', promo_more: 'আর {n} পাউন্ড মাংস নিলে {item} ফ্রি', promo_more_buy: 'আর {n}টি নিলে ১টি ফ্রি',
       cart_title: 'আপনার কার্ট', cart_empty: 'আপনার কার্ট খালি', cart_empty_sub: 'তাজা মাংস, সবজি ও মুদি পণ্য যোগ করে শুরু করুন।',
       cart_start: 'কেনাকাটা শুরু করুন', cart_subtotal: 'সাবটোটাল', cart_note: 'ডেলিভারি ফি চেকআউটে হিসাব হবে (৯.৯৯ ডলার থেকে)।',
       cart_checkout: 'চেকআউট', cart_clear: 'কার্ট খালি করুন', remove: 'সরান', each: 'প্রতিটি', dec: 'পরিমাণ কমান', inc: 'পরিমাণ বাড়ান',
@@ -65,6 +67,7 @@
     ar: {
       back_shop: 'العودة إلى المتجر', close: 'إغلاق', add_to_cart: 'أضف إلى السلة', added: 'أُضيف إلى السلة', view_cart: 'عرض السلة',
       open_cart: 'فتح السلة', my_account: 'حسابي', item: 'منتج', items: 'منتجات',
+      free_lbl: 'مجاني', promo_more: 'أضف {n} رطل لحم إضافي لتحصل على {item} مجانًا', promo_more_buy: 'أضف {n} للحصول على ١ مجانًا',
       cart_title: 'سلة التسوق', cart_empty: 'سلتك فارغة', cart_empty_sub: 'أضف اللحوم والخضروات الطازجة والبقالة للبدء.',
       cart_start: 'ابدأ التسوق', cart_subtotal: 'المجموع الفرعي', cart_note: 'تُحتسب رسوم التوصيل عند إتمام الطلب (ابتداءً من 9.99$).',
       cart_checkout: 'إتمام الطلب', cart_clear: 'إفراغ السلة', remove: 'إزالة', each: 'للقطعة', dec: 'تقليل الكمية', inc: 'زيادة الكمية',
@@ -91,7 +94,7 @@
     e_backend: 'Something went wrong. Please try again.', e_unconfirmed: 'Please confirm your email first — check your inbox.', e_taken: 'An account with this email already exists. Try signing in.',
     new_pw_h: 'Choose a new password', new_pw_btn: 'Save new password', pw_updated: 'Password updated. You are signed in.', tiktok_na: 'TikTok sign-in is not available yet.',
     status_new: 'Received', status_confirmed: 'Confirmed', status_packing: 'Being packed', status_out_for_delivery: 'Out for delivery', status_delivered: 'Delivered', status_cancelled: 'Cancelled',
-    co_pay: 'Payment: cash on delivery', co_delivery_note: 'Delivery from $9.99 — free on your first order or 100+ LB. Your final total is shown once the order is placed.',
+    co_paycod: 'Cash on delivery', co_paycard: 'Debit / credit card', co_card_note: 'We place a temporary hold on your card for your order total plus up to {pct}% (in case the weight changes) and charge only the exact final amount after your order is weighed. The rest is released.', pay_card_btn: 'Pay by card', pay_held: 'Card hold placed', pay_paid: 'Paid by card', pay_unpaid_card: 'Awaiting card payment', pay_refunded: 'Refunded / released', card_ok: 'Thank you! Your card was verified. We will charge the exact amount after weighing.', card_cancel: 'Card payment was not completed. You can pay from My Orders.', e_card: 'Could not open the card page. Your order is saved — pay from My Orders.', co_pay: 'Payment: cash on delivery', co_delivery_note: 'Delivery from $9.99 — free on your first order or 100+ LB. Your final total is shown once the order is placed.',
     co_done_live: 'Order {id} received. Total {total} (delivery {fee}). Pay cash on delivery — we will contact you to confirm.', fee_free: 'free', orders_loading: 'Loading your orders…',
     e_stock: 'One of the items is no longer available. Please check your cart.', e_signin_again: 'Please sign in again to place your order.', role_admin: 'Admin', role_staff: 'Staff', role_driver: 'Driver'
   });
@@ -100,7 +103,7 @@
     e_backend: 'কিছু একটা সমস্যা হয়েছে। আবার চেষ্টা করুন।', e_unconfirmed: 'আগে আপনার ইমেইল নিশ্চিত করুন — ইনবক্স দেখুন।', e_taken: 'এই ইমেইলে আগেই অ্যাকাউন্ট আছে। সাইন ইন করুন।',
     new_pw_h: 'নতুন পাসওয়ার্ড দিন', new_pw_btn: 'নতুন পাসওয়ার্ড সংরক্ষণ', pw_updated: 'পাসওয়ার্ড বদলানো হয়েছে। আপনি সাইন ইন আছেন।', tiktok_na: 'টিকটক সাইন ইন এখনও চালু হয়নি।',
     status_new: 'গৃহীত', status_confirmed: 'নিশ্চিত', status_packing: 'প্যাক হচ্ছে', status_out_for_delivery: 'ডেলিভারির পথে', status_delivered: 'পৌঁছে গেছে', status_cancelled: 'বাতিল',
-    co_pay: 'পেমেন্ট: ডেলিভারির সময় নগদ', co_delivery_note: 'ডেলিভারি $৯.৯৯ থেকে — প্রথম অর্ডারে বা ১০০+ পাউন্ডে ফ্রি। অর্ডার করার পর চূড়ান্ত মোট দেখানো হবে।',
+    co_paycod: 'ডেলিভারির সময় নগদ', co_paycard: 'ডেবিট / ক্রেডিট কার্ড', co_card_note: 'আমরা আপনার কার্ডে অর্ডারের মোট টাকা ও ওজন বদলালে সর্বোচ্চ {pct}% বেশি সাময়িকভাবে হোল্ড করব এবং অর্ডার ওজনের পর ঠিক চূড়ান্ত অঙ্কটুকুই চার্জ করব। বাকিটা ছেড়ে দেওয়া হবে।', pay_card_btn: 'কার্ডে পেমেন্ট করুন', pay_held: 'কার্ডে হোল্ড করা হয়েছে', pay_paid: 'কার্ডে পরিশোধিত', pay_unpaid_card: 'কার্ড পেমেন্টের অপেক্ষায়', pay_refunded: 'ফেরত / ছেড়ে দেওয়া', card_ok: 'ধন্যবাদ! আপনার কার্ড যাচাই হয়েছে। ওজনের পর সঠিক অঙ্ক চার্জ করা হবে।', card_cancel: 'কার্ড পেমেন্ট সম্পন্ন হয়নি। আমার অর্ডার থেকে পেমেন্ট করতে পারবেন।', e_card: 'কার্ড পেজ খোলা যায়নি। আপনার অর্ডার সংরক্ষিত — আমার অর্ডার থেকে পেমেন্ট করুন।', co_pay: 'পেমেন্ট: ডেলিভারির সময় নগদ', co_delivery_note: 'ডেলিভারি $৯.৯৯ থেকে — প্রথম অর্ডারে বা ১০০+ পাউন্ডে ফ্রি। অর্ডার করার পর চূড়ান্ত মোট দেখানো হবে।',
     co_done_live: 'অর্ডার {id} গৃহীত হয়েছে। মোট {total} (ডেলিভারি {fee})। ডেলিভারির সময় নগদ দিন — নিশ্চিত করতে আমরা যোগাযোগ করব।', fee_free: 'ফ্রি', orders_loading: 'আপনার অর্ডার লোড হচ্ছে…',
     e_stock: 'একটি পণ্য আর পাওয়া যাচ্ছে না। কার্ট দেখে নিন।', e_signin_again: 'অর্ডার করতে আবার সাইন ইন করুন।', role_admin: 'অ্যাডমিন', role_staff: 'স্টাফ', role_driver: 'ড্রাইভার'
   });
@@ -109,7 +112,7 @@
     e_backend: 'حدث خطأ ما. حاول مرة أخرى.', e_unconfirmed: 'يرجى تأكيد بريدك الإلكتروني أولًا — تحقق من صندوق الوارد.', e_taken: 'يوجد حساب بهذا البريد بالفعل. جرّب تسجيل الدخول.',
     new_pw_h: 'اختر كلمة مرور جديدة', new_pw_btn: 'حفظ كلمة المرور الجديدة', pw_updated: 'تم تحديث كلمة المرور. أنت مسجّل الدخول.', tiktok_na: 'تسجيل الدخول عبر تيك توك غير متاح بعد.',
     status_new: 'تم الاستلام', status_confirmed: 'مؤكد', status_packing: 'قيد التجهيز', status_out_for_delivery: 'في الطريق إليك', status_delivered: 'تم التسليم', status_cancelled: 'ملغي',
-    co_pay: 'الدفع: نقدًا عند التسليم', co_delivery_note: 'التوصيل من ٩٫٩٩$ — مجاني لطلبك الأول أو لأكثر من ١٠٠ رطل. يظهر الإجمالي النهائي بعد تقديم الطلب.',
+    co_paycod: 'نقدًا عند التسليم', co_paycard: 'بطاقة خصم / ائتمان', co_card_note: 'سنحجز مؤقتًا على بطاقتك إجمالي طلبك مع زيادة تصل إلى {pct}% (تحسبًا لتغيّر الوزن) ونخصم المبلغ النهائي الدقيق فقط بعد وزن طلبك. يُفرج عن الباقي.', pay_card_btn: 'ادفع بالبطاقة', pay_held: 'تم حجز المبلغ على البطاقة', pay_paid: 'مدفوع بالبطاقة', pay_unpaid_card: 'بانتظار الدفع بالبطاقة', pay_refunded: 'تم الاسترداد / الإفراج', card_ok: 'شكرًا! تم التحقق من بطاقتك. سنخصم المبلغ الدقيق بعد الوزن.', card_cancel: 'لم يكتمل الدفع بالبطاقة. يمكنك الدفع من طلباتي.', e_card: 'تعذّر فتح صفحة البطاقة. طلبك محفوظ — ادفع من طلباتي.', co_pay: 'الدفع: نقدًا عند التسليم', co_delivery_note: 'التوصيل من ٩٫٩٩$ — مجاني لطلبك الأول أو لأكثر من ١٠٠ رطل. يظهر الإجمالي النهائي بعد تقديم الطلب.',
     co_done_live: 'تم استلام الطلب {id}. الإجمالي {total} (التوصيل {fee}). الدفع نقدًا عند التسليم — سنتصل بك للتأكيد.', fee_free: 'مجاني', orders_loading: 'جارٍ تحميل طلباتك…',
     e_stock: 'أحد المنتجات لم يعد متوفرًا. يرجى مراجعة السلة.', e_signin_again: 'يرجى تسجيل الدخول مرة أخرى لإتمام الطلب.', role_admin: 'مدير', role_staff: 'موظف', role_driver: 'سائق'
   });
@@ -117,6 +120,7 @@
   const lang = () => { const l = document.documentElement.lang; return T[l] ? l : 'en'; };
   const t = (k, v) => {
     let s = (T[lang()] && T[lang()][k]) || T.en[k] || k;
+    if (window.__ddFee) s = window.__ddFee(s, lang());
     if (v) Object.keys(v).forEach((x) => { s = s.split('{' + x + '}').join(v[x]); });
     return s;
   };
@@ -165,6 +169,27 @@
     cart = out;
   }
   const lines = () => Object.keys(cart).map((n) => { const pid = pidOf(n), p = DD().products[pid], u = cents(p); return { pid, p, qty: cart[n], unit: u, total: u * cart[n] }; });
+  // free items from offers (the server adds the same ones when the order is placed)
+  const isLb = (p) => p.unit ? p.unit === 'lb' : /\(per lb\)/i.test(p.name);
+  function promoState() {
+    const ls = lines(), now = Date.now(), free = [], hints = [];
+    const byName = (n) => ls.find((l) => l.p.name === n);
+    const prod = (n) => DD().products.find((p) => p.name === n);
+    (window.__PROMOS || []).forEach((pr) => {
+      if (pr.active === false || (pr.from && Date.parse(pr.from) > now) || (pr.until && Date.parse(pr.until) < now)) return;
+      const fp = prod(pr.freeName || pr.name); if (!fp || fp.in_stock === false) return;
+      if (pr.kind === 'buy_get') {
+        const l = byName(pr.name), q = l ? l.qty : 0, buy = Math.max(1, pr.buy || 1), n = Math.floor(q / buy) * (pr.free || 1);
+        if (n > 0) free.push({ p: fp, qty: Math.min(99, n) });
+        else if (l && q > 0) hints.push(t('promo_more_buy', { n: buy - q }));
+      } else if (pr.kind === 'free_item') {
+        const lb = ls.reduce((a, l) => a + (isLb(l.p) ? l.qty : 0), 0), need = pr.minLb || 100;
+        if (lb >= need) free.push({ p: fp, qty: pr.free || 1 });
+        else if (lb >= need * 0.5) hints.push(t('promo_more', { n: need - lb, item: DD().pName(fp, lang()) }));
+      }
+    });
+    return { free, hints };
+  }
   const count = () => Object.keys(cart).reduce((a, n) => a + cart[n], 0);
   const subtotal = () => lines().reduce((a, l) => a + l.total, 0);
   function persist() { LS.set(CART_KEY, cart); updateBadges(); }
@@ -208,11 +233,12 @@
       const u = currentUser() || {};
       body = '<form class="co-form" id="co-form" novalidate>' +
         '<div class="co-sum">' + ls.map((l) => '<div><span>' + l.qty + ' × ' + esc(DD().pName(l.p, L)) + '</span><span>' + money(l.total) + '</span></div>').join('') +
+        promoState().free.map((f) => '<div><span>' + f.qty + ' × ' + esc(DD().pName(f.p, L)) + '</span><span>' + esc(t('free_lbl')) + '</span></div>').join('') +
         '<div><span>' + esc(t('co_total')) + '</span><span>' + money(subtotal()) + '</span></div></div>' +
         field('co-addr', t('co_address'), 'text', { auto: 'street-address', val: u.address || '' }) +
         field('co-phone', t('co_phone'), 'tel', { auto: 'tel', val: u.phone || '', mode: 'tel' }) +
         '<div class="fld"><label for="co-notes">' + esc(t('co_notes')) + '</label><textarea id="co-notes" rows="2"></textarea></div>' +
-        (BE() ? '<p class="co-proto"><b>' + esc(t('co_pay')) + '</b><br>' + esc(t('co_delivery_note')) + '</p>' : '<p class="co-proto">' + esc(t('co_proto')) + '</p>') + '</form>';
+        (BE() && cardOn() ? '<fieldset class="pay-opt"><label class="po"><input type="radio" name="co-pay" value="cod" checked> <span>' + esc(t('co_paycod')) + '</span></label><label class="po"><input type="radio" name="co-pay" value="card"> <span>' + esc(t('co_paycard')) + ' · Visa, Mastercard, Amex, Discover</span></label><p class="co-proto" id="co-cardnote" hidden>' + esc(t('co_card_note', { pct: cardPct() })) + '</p></fieldset><p class="co-proto">' + esc(t('co_delivery_note')) + '</p>' : BE() ? '<p class="co-proto"><b>' + esc(t('co_pay')) + '</b><br>' + esc(t('co_delivery_note')) + '</p>' : '<p class="co-proto">' + esc(t('co_proto')) + '</p>') + '</form>';
       foot = '<button class="cd-btn" type="submit" form="co-form">' + esc(t('co_place')) + ' · ' + money(subtotal()) + '</button>' +
         '<button class="cd-btn ghost" type="button" data-act="back">' + esc(t('co_back')) + '</button>';
     } else if (!ls.length) {
@@ -228,14 +254,14 @@
           '<button type="button" data-act="inc" data-pid="' + l.pid + '" aria-label="' + esc(t('inc')) + ': ' + nm + '">+</button></div>' +
           '<span class="ci-total">' + money(l.total) + '</span></div>' +
           '<button class="ci-rm" type="button" data-act="rm" data-pid="' + l.pid + '">' + esc(t('remove')) + '</button></div></li>';
-      }).join('') + '</ul>';
+      }).join('') + '</ul>' + (() => { const ps = promoState(); return ps.free.map((f) => '<div class="ci-free"><b>' + esc(t('free_lbl')) + '</b> ' + f.qty + ' × ' + esc(DD().pName(f.p, L)) + '</div>').join('') + ps.hints.map((h) => '<div class="ci-hint">' + esc(h) + '</div>').join(''); })();
       foot = '<div class="cd-row"><span>' + esc(t('cart_subtotal')) + '</span><b>' + money(subtotal()) + '</b></div>' +
         '<p class="cd-note">' + esc(t('cart_note')) + '</p>' +
         '<button class="cd-btn" type="button" data-act="checkout">' + esc(t('cart_checkout')) + '</button>' +
         '<button class="cd-link" type="button" data-act="clear">' + esc(t('cart_clear')) + '</button>';
     }
     drawer.innerHTML = head + '<div class="cd-body">' + body + '</div>' + (foot ? '<div class="cd-foot">' + foot + '</div>' : '');
-    const f = $('co-form'); if (f) f.addEventListener('submit', placeOrder);
+    const f = $('co-form'); if (f) { f.addEventListener('submit', placeOrder); addrSuggest($('co-addr')); }
     if (focusKey) { const [a, p] = focusKey.split('|'); const el = drawer.querySelector('[data-act="' + a + '"]' + (p ? '[data-pid="' + p + '"]' : '')); if (el) el.focus(); }
   }
 
@@ -256,6 +282,40 @@
     if (opener && opener.focus && document.contains(opener)) opener.focus({ preventScroll: true });
   }
 
+  /* Metro Detroit address suggestions (free Photon/OpenStreetMap search, limited to the Detroit area; typing a full address by hand always works) */
+  const BBOX = '-83.80,42.00,-82.70,42.80';       // Wayne, Oakland, Macomb, Washtenaw, Livingston (west, south, east, north)
+  function addrSuggest(inp) {
+    if (!inp || !window.fetch) return;
+    const ul = document.createElement('ul'); ul.className = 'addr-sg'; ul.hidden = true; ul.setAttribute('role', 'listbox');
+    inp.closest('.fld').appendChild(ul); inp.setAttribute('autocomplete', 'off');
+    let timer = 0, seq = 0, ctl = null, items = [], cur = -1;
+    const hide = () => { ul.hidden = true; cur = -1; };
+    const label = (f) => { const p = f.properties || {}, st = [p.housenumber, p.street || p.name].filter(Boolean).join(' '), city = p.city || p.town || p.village || p.district || p.county || '';
+      return { main: st || p.name || '', sub: [city, 'MI', p.postcode].filter(Boolean).join(' '), full: [st || p.name, city, 'MI ' + (p.postcode || '')].filter(Boolean).join(', ').trim() }; };
+    const show = () => { ul.innerHTML = items.map((x, i) => '<li role="option" data-i="' + i + '"' + (i === cur ? ' class="on"' : '') + '>' + esc(x.main) + '<small>' + esc(x.sub) + '</small></li>').join(''); ul.hidden = !items.length; };
+    const pick = (i) => { if (!items[i]) return; inp.value = items[i].full; hide(); inp.dispatchEvent(new Event('input', { bubbles: true })); };
+    async function query(q) {
+      const my = ++seq; if (ctl) ctl.abort(); ctl = window.AbortController ? new AbortController() : null;
+      try {
+        const r = await fetch('https://photon.komoot.io/api/?limit=8&lang=en&lat=42.33&lon=-83.05&bbox=' + BBOX + '&q=' + encodeURIComponent(q + ' Michigan'), ctl ? { signal: ctl.signal } : {});
+        const j = await r.json(); if (my !== seq) return;
+        const seen = {}; items = (j.features || []).filter((f) => { const p = f.properties || {}; return (p.state || 'Michigan') === 'Michigan' && (p.street || p.housenumber || p.name); })
+          .map(label).filter((x) => x.main && !seen[x.full] && (seen[x.full] = 1)).slice(0, 6);
+        cur = -1; show();
+      } catch (e) { /* offline or blocked: the person can still type the address */ }
+    }
+    inp.addEventListener('input', () => { clearTimeout(timer); const q = inp.value.trim(); if (q.length < 3) { hide(); return; } timer = setTimeout(() => query(q), 280); });
+    inp.addEventListener('keydown', (e) => {
+      if (ul.hidden) return;
+      if (e.key === 'ArrowDown') { e.preventDefault(); cur = Math.min(items.length - 1, cur + 1); show(); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); cur = Math.max(0, cur - 1); show(); }
+      else if (e.key === 'Enter' && cur > -1) { e.preventDefault(); pick(cur); }
+      else if (e.key === 'Escape') { e.stopPropagation(); hide(); }
+    });
+    ul.addEventListener('mousedown', (e) => { const li = e.target.closest('li'); if (li) { e.preventDefault(); pick(+li.dataset.i); } });
+    inp.addEventListener('blur', () => setTimeout(hide, 150));
+  }
+
   function startCheckout() {
     if (!currentUser()) {
       SS.set('dd_after_login', '1'); closeCart(); location.hash = '#/account'; toast(t('need_signin')); return;
@@ -272,20 +332,29 @@
     const s = session(), ls = lines();
     if (BE()) { placeLive(a.value.trim(), ph.value.trim(), $('co-notes').value.trim(), ls, e.target.closest('form')); return; }
     const order = { id: 'DD-' + Date.now().toString(36).toUpperCase().slice(-6), ts: Date.now(), total: subtotal(), address: a.value.trim(), phone: ph.value.trim(), notes: $('co-notes').value.trim(),
-      items: ls.map((l) => ({ name: l.p.name, qty: l.qty, unit: l.unit })) };
+      items: ls.map((l) => ({ name: l.p.name, qty: l.qty, unit: l.unit })).concat(promoState().free.map((f) => ({ name: f.p.name, qty: f.qty, unit: 0 }))) };
     const all = LS.get('dd_orders', {}); (all[s.key] = all[s.key] || []).unshift(order); LS.set('dd_orders', all);
     const users = LS.get('dd_users', {}); if (users[s.key]) { users[s.key].address = order.address; users[s.key].phone = order.phone; LS.set('dd_users', users); }
     lastOrder = order; cart = {}; persist(); cview = 'done'; renderCart();
   }
 
+  const cardOn = () => !!(window.__DD_SETTINGS && window.__DD_SETTINGS.card_enabled === true);
+  const cardPct = () => { const p = window.__DD_SETTINGS && Number(window.__DD_SETTINGS.card_hold_buffer_pct); return p >= 0 ? p : 15; };
+  async function payByCard(orderId) {
+    try { const r = await BE().startCheckout(orderId); if (r && r.url) { location.href = r.url; return true; } } catch (err) { /* handled below */ }
+    toast(t('e_card')); return false;
+  }
   async function placeLive(address, phone, notes, ls, form) {
     const btn = document.querySelector('button[form="co-form"]'); if (btn) btn.disabled = true;
+    const pr = document.querySelector('input[name="co-pay"]:checked'), pay = pr && pr.value === 'card' && cardOn() ? 'card' : 'cod';
     try {
       const s = session();
-      const r = await BE().placeOrder({ items: ls.map((l) => ({ name: l.p.name, qty: l.qty })), name: (s && s.name) || '', phone, address, notes, pay: 'cod' });
+      const r = await BE().placeOrder({ items: ls.map((l) => ({ name: l.p.name, qty: l.qty })), name: (s && s.name) || '', phone, address, notes, pay: pay });
       lastOrder = { id: r.code, live: true, total: Math.round(Number(r.total) * 100), fee: Number(r.delivery_fee) };
       BE().saveProfile({ phone, address }).catch(() => {});
-      beAt = 0; cart = {}; persist(); cview = 'done'; renderCart();
+      beAt = 0; cart = {}; persist();
+      if (pay === 'card') { if (await payByCard(r.id)) return; cview = 'cart'; renderCart(); closeCart(); if (location.hash !== '#/account') location.hash = '#/account'; return; }
+      cview = 'done'; renderCart();
     } catch (err) {
       const m = String(err && err.message || '');
       toast(/not available|stock|unknown product/i.test(m) ? t('e_stock') : /sign|auth|jwt/i.test(m) ? t('e_signin_again') : t('e_backend') + (m ? ' (' + m + ')' : ''));
@@ -390,7 +459,7 @@
       (orders.length ? '<ul class="orders">' + orders.map((o) => '<li><details class="order"><summary><span><b>' + esc(t('order_n')) + ' ' + esc(o.id) + '</b><small>' +
         esc(new Date(o.ts).toLocaleDateString(loc, { year: 'numeric', month: 'short', day: 'numeric' })) + ' · ' + esc(o.status ? t('status_' + o.status) : t('status_received')) + '</small></span><span class="o-tot">' + money(o.total) + '</span></summary>' +
         '<ul>' + o.items.map((i) => { const p = DD().products.find((x) => x.name === i.name); return '<li><span>' + i.qty + ' × ' + esc(p ? DD().pName(p, L) : i.name) + '</span><span>' + money(i.qty * i.unit) + '</span></li>'; }).join('') + '</ul>' +
-        '<div class="o-addr">' + esc(t('addr')) + ': ' + esc(o.address) + '</div></details></li>').join('') + '</ul>'
+        '<div class="o-addr">' + esc(t('addr')) + ': ' + esc(o.address) + '</div>' + (o.pay === 'card' ? '<div class="o-pay">' + esc(t(o.payStatus === 'paid' ? 'pay_paid' : o.payStatus === 'authorized' ? 'pay_held' : o.payStatus === 'unpaid' ? 'pay_unpaid_card' : 'pay_refunded')) + '</div>' + (o.payStatus === 'unpaid' && o.status !== 'cancelled' && o.uuid ? '<button type="button" class="cd-btn" data-act="paycard" data-id="' + esc(o.uuid) + '">' + esc(t('pay_card_btn')) + '</button>' : '') : '') + '</details></li>').join('') + '</ul>'
         : '<div class="empty-note">' + esc(t('orders_none')) + '</div>') + '</div>' +
       '<div class="acct-actions"><a class="cd-btn" href="#/">' + esc(t('keep_shopping')) + '</a><button type="button" class="btn-out" data-act="signout">' + esc(t('sign_out')) + '</button></div></section>';
   }
@@ -550,6 +619,7 @@
     const b = e.target.closest('[data-act]'); if (!b) return;
     const act = b.dataset.act, pid = +b.dataset.pid, name = DD() && DD().products[pid] && DD().products[pid].name;
     if (act === 'close') closeCart();
+    else if (act === 'paycard') { b.disabled = true; payByCard(b.dataset.id).then((ok) => { if (!ok) b.disabled = false; }); }
     else if (act === 'inc') setQty(name, (cart[name] || 0) + 1);
     else if (act === 'dec') setQty(name, (cart[name] || 0) - 1);
     else if (act === 'rm') setQty(name, 0);
@@ -601,6 +671,10 @@
     if (isOpen()) renderCart();
     if (wasAcc) { renderAccount(); document.title = t('acct_title') + ' — Deshi Drop'; }
   });
+
+  document.addEventListener('change', (e) => { if (e.target && e.target.name === 'co-pay') { const n = $('co-cardnote'); if (n) n.hidden = e.target.value !== 'card'; } });
+  const cr = /[?&]card=(ok|cancel)\b/.exec(location.search);
+  if (cr) { try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) { /* ignore */ } beAt = 0; setTimeout(() => toast(t(cr[1] === 'ok' ? 'card_ok' : 'card_cancel')), 900); }
 
   cleanCart(); persist(); applyStatic(); labelAdd();
 })();
