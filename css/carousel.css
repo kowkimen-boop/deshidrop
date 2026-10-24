@@ -213,3 +213,6 @@
 .ga-b { position: absolute; left: -8px; border-radius: 50%; background: rgba(255,255,255,.75); border: 1px solid rgba(255,255,255,.9); animation: gaBub .9s ease-out infinite; }
 .ga-b.b1 { width: 9px; height: 9px; top: 20%; } .ga-b.b2 { width: 6px; height: 6px; top: 10%; animation-delay: .3s; } .ga-b.b3 { width: 5px; height: 5px; top: 30%; animation-delay: .6s; }
 @keyframes gaBub { from { transform: translate(0, 0); opacity: .9; } to { transform: translate(-16px, -26px); opacity: 0; } }
+
+/* an empty price tag (no label and no value) is never shown */
+.cs-price:has(.pl:empty):has(b:empty) { display: none; }

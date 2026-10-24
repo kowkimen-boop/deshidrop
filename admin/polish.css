@@ -1,0 +1,98 @@
+/* Deshi Drop dashboard — desktop / tablet polish (loads after admin.css) */
+:root{--ring:0 0 0 3px rgba(28,107,60,.18);--line2:#d7dfd8}
+[data-theme=dark]{--ring:0 0 0 3px rgba(47,157,92,.3);--line2:#33473a}
+body{background:var(--bg);-webkit-font-smoothing:antialiased}
+
+/* ---------- sidebar: menu scrolls, account actions stay pinned at the bottom ---------- */
+.shell{grid-template-columns:248px minmax(0,1fr)}
+.side{padding:16px 12px 12px;gap:0;overflow:hidden;background:linear-gradient(180deg,#0e3b2b 0%,#0a2c20 100%)}
+.side .brand{padding:6px 10px 16px;font-size:18px;letter-spacing:-.2px}
+.side .brand img{width:38px;height:38px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px #ffffff30}
+.side>.nav:first-of-type{flex:1 1 auto;min-height:0;overflow-y:auto;padding-right:2px;margin-right:-2px;scrollbar-width:thin;scrollbar-color:#ffffff30 transparent;display:grid;gap:2px;align-content:start}
+.nav button{position:relative;transition:background .15s,color .15s,transform .15s}
+.nav button:hover{background:#ffffff1a;color:#fff}
+.nav button.on{box-shadow:0 4px 14px #0003}
+.nav button.on::before{content:"";position:absolute;left:-12px;top:9px;bottom:9px;width:4px;border-radius:0 4px 4px 0;background:#7bd39b}
+.nav .ic{width:22px;font-size:16px}
+/* pinned utility block: 2 x 2 compact buttons */
+.side>.nav:nth-of-type(2){flex:none;display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:10px 0 4px;border-top:1px solid #ffffff1f;margin-top:8px}
+.side>.nav:nth-of-type(2) button{flex-direction:column;gap:3px;padding:8px 4px;font-size:11.5px;text-align:center;justify-content:center;background:#ffffff0d;border-radius:10px;align-items:center}
+.side>.nav:nth-of-type(2) button:hover{background:#ffffff22}
+.side>.nav:nth-of-type(2) .ic{width:auto;font-size:17px}
+.side .me{margin-top:8px;padding:10px 6px 4px;display:flex;flex-direction:column;gap:1px}
+.side .me b{font-size:13px}
+
+/* ---------- page area ---------- */
+.main{padding:0 32px 60px;max-width:1320px;width:100%;margin-inline:auto}
+.top{position:sticky;top:0;z-index:20;margin:0 -32px 22px;padding:16px 32px;background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);min-height:70px}
+.top h2{font-size:24px;letter-spacing:-.4px}
+#view{display:grid;gap:18px;align-content:start}
+#view>.card:only-child,#view>form.card:only-child{max-width:1040px}
+
+/* ---------- cards ---------- */
+.card{padding:22px;border:1px solid var(--line);box-shadow:0 1px 2px rgba(16,34,26,.04),0 10px 28px rgba(16,34,26,.04);border-radius:18px}
+.card h3{font-size:16px;letter-spacing:-.2px;margin-bottom:14px}
+.card>.mute:first-child:not(h3){margin:0 0 16px;font-size:13.5px;line-height:1.5}
+.card h3+.mute{margin-top:-6px}
+.kpi{padding:20px 22px}
+.kpi .v{font-size:30px;letter-spacing:-.6px}
+.kpi:not(.hl){border-top:3px solid var(--soft)}
+.grid{gap:18px}
+
+/* ---------- forms ---------- */
+input,select,textarea{min-height:42px;border-color:var(--line2);border-radius:11px;padding:9px 12px;transition:border-color .15s,box-shadow .15s}
+textarea{min-height:90px;line-height:1.5}
+input:hover,select:hover,textarea:hover{border-color:#9db3a4}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--brand);box-shadow:var(--ring)}
+label{font-size:12.5px;margin-bottom:6px;letter-spacing:.01em}
+.f{gap:16px 18px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.item{padding:10px 0;gap:12px}
+.item select{flex:1}
+.item input[type=number]{width:96px;flex:none}
+.card .row.sp:last-child{margin-top:6px;padding-top:16px;border-top:1px solid var(--line)}
+.btn{padding:10px 18px;border-radius:12px;font-weight:700;transition:filter .15s,transform .1s,box-shadow .15s;box-shadow:0 1px 2px #0002}
+.btn:active{transform:translateY(1px)}
+.btn.ghost{box-shadow:none}.btn.ghost:hover{background:var(--soft);filter:none}
+.btn.sm{padding:6px 12px}
+.seg button{transition:background .15s,color .15s}
+.chk{padding:6px 0}
+
+/* ---------- tables ---------- */
+.scroll{border-radius:12px}
+.tbl th{background:color-mix(in srgb,var(--soft) 55%,var(--card));position:sticky;top:0;padding:11px 12px}
+.tbl th:first-child{border-top-left-radius:10px}.tbl th:last-child{border-top-right-radius:10px}
+.tbl td{padding:12px}
+.tbl tr:last-child td{border-bottom:0}
+.pill{padding:3px 11px}
+.empty{padding:44px 20px;font-size:14px}
+
+/* ---------- modals / drawers ---------- */
+.modal{border-radius:22px;padding:26px;box-shadow:0 30px 80px #0006}
+.drawer{padding:26px}
+.x{transition:background .15s}.x:hover{background:var(--line2)}
+
+/* ---------- laptop widths ---------- */
+@media(max-width:1180px){.main{padding:0 22px 50px}.top{margin:0 -22px 18px;padding:14px 22px}.shell{grid-template-columns:224px minmax(0,1fr)}}
+
+/* ---------- tablet / phone: slide-in menu ---------- */
+@media(max-width:780px){
+.main{padding:0 14px 60px}.top{margin:0 -14px 14px;padding:10px 14px;min-height:58px}.top h2{font-size:20px}
+.side{width:268px}.side.open{box-shadow:12px 0 40px #0006}
+.card{padding:16px;border-radius:16px}
+.item{flex-wrap:wrap}
+.menu-btn{min-width:44px;min-height:44px;justify-content:center;align-items:center}
+.nav button{min-height:44px}
+}
+@media(max-width:560px){.f{grid-template-columns:1fr}.kpi .v{font-size:24px}.tbl{font-size:13px}}
+
+/* checkboxes and radios keep their normal size */
+input[type=checkbox],input[type=radio]{width:18px;height:18px;min-height:0;padding:0;accent-color:var(--brand);flex:none;box-shadow:none}
+td input[type=checkbox]{width:20px;height:20px}
+/* settings: roomier card, switches shown as tidy boxes */
+#view>.card[style*="max-width:640px"]{max-width:1040px!important}
+.f>.full:has(>label.chk){grid-column:auto;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:color-mix(in srgb,var(--soft) 30%,var(--card))}
+.f>.full:has(>label.chk) .mute{margin-top:4px}
+.f .mute.small{margin-top:5px;line-height:1.45}
+#view>.card[style*="max-width:640px"] .f{grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+
+.tbl td:first-child b,.tbl td:first-child{white-space:nowrap}

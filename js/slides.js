@@ -33,7 +33,7 @@
         if (s.seal) art.innerHTML = '<span class="halal-seal xl"><svg viewBox="0 0 64 64"><use href="#halal-seal"/></svg></span>';
         [[1, 1], [0, 2], [2, 3]].forEach(([k, t], j) => { const d = document.createElement('div'); d.className = 'cs-arch t' + t; d.style.setProperty('--k', k); const im = document.createElement('img'); im.className = 'cs-photo'; im.alt = ''; const src = imgSrc((s.imgs || [])[j], a.dataset.sk, j + 1); if (src) im.src = src; d.appendChild(im); art.appendChild(d); });
       }
-      if (s.pl || s.pv) { const pr = document.createElement('span'); pr.className = 'cs-price'; pr.innerHTML = '<span class="pl" data-sl="pl"></span><span class="pv"><b data-sl="pv"></b></span>'; art.appendChild(pr); }
+      const has = (o) => !!(o && (typeof o === 'string' ? o.trim() : ['en', 'bn', 'ar'].some((k) => o[k] && String(o[k]).trim()))); if (has(s.pl) || has(s.pv)) { const pr = document.createElement('span'); pr.className = 'cs-price'; pr.innerHTML = '<span class="pl" data-sl="pl"></span><span class="pv"><b data-sl="pv"></b></span>'; art.appendChild(pr); }
       a._slide = s; return a;
     });
   };

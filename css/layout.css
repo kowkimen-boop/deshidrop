@@ -1,0 +1,48 @@
+/* Deshi Drop — desktop / tablet layout polish (loaded last). Phones (under 700px) are unchanged. */
+
+/* ---- header: logo + title, search, account + cart all vertically centred, kept inside the page width ---- */
+.site-hdr .nav-row { align-items: center; }
+.site-hdr .brand { align-items: center; }
+.nav-actions { align-items: center; }
+@media (min-width: 700px) {
+  .site-hdr .nav-row { max-width: 1180px; margin-inline: auto; padding: 10px 24px; gap: 20px; }
+  .site-hdr .brand img.deshi-logo-img { width: 48px !important; height: 48px !important; }
+  .site-hdr .search-box { max-width: 520px; margin-inline: auto; }
+  .nav-actions { gap: 10px; }
+  .icon-btn { width: 42px; height: 42px; }
+  .site-hdr.scrolled .nav-row { padding-top: 5px; padding-bottom: 5px; }
+
+  /* menu under the social icons: centred, with a hover effect */
+  .site-hdr .nav-links { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 6px; padding: 8px 20px 10px; }
+  .nav-links a { position: relative; padding: 8px 16px; border-radius: 999px; font-size: 14px; font-weight: 600; color: var(--fm-charcoal); white-space: nowrap;
+    transition: background .25s ease, color .25s ease, transform .2s ease; }
+  .nav-links a::after { content: ""; position: absolute; left: 50%; bottom: 3px; width: 0; height: 2px; border-radius: 2px; background: var(--fm-red); transform: translateX(-50%); transition: width .3s ease; }
+  .nav-links a:hover, .nav-links a:focus-visible { background: var(--fm-accent-soft); color: var(--fm-accent-dark); transform: translateY(-1px); outline: none; }
+  .nav-links a:hover::after, .nav-links a:focus-visible::after { width: 24px; }
+  .nav-links a:active { transform: scale(.96); }
+
+  /* the bottom app-style bar is for phones only */
+  .mobile-tabbar { display: none !important; }
+  body { padding-bottom: 0 !important; }
+}
+
+/* ---- category pills: words are never cut in the middle ---- */
+.cat-menu .cat-pill .cp-t { overflow-wrap: break-word; word-break: normal; hyphens: none; }
+@media (min-width: 700px) {
+  .cat-menu { display: flex; flex-wrap: nowrap; max-width: min(1000px, 100%); gap: 8px; padding: 12px; }
+  .cat-menu .cat-pill { flex: 1 1 auto; min-width: 0; flex-wrap: wrap; row-gap: 3px; padding: 8px 12px; }
+  .cat-menu .cat-pill .cp-t { white-space: normal; text-align: center; }
+}
+@media (min-width: 700px) and (max-width: 860px) { .cat-menu .cat-pill { font-size: 13px; padding-inline: 8px; } }
+
+/* section titles: title and "View all" centred together on tablet/desktop */
+@media (min-width: 760px) { .section-head { align-items: center; } }
+
+/* ---- footer: logo + name centred like the line at the bottom ---- */
+footer .foot-grid > div:first-child { display: flex; flex-direction: column; align-items: center; text-align: center; }
+footer .foot-grid > div:first-child .brand { justify-content: center; }
+footer .foot-grid > div:first-child p { margin-inline: auto; }
+footer .foot-bottom { justify-content: center; text-align: center; gap: 6px 24px; }
+
+/* tablet: the offer seal sits above the truck, not over it */
+@media (min-width: 700px) and (max-width: 900px) { .cs-badge { width: 84px; height: 84px; top: -14px; right: 1%; } .cs-badge b { font-size: 21px; } }
