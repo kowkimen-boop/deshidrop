@@ -8,7 +8,7 @@
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="theme-color" content="#0e3b2b">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://accounts.google.com https://connect.facebook.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://openidconnect.googleapis.com https://photon.komoot.io; frame-src https://accounts.google.com https://js.stripe.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://accounts.google.com https://connect.facebook.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://openidconnect.googleapis.com https://photon.komoot.io https://nominatim.openstreetmap.org; frame-src https://accounts.google.com https://js.stripe.com; object-src 'none'; base-uri 'self'; form-action 'self'">
 <link rel="canonical" href="https://drop.example.com/">
 <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -28,14 +28,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@500;600;700;800&family=Noto+Sans+Arabic:wght@500;700;800&family=Noto+Sans+Bengali:wght@400;500;700;800&family=Amiri:wght@400;700&family=Amiri+Quran&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=20261023a">
-<link rel="stylesheet" href="css/responsive.css?v=20261023a">
-<link rel="stylesheet" href="css/quran.css?v=20261023a">
-<link rel="stylesheet" href="css/shop.css?v=20261023a">
-<link rel="stylesheet" href="css/carousel.css?v=20261023a">
-<link rel="stylesheet" href="css/filter.css?v=20261023a">
-<link rel="stylesheet" href="css/meat.css?v=20261023a">
-<link rel="stylesheet" href="css/gallery.css?v=20261023a">
+<link rel="stylesheet" href="css/style.css?v=20261023b">
+<link rel="stylesheet" href="css/responsive.css?v=20261023b">
+<link rel="stylesheet" href="css/quran.css?v=20261023b">
+<link rel="stylesheet" href="css/shop.css?v=20261023b">
+<link rel="stylesheet" href="css/carousel.css?v=20261024a">
+<link rel="stylesheet" href="css/filter.css?v=20261023b">
+<link rel="stylesheet" href="css/meat.css?v=20261023b">
+<link rel="stylesheet" href="css/gallery.css?v=20261023b">
 </head>
 <body>
 <noscript><p style="padding:16px;text-align:center">Deshi Drop needs JavaScript to browse and order. Halal meat &amp; groceries delivered in Metro Detroit — call or WhatsApp +1 947-376-4749.</p></noscript>
@@ -123,181 +123,12 @@
 <section class="deals" id="deals" aria-roledescription="carousel" aria-label="Deals and offers">
   <div class="wrap">
     <div class="cs" id="cs" dir="ltr">
-      <div class="cs-track" id="cs-track" tabindex="0" aria-label="Deals — swipe or use the left and right arrow keys">
-
-        <!-- 1 · Free delivery -->
-        <article class="cs-slide cs-s1" role="group" aria-roledescription="slide" aria-label="1 of 9">
-          <div class="cs-copy">
-            <span class="cs-tag" data-i18n="cs1_tag">Welcome offer</span>
-            <p class="cs-h" data-i18n="cs1_h">Free delivery on your first order</p>
-            <p class="cs-p" data-i18n="cs1_p">Or on any order over 100 LB.</p>
-            <a class="cs-cta" href="#categories" data-go="all" data-i18n="cs1_cta">Start Shopping</a>
-          </div>
-          <div class="cs-art sit" aria-hidden="true">
-            <svg class="cs-truck" viewBox="0 0 340 200" focusable="false">
-              <rect x="0" y="180" width="340" height="6" rx="3" fill="rgba(255,255,255,.28)"/>
-              <path d="M6 76h26M0 102h40M12 128h24" stroke="rgba(255,255,255,.55)" stroke-width="5" stroke-linecap="round" fill="none"/>
-              <rect x="44" y="38" width="180" height="124" rx="12" fill="#fff"/>
-              <rect x="44" y="120" width="180" height="14" fill="#1c6b3c"/>
-              <text x="134" y="82" text-anchor="middle" font-family="Manrope, Inter, sans-serif" font-weight="800" font-size="27"><tspan fill="#1c6b3c">Deshi</tspan> <tspan fill="#c8202f">Drop</tspan></text>
-              <text x="134" y="104" text-anchor="middle" font-family="Inter, sans-serif" font-weight="800" font-size="9.5" letter-spacing="1.4" fill="#24231f">FROM STORE TO DOOR</text>
-              <path d="M228 70h40l34 40v52h-74z" fill="#f3e9d6"/>
-              <path d="M238 80h26l22 27h-48z" fill="#8fd1a4"/>
-              <rect x="228" y="150" width="80" height="12" rx="3" fill="#ddd2bf"/>
-              <circle cx="96" cy="164" r="19" fill="#24231f"/><circle cx="96" cy="164" r="8" fill="#ddd2bf"/>
-              <circle cx="266" cy="164" r="19" fill="#24231f"/><circle cx="266" cy="164" r="8" fill="#ddd2bf"/>
-            </svg>
-            <span class="cs-badge"><b data-i18n="cs1_b1">FREE</b><small data-i18n="cs1_b2">delivery</small></span>
-          </div>
-        </article>
-
-        <!-- 2 · Hand Zabiha Halal meats -->
-        <article class="cs-slide cs-s2" data-sk="s2" role="group" aria-roledescription="slide" aria-label="2 of 9">
-          <div class="cs-copy">
-            <span class="cs-tag" data-i18n="cs2_tag">100% Zabiha Halal</span>
-            <p class="cs-h" data-i18n="cs2_h">Farm fresh Zabiha Halal meat</p>
-            <p class="cs-p" data-i18n="cs2_p">Hand slaughtered, cleaned &amp; cut ready to cook.</p>
-            <a class="cs-cta" href="#categories" data-go="meat" data-i18n="cs2_cta">Order Your Meat Now</a>
-          </div>
-          <div class="cs-art arches" aria-hidden="true">
-            <span class="halal-seal xl"><svg viewBox="0 0 64 64"><use href="#halal-seal"/></svg></span>
-            <div class="cs-arch t1" style="--k:1"><img class="cs-photo" data-photo-key="fl_cubes" alt=""></div>
-            <div class="cs-arch t2" style="--k:0"><img class="cs-photo" data-photo-key="beef" alt=""></div>
-            <div class="cs-arch t3" style="--k:2"><img class="cs-photo" data-photo-key="onion" alt=""></div>
-            <span class="cs-price"><span class="pl" data-i18n="cs2_pl">Chicken leg</span><span class="pv"><b>$1.50</b><small data-i18n="cs_lb">/lb</small></span></span>
-          </div>
-        </article>
-
-        <article class="cs-slide cs-s7" data-sk="s7" role="group" aria-roledescription="slide" aria-label="N of M">
-          <div class="cs-copy">
-            <span class="cs-tag" data-i18n="cs7_tag">Limited time offer</span>
-            <p class="cs-h" data-i18n="cs7_h">Buy 5 whole hard chicken, get 1 free</p>
-            <p class="cs-p" data-i18n="cs7_p">Farm fresh Zabiha Halal. Order by Thursday — delivered Saturday &amp; Sunday.</p>
-            <a class="cs-cta" href="#categories" data-go="meat" data-i18n="cs7_cta">Get the offer</a>
-          </div>
-          <div class="cs-art arches" aria-hidden="true">
-            <div class="cs-arch t1" style="--k:1"><img class="cs-photo" data-photo-key="promo_chicken_row" alt=""></div>
-            <div class="cs-arch t2" style="--k:0"><img class="cs-photo" data-photo-key="fl_chicken" alt=""></div>
-            <div class="cs-arch t3" style="--k:2"><img class="cs-photo" data-photo-key="promo_chicken_row" alt=""></div>
-            <span class="cs-price"><span class="pl" data-i18n="cs7_pl">Buy 5 get</span><span class="pv"><b data-i18n="cs7_pv">1 FREE</b></span></span>
-          </div>
-        </article>
-
-        <article class="cs-slide cs-s8" data-sk="s8" role="group" aria-roledescription="slide" aria-label="N of M">
-          <div class="cs-copy">
-            <span class="cs-tag" data-i18n="cs8_tag">Free gift</span>
-            <p class="cs-h" data-i18n="cs8_h">Get a full Koliza free</p>
-            <p class="cs-p" data-i18n="cs8_p">Order 100 LB or more of any meat. Offer until 31 October 2026.</p>
-            <a class="cs-cta" href="#categories" data-go="meat" data-i18n="cs8_cta">Order 100 LB+</a>
-          </div>
-          <div class="cs-art arches" aria-hidden="true">
-            <div class="cs-arch t1" style="--k:1"><img class="cs-photo" data-photo-key="beef" alt=""></div>
-            <div class="cs-arch t2" style="--k:0"><img class="cs-photo" data-photo-key="promo_koliza" alt=""></div>
-            <div class="cs-arch t3" style="--k:2"><img class="cs-photo" data-photo-key="fl_cubes" alt=""></div>
-            <span class="cs-price"><span class="pl" data-i18n="cs8_pl">100 LB+ gets</span><span class="pv"><b data-i18n="cs8_pv">FREE koliza</b></span></span>
-          </div>
-        </article>
-
-        <!-- 5 · Fish (coming soon, animated) -->
-        <article class="cs-slide cs-s6" role="group" aria-roledescription="slide" aria-label="3 of 9">
-          <div class="cs-copy">
-            <span class="cs-tag" data-i18n="cs6_tag">Fresh &amp; frozen</span>
-            <p class="cs-h" data-i18n="cs6_h">Fresh &amp; frozen fish</p>
-            <p class="cs-p" data-i18n="cs6_p">Rohu, Mrigal, Showl, Karfu &amp; shrimp — cleaned and ready to cook.</p>
-            <a class="cs-cta" href="#categories" data-go="fish" data-i18n="cs6_cta">Shop Fish</a>
-          </div>
-          <div class="cs-art arches" aria-hidden="true">
-            <div class="cs-arch t1 cs-fisharch" style="--k:1"><svg class="cs-fish f1" viewBox="0 0 120 120" focusable="false"><g class="fsw"><path class="ftail" d="M92 62 118 40 109 62 118 84Z" fill="#ff7043"/><path d="M20 62C38 34 78 34 96 62 78 90 38 90 20 62Z" fill="#ff8a65"/><path d="M26 66C44 80 74 80 92 64 74 84 40 86 26 66Z" fill="#ffd5c2"/><path d="M50 40 62 24 76 40Z" fill="#e64a19"/><path d="M48 44C42 56 42 68 48 80" fill="none" stroke="#e64a19" stroke-width="3.5" stroke-linecap="round"/><circle cx="35" cy="56" r="4.6" fill="#fff"/><circle cx="34" cy="56" r="2.2" fill="#24231f"/></g>
-                <circle class="bub b1" cx="26" cy="38" r="3.2"/><circle class="bub b2" cx="38" cy="30" r="2.2"/><circle class="bub b3" cx="20" cy="26" r="1.8"/></svg></div>
-            <div class="cs-arch t2 cs-fisharch" style="--k:0"><svg class="cs-fish f2" viewBox="0 0 120 120" focusable="false"><g class="fsw"><path class="ftail" d="M100 62 120 44 113 62 120 80Z" fill="#78909c"/><path d="M6 62C28 48 84 46 104 62 84 78 28 76 6 62Z" fill="#e3ecf1"/><path d="M12 64C34 72 80 72 100 64 82 76 30 78 12 64Z" fill="#fff"/><path d="M52 50 62 38 74 49Z" fill="#78909c"/><path d="M44 52c4 8 4 16 0 22M58 52c4 8 4 16 0 22M72 52c4 8 4 16 0 22" fill="none" stroke="#b0bec5" stroke-width="2.4" stroke-linecap="round"/><circle cx="22" cy="58" r="4" fill="#fff"/><circle cx="21" cy="58" r="2" fill="#24231f"/></g>
-                <circle class="bub b1" cx="26" cy="38" r="3.2"/><circle class="bub b2" cx="38" cy="30" r="2.2"/><circle class="bub b3" cx="20" cy="26" r="1.8"/></svg></div>
-            <div class="cs-arch t3 cs-fisharch" style="--k:2"><svg class="cs-fish f3" viewBox="0 0 120 120" focusable="false"><g class="fsw"><path class="ftail" d="M82 62 108 44 101 62 108 80Z" fill="#fb8c00"/><path d="M22 62C28 38 70 34 86 54 90 58 90 66 86 70 70 90 30 86 22 62Z" fill="#ffd54f"/><path d="M40 38 52 26 64 38Z" fill="#fb8c00"/><path d="M40 84 52 96 62 84Z" fill="#fb8c00"/><path d="M42 44c-4 10-4 20 0 30M58 42c-4 12-4 24 0 34" fill="none" stroke="#fb8c00" stroke-width="3" stroke-linecap="round"/><circle cx="36" cy="56" r="4.4" fill="#fff"/><circle cx="35" cy="56" r="2.1" fill="#24231f"/></g>
-                <circle class="bub b1" cx="26" cy="38" r="3.2"/><circle class="bub b2" cx="38" cy="30" r="2.2"/><circle class="bub b3" cx="20" cy="26" r="1.8"/></svg></div>
-            <span class="cs-price"><span class="pl" data-i18n="cs6_pl">Fish</span><span class="pv"><small data-i18n="cs_from">from</small> <b>$2.59</b><small data-i18n="cs_lb">/lb</small></span></span>
-          </div>
-        </article>
-
-        <article class="cs-slide cs-s9" data-sk="s9" role="group" aria-roledescription="slide" aria-label="N of M">
-          <div class="cs-copy">
-            <span class="cs-tag" data-i18n="cs9_tag">Catering</span>
-            <p class="cs-h" data-i18n="cs9_h">Catering? We deliver the meat</p>
-            <p class="cs-p" data-i18n="cs9_p">Zabiha Halal beef &amp; chicken, cut ready to cook. Special discount and free delivery on your first 3 orders.</p>
-            <a class="cs-cta" href="#categories" data-go="meat" data-wa="1" data-i18n="cs9_cta">Ask about catering</a>
-          </div>
-          <div class="cs-art arches" aria-hidden="true">
-            <div class="cs-arch t1" style="--k:1"><img class="cs-photo" data-photo-key="cater_meat" alt=""></div>
-            <div class="cs-arch t2" style="--k:0"><img class="cs-photo" data-photo-key="cater_chicken" alt=""></div>
-            <div class="cs-arch t3" style="--k:2"><img class="cs-photo" data-photo-key="cater_meat" alt=""></div>
-            <span class="cs-price"><span class="pl" data-i18n="cs9_pl">First 3 orders</span><span class="pv"><b data-i18n="cs9_pv">Special discount</b></span></span>
-          </div>
-        </article>
-
-        <!-- 3 · Fresh produce (coming soon) -->
-        <article class="cs-slide cs-s3 is-soon" data-sk="s3" role="group" aria-roledescription="slide" aria-label="4 of 9">
-          <div class="cs-copy">
-            <span class="cs-tag" data-i18n="cs4_tag">Coming soon</span>
-            <p class="cs-h" data-i18n="cs3_h">Fresh produce, picked for you</p>
-            <p class="cs-p" data-i18n="cs3_p">Spinach, onions, potatoes &amp; more — arriving soon.</p>
-            <a class="cs-cta cs-soon-cta" href="#categories" data-go="grocery" data-go-label="1" data-i18n="cs_see">See what's coming</a>
-          </div>
-          <div class="cs-art arches" aria-hidden="true">
-            <div class="cs-arch t1" style="--k:1"><img class="cs-photo" data-photo-key="milk" alt=""></div>
-            <div class="cs-arch t2" style="--k:0"><img class="cs-photo" data-photo-key="chicken_breast" alt=""></div>
-            <div class="cs-arch t3" style="--k:2"><img class="cs-photo" data-photo-key="chicken_whole" alt=""></div>
-            <span class="cs-price"><span class="pl" data-i18n="cs3_pl">Fresh produce</span><span class="pv"><b data-i18n="soon_h">Coming soon</b></span></span>
-          </div>
-        </article>
-
-        <!-- 4 · Monthly grocery (coming soon) -->
-        <article class="cs-slide cs-s4 is-soon" data-sk="s4" role="group" aria-roledescription="slide" aria-label="5 of 9">
-          <div class="cs-copy">
-            <span class="cs-tag" data-i18n="cs4_tag">Coming soon</span>
-            <p class="cs-h" data-i18n="cs4_h">Monthly grocery items</p>
-            <p class="cs-p" data-i18n="cs4_p">Rice, lentils, milk, eggs &amp; pantry staples. Coming soon.</p>
-            <a class="cs-cta cs-soon-cta" href="#categories" data-go="grocery" data-i18n="cs_see">See what's coming</a>
-          </div>
-          <div class="cs-art arches" aria-hidden="true">
-            <div class="cs-arch t1" style="--k:1"><img class="cs-photo" data-photo-key="lentils" alt=""></div>
-            <div class="cs-arch t2" style="--k:0"><img class="cs-photo" data-photo-key="spinach" alt=""></div>
-            <div class="cs-arch t3" style="--k:2"><img class="cs-photo" data-photo-key="pepper" alt=""></div>
-            <span class="cs-price"><span class="pl" data-i18n="cs4_pl">Grocery items</span><span class="pv"><b data-i18n="soon_h">Coming soon</b></span></span>
-          </div>
-        </article>
-
-        <!-- 5 · Delivery area -->
-        <article class="cs-slide cs-s5" role="group" aria-roledescription="slide" aria-label="6 of 9">
-          <div class="cs-copy">
-            <span class="cs-tag" data-i18n="cs5_tag">We deliver</span>
-            <p class="cs-h" data-i18n="cs5_h">Delivery from $9.99</p>
-            <p class="cs-p" data-i18n="cs5_p">Metro Detroit · Saturday &amp; Sunday, 3&nbsp;PM – 9&nbsp;PM</p>
-            <a class="cs-cta" href="#categories" data-go="all" data-i18n="cs5_cta">Order Now</a>
-          </div>
-          <div class="cs-art arches" aria-hidden="true">
-            <div class="cs-arch t2 cs-maparch" style="--k:0">
-              <span class="cs-ring"></span><span class="cs-ring"></span><span class="cs-ring"></span>
-              <svg class="cs-pin" viewBox="0 0 120 150" focusable="false">
-                <ellipse cx="60" cy="136" rx="34" ry="9" fill="rgba(0,0,0,.28)"/>
-                <path d="M60 8C36 8 18 26 18 49c0 31 42 80 42 80s42-49 42-80C102 26 84 8 60 8z" fill="#c8202f"/>
-                <circle cx="60" cy="49" r="17" fill="#fff"/>
-              </svg>
-            </div>
-          </div>
-        </article>
-
-      </div>
+      <div class="cs-track" id="cs-track" tabindex="0" aria-label="Deals — swipe or use the left and right arrow keys"></div>
 
       <div class="cs-ctl">
         <button class="cs-nav" id="cs-prev" type="button" aria-label="Previous slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
         <div class="cs-dots" id="cs-dots">
-          <button class="cs-dot on" type="button" aria-label="Go to slide 1" aria-current="true"><span class="cs-pip"></span></button>
-          <button class="cs-dot" type="button" aria-label="Go to slide 2" aria-current="false"><span class="cs-pip"></span></button>
-          <button class="cs-dot" type="button" aria-label="Go to slide 3" aria-current="false"><span class="cs-pip"></span></button>
-          <button class="cs-dot" type="button" aria-label="Go to slide 4" aria-current="false"><span class="cs-pip"></span></button>
-          <button class="cs-dot" type="button" aria-label="Go to slide 5" aria-current="false"><span class="cs-pip"></span></button>
-          <button class="cs-dot" type="button" aria-label="Go to slide 6" aria-current="false"><span class="cs-pip"></span></button>
-          <button class="cs-dot" type="button" aria-label="Go to slide 7" aria-current="false"><span class="cs-pip"></span></button>
-          <button class="cs-dot" type="button" aria-label="Go to slide 8" aria-current="false"><span class="cs-pip"></span></button>
-          <button class="cs-dot" type="button" aria-label="Go to slide 9" aria-current="false"><span class="cs-pip"></span></button>
+
         </div>
         <button class="cs-nav" id="cs-next" type="button" aria-label="Next slide"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
         <button class="cs-nav cs-pp" id="cs-pp" type="button" aria-label="Pause slideshow">
@@ -368,6 +199,8 @@
   </div>
 </section>
 
+<div class="shop-zone" id="shop-zone">
+<div id="cat-sentinel" aria-hidden="true"></div>
 <section class="section" id="categories">
   <div class="wrap">
     <div class="cat-menu" id="cat-menu" role="group" aria-label="Shop by category">
@@ -411,6 +244,7 @@
     </div>
   </div>
 </section>
+</div><!-- /shop-zone -->
 
 <section class="newsletter">
   <h3 data-i18n="news_h3">Stay in the loop</h3>
@@ -702,19 +536,22 @@
   </a>
 </div>
 
-<script src="js/verses.js?v=20261023a"></script>
-<script src="js/config.js?v=20261023a"></script>
-<script src="js/backend-config.js?v=20261023a"></script>
-<script src="js/deals-data.js?v=20261023a"></script>
-<script src="js/main.js?v=20261023a"></script>
-<script src="js/carousel.js?v=20261023a"></script>
-<script src="js/filter.js?v=20261023a"></script>
-<script src="js/search.js?v=20261023a"></script>
-<script src="js/backend.js?v=20261023a"></script>
-<script src="js/shop.js?v=20261023a"></script>
-<script src="js/gallery-data.js?v=20261023a"></script>
-<script src="js/gallery.js?v=20261023a"></script>
-<script src="js/quran-meta.js?v=20261023a"></script>
-<script src="js/quran.js?v=20261023a"></script>
+<script src="js/verses.js?v=20261023b"></script>
+<script src="js/config.js?v=20261023b"></script>
+<script src="js/backend-config.js?v=20261023b"></script>
+<script src="js/deals-data.js?v=20261023b"></script>
+<script src="js/main.js?v=20261023b"></script>
+<script src="js/slides-default.js?v=20261023b"></script>
+<script src="js/slides.js?v=20261023b"></script>
+<script src="js/carousel.js?v=20261023b"></script>
+<script src="js/anim.js?v=20261024a"></script>
+<script src="js/filter.js?v=20261023b"></script>
+<script src="js/search.js?v=20261023b"></script>
+<script src="js/backend.js?v=20261023b"></script>
+<script src="js/shop.js?v=20261024a"></script>
+<script src="js/gallery-data.js?v=20261023b"></script>
+<script src="js/gallery.js?v=20261023b"></script>
+<script src="js/quran-meta.js?v=20261023b"></script>
+<script src="js/quran.js?v=20261023b"></script>
 </body>
 </html>

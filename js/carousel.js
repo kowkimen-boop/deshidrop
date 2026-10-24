@@ -7,20 +7,30 @@
   const root = document.getElementById('cs');
   if (!root) return;
   const track = document.getElementById('cs-track');
-  const slides = Array.from(track.querySelectorAll('.cs-slide'));
-  const dots = Array.from(root.querySelectorAll('.cs-dot'));
+  const dotBox = document.getElementById('cs-dots');
+  let slides = [], dots = [];
   const prev = document.getElementById('cs-prev'), next = document.getElementById('cs-next'), pp = document.getElementById('cs-pp');
-  const N = slides.length, INTERVAL = 6500;
+  let N = 0; const INTERVAL = 6500;
   const mq = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
   let idx = 0, timer = 0, settle = 0, resume = 0;
   const hold = { user: mq.matches, hover: false, touch: false, focus: false, off: false, hidden: false };
 
-  // Product photos are embedded once in main.js (window.__PRODUCT_PHOTOS__) and reused here.
-  const photos = window.__PRODUCT_PHOTOS__ || {};
-  root.querySelectorAll('.cs-photo[data-photo-key]').forEach((img) => {
-    const d = photos[img.dataset.photoKey];
-    if (d) img.src = d;
-  });
+  /* The slides come from a list: the saved copy from the dashboard, or the built-in list in js/slides-default.js */
+  let list = window.__SLIDES_DEFAULT || [];
+  function mount(newList) {
+    if (Array.isArray(newList)) list = newList;
+    const lang = document.documentElement.lang || 'en';
+    const els = window.__ddBuildSlides(list, lang);
+    track.innerHTML = ''; els.forEach((e) => track.appendChild(e));
+    window.__ddSlideText(track, lang);
+    slides = els; N = els.length;
+    dotBox.innerHTML = els.map((_, k) => '<button class="cs-dot' + (k === 0 ? ' on' : '') + '" type="button" aria-label="Go to slide ' + (k + 1) + '" aria-current="' + (k === 0 ? 'true' : 'false') + '"><span class="cs-pip"></span></button>').join('');
+    dots = Array.from(dotBox.querySelectorAll('.cs-dot'));
+    root.hidden = N === 0; const sec = document.getElementById('deals'); if (sec) sec.hidden = N === 0;
+    idx = 0; track.scrollLeft = 0; if (N) { paint(0); schedule(); }
+  }
+  window.__ddSlidesSet = mount;
+  document.addEventListener('ddlang', (e) => window.__ddSlideText(track, (e.detail || document.documentElement.lang || 'en')));
   root.style.setProperty('--cs-iv', INTERVAL + 'ms');
   if (mq.matches) root.classList.add('no-auto');
 
@@ -74,15 +84,18 @@
   }, { passive: true });
 
   root.addEventListener('click', (e) => {
-    const a = e.target.closest && e.target.closest('.cs-cta[data-go]'); if (!a || !window.__goCat) return;
+    const a = e.target.closest && e.target.closest('.cs-cta'); if (!a) return;
+    if (a.dataset.url) return;   // normal https link: let the browser open it
     e.preventDefault();
     if (a.dataset.wa) { window.open('https://wa.me/19473764749?text=' + encodeURIComponent('Hi Deshi Drop, I would like to ask about catering orders.'), '_blank', 'noopener'); return; }
+    if (!a.dataset.go || !window.__goCat) return;
     const pl = a.dataset.goLabel && a.closest('.cs-slide').querySelector('.cs-price .pl');
+    if (window.__ddAnim && a.dataset.anim) window.__ddAnim(a.dataset.anim);
     window.__goCat(a.dataset.go, pl ? pl.textContent : '');
   });
   prev.addEventListener('click', () => go(idx - 1));
   next.addEventListener('click', () => go(idx + 1));
-  dots.forEach((d, k) => d.addEventListener('click', () => go(k)));
+  dotBox.addEventListener('click', (e) => { const d = e.target.closest('.cs-dot'); if (d) go(dots.indexOf(d)); });
   pp.addEventListener('click', () => {
     hold.user = !hold.user;
     pp.classList.toggle('is-paused', hold.user);
@@ -110,6 +123,5 @@
   window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => track.scrollTo({ left: idx * slideW(), behavior: 'auto' }), 120); });
   if (mq.addEventListener) mq.addEventListener('change', () => { hold.user = mq.matches; root.classList.toggle('no-auto', mq.matches); schedule(); });
 
-  paint(0);
-  schedule();
+  mount();
 })();

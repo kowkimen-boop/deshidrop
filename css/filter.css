@@ -111,3 +111,14 @@ html[dir="rtl"] .deal-ribbon { left: auto; right: 0; padding: 5px 10px 5px 12px;
 /* sold-out products (set "in stock" off in the dashboard) */
 .card.sold-out .card-img { filter: grayscale(.85); opacity: .75; }
 .sold-tag { padding: 5px 10px; border-radius: 999px; background: #eee8dd; color: #5a5a54; font: 700 11.5px/1 'Inter', sans-serif; }
+
+/* ---- category menu pinned while the customer is in the product area (and normal everywhere else) ---- */
+#cat-sentinel { height: 1px; margin-bottom: -1px; pointer-events: none; }
+body:not(.no-sticky) #categories { position: sticky; top: var(--hdr-h, 0px); z-index: 45; transition: top .25s ease; }
+#categories .cat-menu { transition: box-shadow .3s ease, background .3s ease, padding .3s ease, border-radius .3s ease; }
+#categories.is-stuck { padding-top: 6px; padding-bottom: 6px; margin-bottom: var(--cat-gap, 0px); }
+#categories.is-stuck .cat-menu { display: flex; gap: 6px; padding: 6px; border-radius: 18px; overflow-x: auto; scrollbar-width: none; box-shadow: 0 10px 26px rgba(20,79,44,.22); background: rgba(255,255,255,.94); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+#categories.is-stuck .cat-menu::-webkit-scrollbar { display: none; }
+#categories.is-stuck .cat-pill { flex: 1 0 auto; min-height: 38px; padding: 6px 12px; font-size: 12.5px; border-radius: 12px; white-space: nowrap; }
+#categories.is-stuck .cp-soon { display: none !important; }
+@media (prefers-reduced-motion: reduce) { #categories, #categories .cat-menu { transition: none; } }

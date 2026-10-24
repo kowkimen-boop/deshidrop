@@ -71,3 +71,14 @@ label{display:block;font-size:12px;color:var(--mute);font-weight:600;margin:0 0 
 @media(max-width:780px){
 .shell{display:block}.side{position:fixed;left:0;top:0;z-index:40;width:250px;transform:translateX(-105%);transition:.2s}.side.open{transform:none}
 .menu-btn{display:inline-flex}.main{padding:14px 14px 60px}.g2{grid-template-columns:1fr}.top h2{font-size:20px}}
+/* dark mode (button in the left menu; remembered on this device) */
+:root[data-theme=dark]{color-scheme:dark;--bg:#0e1511;--card:#16211a;--ink:#e7f0ea;--mute:#98a89e;--line:#27372d;--soft:#1d3226;--brand:#2f9d5c;--brand2:#0a1f16;--shadow:0 1px 2px #0006,0 8px 24px #0004}
+[data-theme=dark] input,[data-theme=dark] select,[data-theme=dark] textarea{background:#0f1913;border-color:var(--line);color:var(--ink)}
+[data-theme=dark] .login{background:linear-gradient(160deg,#0e1511 0%,#12251a 45%,#1c6b3c 100%)}
+[data-theme=dark] .login .box{background:var(--card)}[data-theme=dark] .login h1{color:#e7f0ea}[data-theme=dark] .login p{color:var(--mute)}
+[data-theme=dark] .nav button.on{background:#e7f0ea;color:#0a1f16}
+[data-theme=dark] .s-new{background:#4a3a14;color:#ffd98a}[data-theme=dark] .s-confirmed{background:#1b3350;color:#a9cbf2}[data-theme=dark] .s-packing{background:#32264f;color:#cbb8f2}[data-theme=dark] .s-out_for_delivery{background:#10393a;color:#9ee0e0}
+[data-theme=dark] .s-delivered{background:#173a26;color:#9be3b6}[data-theme=dark] .s-cancelled{background:#4a1d22;color:#f5a6ad}
+[data-theme=dark] .tbl tr:hover td{background:#1b2a21}[data-theme=dark] .btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+[data-theme=dark] .picbox,[data-theme=dark] .thumb{background:#0f1913}
+.theme-sw{display:flex;align-items:center;gap:10px}

@@ -183,3 +183,33 @@
 .cs-s9 { background: radial-gradient(110% 90% at 100% 100%, #2f8a52 0%, rgba(47,138,82,0) 60%), linear-gradient(135deg, #1b2a20 0%, #123d24 100%); }
 .cs-s7 .cs-cta { color: #144f2c; } .cs-s8 .cs-cta { color: #8a131b; } .cs-s9 .cs-cta { color: #123d24; }
 .cs-s7 .cs-price, .cs-s8 .cs-price { background: #f7c948; color: #24231f; }
+
+/* ---- button animation layer (js/anim.js) ---- */
+.ga-layer { position: fixed; inset: 0; z-index: 320; pointer-events: none; overflow: hidden; }
+.ga-sp { position: absolute; width: var(--w); left: 0; bottom: calc(14vh + var(--y, 0%)); transform: translateX(-30vw); opacity: 0; animation: gaRun var(--dur) cubic-bezier(.3,.1,.3,1) var(--d) both; filter: drop-shadow(0 8px 10px rgba(0,0,0,.22)); }
+.ga-sp svg { display: block; width: 100%; height: auto; overflow: visible; }
+.ga-rtl .ga-sp { left: auto; right: 0; transform: translateX(30vw); animation-name: gaRunRtl; }
+.ga-rtl .ga-sp svg { transform: scaleX(-1); }
+.ga-swim .ga-sp { bottom: auto; top: calc(34vh + var(--y)); animation-name: gaSwim; filter: drop-shadow(0 6px 8px rgba(11,77,107,.3)); }
+.ga-swim.ga-rtl .ga-sp { animation-name: gaSwimRtl; }
+@keyframes gaRun { 0% { transform: translateX(-30vw); opacity: 0; } 8% { opacity: 1; } 92% { opacity: 1; } 100% { transform: translateX(112vw); opacity: 0; } }
+@keyframes gaRunRtl { 0% { transform: translateX(30vw); opacity: 0; } 8% { opacity: 1; } 92% { opacity: 1; } 100% { transform: translateX(-112vw); opacity: 0; } }
+@keyframes gaSwim { 0% { transform: translate(-30vw, 0); opacity: 0; } 8% { opacity: 1; } 25% { transform: translate(15vw, -14px); } 50% { transform: translate(45vw, 12px); } 75% { transform: translate(78vw, -12px); } 92% { opacity: 1; } 100% { transform: translate(112vw, 4px); opacity: 0; } }
+@keyframes gaSwimRtl { 0% { transform: translate(30vw, 0); opacity: 0; } 8% { opacity: 1; } 25% { transform: translate(-15vw, -14px); } 50% { transform: translate(-45vw, 12px); } 75% { transform: translate(-78vw, -12px); } 92% { opacity: 1; } 100% { transform: translate(-112vw, 4px); opacity: 0; } }
+/* walking: body bobs, legs swing */
+.ga-walk .ga-bob { animation: gaBob .55s ease-in-out infinite alternate; }
+.ga-walk .ga-leg { transform-box: fill-box; transform-origin: 50% 0; animation: gaLeg .55s ease-in-out infinite alternate; }
+.ga-walk .ga-leg.b { animation-direction: alternate-reverse; }
+@keyframes gaBob { from { transform: translateY(0); } to { transform: translateY(-4px); } }
+@keyframes gaLeg { from { transform: rotate(-22deg); } to { transform: rotate(22deg); } }
+/* hopping produce / grocery */
+.ga-hop .ga-sp svg { animation: gaHop .75s ease-in-out infinite; transform-origin: 50% 100%; }
+.ga-hop.ga-rtl .ga-sp svg { animation-name: gaHopRtl; }
+@keyframes gaHop { 0%, 100% { transform: translateY(0) rotate(-6deg); } 50% { transform: translateY(-34px) rotate(8deg); } }
+@keyframes gaHopRtl { 0%, 100% { transform: scaleX(-1) translateY(0) rotate(-6deg); } 50% { transform: scaleX(-1) translateY(-34px) rotate(8deg); } }
+/* swimming fish: tail wag + bubbles */
+.ga-swim .ga-wag { transform-box: fill-box; transform-origin: 0% 50%; animation: gaWag .42s ease-in-out infinite alternate; }
+@keyframes gaWag { from { transform: skewY(-5deg); } to { transform: skewY(5deg); } }
+.ga-b { position: absolute; left: -8px; border-radius: 50%; background: rgba(255,255,255,.75); border: 1px solid rgba(255,255,255,.9); animation: gaBub .9s ease-out infinite; }
+.ga-b.b1 { width: 9px; height: 9px; top: 20%; } .ga-b.b2 { width: 6px; height: 6px; top: 10%; animation-delay: .3s; } .ga-b.b3 { width: 5px; height: 5px; top: 30%; animation-delay: .6s; }
+@keyframes gaBub { from { transform: translate(0, 0); opacity: .9; } to { transform: translate(-16px, -26px); opacity: 0; } }

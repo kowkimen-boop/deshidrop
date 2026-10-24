@@ -236,7 +236,7 @@
   };
 
   // ---- products: most popular first, 10 per page ----
-  const PROD_PAGE = 10; let prodPage = 0, popSold = {};
+  const PROD_PAGE_N = () => Math.min(48, Math.max(1, parseInt(window.__DD_SETTINGS && window.__DD_SETTINGS.products_per_page, 10) || 10)); let prodPage = 0, popSold = {};
   const prodPager = document.getElementById('prod-pager');
   function popOrder() {   // indexes of `products`, best sellers first (real sales when the backend is on, "Popular" tag otherwise)
     return products.map((p, i) => i).sort((a, b) => {
@@ -254,8 +254,8 @@
   function renderProducts(lang, dir) {
     window.__currentProductLang = lang;
     const list = popOrder().filter((i) => !(window.__catFilter && !window.__catFilter(products[i])));
-    const pages = Math.max(1, Math.ceil(list.length / PROD_PAGE)); prodPage = Math.min(Math.max(0, prodPage), pages - 1);
-    const from = prodPage * PROD_PAGE, slice = list.slice(from, from + PROD_PAGE);
+    const pages = Math.max(1, Math.ceil(list.length / PROD_PAGE_N())); prodPage = Math.min(Math.max(0, prodPage), pages - 1);
+    const from = prodPage * PROD_PAGE_N(), slice = list.slice(from, from + PROD_PAGE_N());
     grid.innerHTML = slice.map((i, k) => cardHTML(products[i], k, lang)).join('');
     grid.classList.remove('pg-next', 'pg-prev'); if (dir) { void grid.offsetWidth; grid.classList.add(dir > 0 ? 'pg-next' : 'pg-prev'); }
     if (prodPager) { prodPager.hidden = pages < 2; prodPager.innerHTML = pages < 2 ? '' : pagerHTML(prodPage, pages, lang, from, slice.length, list.length); }
@@ -656,14 +656,12 @@
       })));
     }
     if (d.settings && +d.settings.deals_page_size > 0) DEALS_CFG.pageSize = +d.settings.deals_page_size;
-    if (d.settings) window.__DD_SETTINGS = d.settings;
+    if (d.settings) { window.__DD_SETTINGS = d.settings; document.body.classList.toggle('no-sticky', d.settings.sticky_menu === false); }
     if (d.settings) {
       const okU = (u) => /^https:\/\//i.test(String(u || '')), SI = d.settings.site_images, GE = d.settings.gallery_extra;
       if (SI && typeof SI === 'object') {
         if (okU(SI.logo)) { window.__DD_LOGO = SI.logo; document.querySelectorAll('.deshi-logo-img').forEach((i) => { i.src = SI.logo; }); }
-        if (SI.slides) document.querySelectorAll('.cs-slide').forEach((sl, si) => [1, 2, 3].forEach((n) => {
-          const u = SI.slides[(sl.dataset.sk || 's' + (si + 1)) + 't' + n], im = sl.querySelector('.cs-arch.t' + n + ' img.cs-photo'); if (u && okU(u) && im) im.src = u;
-        }));
+        window.__SLIDE_IMG_OVR = SI.slides || {};
       }
       const G = window.DD_GALLERY;
       if (G && Array.isArray(G.items)) {
@@ -674,6 +672,7 @@
       }
     }
     if (d.content) window.__DD_TEXT = d.content;
+    if (d.settings && Array.isArray(d.settings.carousel) && window.__ddSlidesSet) window.__ddSlidesSet(d.settings.carousel); else if (window.__ddSlidesSet && window.__SLIDE_IMG_OVR) window.__ddSlidesSet();
     if (d.promos) window.__PROMOS = d.promos;
     if (d.popular) window.__setPopularity(d.popular);
     if (d.deals) { if (dealGrid) dealGrid.style.minHeight = ''; applyDeals(d.deals); dealPage = 0; }

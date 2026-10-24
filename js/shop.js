@@ -94,7 +94,7 @@
     e_backend: 'Something went wrong. Please try again.', e_unconfirmed: 'Please confirm your email first — check your inbox.', e_taken: 'An account with this email already exists. Try signing in.',
     new_pw_h: 'Choose a new password', new_pw_btn: 'Save new password', pw_updated: 'Password updated. You are signed in.', tiktok_na: 'TikTok sign-in is not available yet.',
     status_new: 'Received', status_confirmed: 'Confirmed', status_packing: 'Being packed', status_out_for_delivery: 'Out for delivery', status_delivered: 'Delivered', status_cancelled: 'Cancelled',
-    co_paycod: 'Cash on delivery', co_paycard: 'Debit / credit card', co_card_note: 'We place a temporary hold on your card for your order total plus up to {pct}% (in case the weight changes) and charge only the exact final amount after your order is weighed. The rest is released.', pay_card_btn: 'Pay by card', pay_held: 'Card hold placed', pay_paid: 'Paid by card', pay_unpaid_card: 'Awaiting card payment', pay_refunded: 'Refunded / released', card_ok: 'Thank you! Your card was verified. We will charge the exact amount after weighing.', card_cancel: 'Card payment was not completed. You can pay from My Orders.', e_card: 'Could not open the card page. Your order is saved — pay from My Orders.', co_pay: 'Payment: cash on delivery', co_delivery_note: 'Delivery from $9.99 — free on your first order or 100+ LB. Your final total is shown once the order is placed.',
+    co_paycod: 'Cash on delivery', co_nopay: 'Ordering is paused for a moment while we finish setting up payments. Please check back soon or message us on WhatsApp.', co_cardonly: 'Pay securely by debit or credit card', free_n: '{n} free', co_paycard: 'Debit / credit card', co_card_note: 'We place a temporary hold on your card for your order total plus up to {pct}% (in case the weight changes) and charge only the exact final amount after your order is weighed. The rest is released.', pay_card_btn: 'Pay by card', pay_held: 'Card hold placed', pay_paid: 'Paid by card', pay_unpaid_card: 'Awaiting card payment', pay_refunded: 'Refunded / released', card_ok: 'Thank you! Your card was verified. We will charge the exact amount after weighing.', card_cancel: 'Card payment was not completed. You can pay from My Orders.', e_card: 'Could not open the card page. Your order is saved — pay from My Orders.', co_pay: 'Payment: cash on delivery', co_delivery_note: 'Delivery from $9.99 — free on your first order or 100+ LB. Your final total is shown once the order is placed.',
     co_done_live: 'Order {id} received. Total {total} (delivery {fee}). Pay cash on delivery — we will contact you to confirm.', fee_free: 'free', orders_loading: 'Loading your orders…',
     e_stock: 'One of the items is no longer available. Please check your cart.', e_signin_again: 'Please sign in again to place your order.', role_admin: 'Admin', role_staff: 'Staff', role_driver: 'Driver'
   });
@@ -103,7 +103,7 @@
     e_backend: 'কিছু একটা সমস্যা হয়েছে। আবার চেষ্টা করুন।', e_unconfirmed: 'আগে আপনার ইমেইল নিশ্চিত করুন — ইনবক্স দেখুন।', e_taken: 'এই ইমেইলে আগেই অ্যাকাউন্ট আছে। সাইন ইন করুন।',
     new_pw_h: 'নতুন পাসওয়ার্ড দিন', new_pw_btn: 'নতুন পাসওয়ার্ড সংরক্ষণ', pw_updated: 'পাসওয়ার্ড বদলানো হয়েছে। আপনি সাইন ইন আছেন।', tiktok_na: 'টিকটক সাইন ইন এখনও চালু হয়নি।',
     status_new: 'গৃহীত', status_confirmed: 'নিশ্চিত', status_packing: 'প্যাক হচ্ছে', status_out_for_delivery: 'ডেলিভারির পথে', status_delivered: 'পৌঁছে গেছে', status_cancelled: 'বাতিল',
-    co_paycod: 'ডেলিভারির সময় নগদ', co_paycard: 'ডেবিট / ক্রেডিট কার্ড', co_card_note: 'আমরা আপনার কার্ডে অর্ডারের মোট টাকা ও ওজন বদলালে সর্বোচ্চ {pct}% বেশি সাময়িকভাবে হোল্ড করব এবং অর্ডার ওজনের পর ঠিক চূড়ান্ত অঙ্কটুকুই চার্জ করব। বাকিটা ছেড়ে দেওয়া হবে।', pay_card_btn: 'কার্ডে পেমেন্ট করুন', pay_held: 'কার্ডে হোল্ড করা হয়েছে', pay_paid: 'কার্ডে পরিশোধিত', pay_unpaid_card: 'কার্ড পেমেন্টের অপেক্ষায়', pay_refunded: 'ফেরত / ছেড়ে দেওয়া', card_ok: 'ধন্যবাদ! আপনার কার্ড যাচাই হয়েছে। ওজনের পর সঠিক অঙ্ক চার্জ করা হবে।', card_cancel: 'কার্ড পেমেন্ট সম্পন্ন হয়নি। আমার অর্ডার থেকে পেমেন্ট করতে পারবেন।', e_card: 'কার্ড পেজ খোলা যায়নি। আপনার অর্ডার সংরক্ষিত — আমার অর্ডার থেকে পেমেন্ট করুন।', co_pay: 'পেমেন্ট: ডেলিভারির সময় নগদ', co_delivery_note: 'ডেলিভারি $৯.৯৯ থেকে — প্রথম অর্ডারে বা ১০০+ পাউন্ডে ফ্রি। অর্ডার করার পর চূড়ান্ত মোট দেখানো হবে।',
+    co_paycod: 'ডেলিভারির সময় নগদ', co_nopay: 'পেমেন্ট চালুর কাজ চলছে, তাই অর্ডার সাময়িক বন্ধ। একটু পরে আবার দেখুন বা WhatsApp-এ মেসেজ করুন।', co_cardonly: 'ডেবিট বা ক্রেডিট কার্ডে নিরাপদে পেমেন্ট করুন', free_n: '{n}টি ফ্রি', co_paycard: 'ডেবিট / ক্রেডিট কার্ড', co_card_note: 'আমরা আপনার কার্ডে অর্ডারের মোট টাকা ও ওজন বদলালে সর্বোচ্চ {pct}% বেশি সাময়িকভাবে হোল্ড করব এবং অর্ডার ওজনের পর ঠিক চূড়ান্ত অঙ্কটুকুই চার্জ করব। বাকিটা ছেড়ে দেওয়া হবে।', pay_card_btn: 'কার্ডে পেমেন্ট করুন', pay_held: 'কার্ডে হোল্ড করা হয়েছে', pay_paid: 'কার্ডে পরিশোধিত', pay_unpaid_card: 'কার্ড পেমেন্টের অপেক্ষায়', pay_refunded: 'ফেরত / ছেড়ে দেওয়া', card_ok: 'ধন্যবাদ! আপনার কার্ড যাচাই হয়েছে। ওজনের পর সঠিক অঙ্ক চার্জ করা হবে।', card_cancel: 'কার্ড পেমেন্ট সম্পন্ন হয়নি। আমার অর্ডার থেকে পেমেন্ট করতে পারবেন।', e_card: 'কার্ড পেজ খোলা যায়নি। আপনার অর্ডার সংরক্ষিত — আমার অর্ডার থেকে পেমেন্ট করুন।', co_pay: 'পেমেন্ট: ডেলিভারির সময় নগদ', co_delivery_note: 'ডেলিভারি $৯.৯৯ থেকে — প্রথম অর্ডারে বা ১০০+ পাউন্ডে ফ্রি। অর্ডার করার পর চূড়ান্ত মোট দেখানো হবে।',
     co_done_live: 'অর্ডার {id} গৃহীত হয়েছে। মোট {total} (ডেলিভারি {fee})। ডেলিভারির সময় নগদ দিন — নিশ্চিত করতে আমরা যোগাযোগ করব।', fee_free: 'ফ্রি', orders_loading: 'আপনার অর্ডার লোড হচ্ছে…',
     e_stock: 'একটি পণ্য আর পাওয়া যাচ্ছে না। কার্ট দেখে নিন।', e_signin_again: 'অর্ডার করতে আবার সাইন ইন করুন।', role_admin: 'অ্যাডমিন', role_staff: 'স্টাফ', role_driver: 'ড্রাইভার'
   });
@@ -112,7 +112,7 @@
     e_backend: 'حدث خطأ ما. حاول مرة أخرى.', e_unconfirmed: 'يرجى تأكيد بريدك الإلكتروني أولًا — تحقق من صندوق الوارد.', e_taken: 'يوجد حساب بهذا البريد بالفعل. جرّب تسجيل الدخول.',
     new_pw_h: 'اختر كلمة مرور جديدة', new_pw_btn: 'حفظ كلمة المرور الجديدة', pw_updated: 'تم تحديث كلمة المرور. أنت مسجّل الدخول.', tiktok_na: 'تسجيل الدخول عبر تيك توك غير متاح بعد.',
     status_new: 'تم الاستلام', status_confirmed: 'مؤكد', status_packing: 'قيد التجهيز', status_out_for_delivery: 'في الطريق إليك', status_delivered: 'تم التسليم', status_cancelled: 'ملغي',
-    co_paycod: 'نقدًا عند التسليم', co_paycard: 'بطاقة خصم / ائتمان', co_card_note: 'سنحجز مؤقتًا على بطاقتك إجمالي طلبك مع زيادة تصل إلى {pct}% (تحسبًا لتغيّر الوزن) ونخصم المبلغ النهائي الدقيق فقط بعد وزن طلبك. يُفرج عن الباقي.', pay_card_btn: 'ادفع بالبطاقة', pay_held: 'تم حجز المبلغ على البطاقة', pay_paid: 'مدفوع بالبطاقة', pay_unpaid_card: 'بانتظار الدفع بالبطاقة', pay_refunded: 'تم الاسترداد / الإفراج', card_ok: 'شكرًا! تم التحقق من بطاقتك. سنخصم المبلغ الدقيق بعد الوزن.', card_cancel: 'لم يكتمل الدفع بالبطاقة. يمكنك الدفع من طلباتي.', e_card: 'تعذّر فتح صفحة البطاقة. طلبك محفوظ — ادفع من طلباتي.', co_pay: 'الدفع: نقدًا عند التسليم', co_delivery_note: 'التوصيل من ٩٫٩٩$ — مجاني لطلبك الأول أو لأكثر من ١٠٠ رطل. يظهر الإجمالي النهائي بعد تقديم الطلب.',
+    co_paycod: 'نقدًا عند التسليم', co_nopay: 'الطلب متوقف مؤقتًا حتى ننهي إعداد الدفع. تحقق لاحقًا أو راسلنا على واتساب.', co_cardonly: 'ادفع بأمان ببطاقة الخصم أو الائتمان', free_n: '{n} مجانًا', co_paycard: 'بطاقة خصم / ائتمان', co_card_note: 'سنحجز مؤقتًا على بطاقتك إجمالي طلبك مع زيادة تصل إلى {pct}% (تحسبًا لتغيّر الوزن) ونخصم المبلغ النهائي الدقيق فقط بعد وزن طلبك. يُفرج عن الباقي.', pay_card_btn: 'ادفع بالبطاقة', pay_held: 'تم حجز المبلغ على البطاقة', pay_paid: 'مدفوع بالبطاقة', pay_unpaid_card: 'بانتظار الدفع بالبطاقة', pay_refunded: 'تم الاسترداد / الإفراج', card_ok: 'شكرًا! تم التحقق من بطاقتك. سنخصم المبلغ الدقيق بعد الوزن.', card_cancel: 'لم يكتمل الدفع بالبطاقة. يمكنك الدفع من طلباتي.', e_card: 'تعذّر فتح صفحة البطاقة. طلبك محفوظ — ادفع من طلباتي.', co_pay: 'الدفع: نقدًا عند التسليم', co_delivery_note: 'التوصيل من ٩٫٩٩$ — مجاني لطلبك الأول أو لأكثر من ١٠٠ رطل. يظهر الإجمالي النهائي بعد تقديم الطلب.',
     co_done_live: 'تم استلام الطلب {id}. الإجمالي {total} (التوصيل {fee}). الدفع نقدًا عند التسليم — سنتصل بك للتأكيد.', fee_free: 'مجاني', orders_loading: 'جارٍ تحميل طلباتك…',
     e_stock: 'أحد المنتجات لم يعد متوفرًا. يرجى مراجعة السلة.', e_signin_again: 'يرجى تسجيل الدخول مرة أخرى لإتمام الطلب.', role_admin: 'مدير', role_staff: 'موظف', role_driver: 'سائق'
   });
@@ -232,14 +232,19 @@
     } else if (cview === 'checkout' && ls.length) {
       const u = currentUser() || {};
       body = '<form class="co-form" id="co-form" novalidate>' +
-        '<div class="co-sum">' + ls.map((l) => '<div><span>' + l.qty + ' × ' + esc(DD().pName(l.p, L)) + '</span><span>' + money(l.total) + '</span></div>').join('') +
-        promoState().free.map((f) => '<div><span>' + f.qty + ' × ' + esc(DD().pName(f.p, L)) + '</span><span>' + esc(t('free_lbl')) + '</span></div>').join('') +
+        (() => { const fr = promoState().free, used = {};
+          const rows = ls.map((l) => { const x = fr.filter((f) => f.p.name === l.p.name).reduce((a, f) => a + f.qty, 0); if (x) used[l.p.name] = 1; return '<div><span>' + (l.qty + x) + ' × ' + esc(DD().pName(l.p, L)) + (x ? ' <em class="free-note">(' + esc(t('free_n', { n: x })) + ')</em>' : '') + '</span><span>' + money(l.total) + '</span></div>'; });
+          fr.filter((f) => !used[f.p.name]).forEach((f) => rows.push('<div><span>' + f.qty + ' × ' + esc(DD().pName(f.p, L)) + ' <em class="free-note">(' + esc(t('free_lbl')) + ')</em></span><span>' + money(0) + '</span></div>'));
+          return '<div class="co-sum">' + rows.join(''); })() +
         '<div><span>' + esc(t('co_total')) + '</span><span>' + money(subtotal()) + '</span></div></div>' +
         field('co-addr', t('co_address'), 'text', { auto: 'street-address', val: u.address || '' }) +
         field('co-phone', t('co_phone'), 'tel', { auto: 'tel', val: u.phone || '', mode: 'tel' }) +
         '<div class="fld"><label for="co-notes">' + esc(t('co_notes')) + '</label><textarea id="co-notes" rows="2"></textarea></div>' +
-        (BE() && cardOn() ? '<fieldset class="pay-opt"><label class="po"><input type="radio" name="co-pay" value="cod" checked> <span>' + esc(t('co_paycod')) + '</span></label><label class="po"><input type="radio" name="co-pay" value="card"> <span>' + esc(t('co_paycard')) + ' · Visa, Mastercard, Amex, Discover</span></label><p class="co-proto" id="co-cardnote" hidden>' + esc(t('co_card_note', { pct: cardPct() })) + '</p></fieldset><p class="co-proto">' + esc(t('co_delivery_note')) + '</p>' : BE() ? '<p class="co-proto"><b>' + esc(t('co_pay')) + '</b><br>' + esc(t('co_delivery_note')) + '</p>' : '<p class="co-proto">' + esc(t('co_proto')) + '</p>') + '</form>';
-      foot = '<button class="cd-btn" type="submit" form="co-form">' + esc(t('co_place')) + ' · ' + money(subtotal()) + '</button>' +
+        (BE() && cardOn() && codOn() ? '<fieldset class="pay-opt"><label class="po"><input type="radio" name="co-pay" value="cod" checked> <span>' + esc(t('co_paycod')) + '</span></label><label class="po"><input type="radio" name="co-pay" value="card"> <span>' + esc(t('co_paycard')) + ' · Visa, Mastercard, Amex, Discover</span></label><p class="co-proto" id="co-cardnote" hidden>' + esc(t('co_card_note', { pct: cardPct() })) + '</p></fieldset><p class="co-proto">' + esc(t('co_delivery_note')) + '</p>'
+          : BE() && cardOn() ? '<fieldset class="pay-opt"><label class="po"><input type="radio" name="co-pay" value="card" checked> <span>' + esc(t('co_paycard')) + ' · Visa, Mastercard, Amex, Discover</span></label><p class="co-proto" id="co-cardnote">' + esc(t('co_card_note', { pct: cardPct() })) + '</p></fieldset><p class="co-proto">' + esc(t('co_delivery_note')) + '</p>'
+          : BE() && !codOn() ? '<p class="co-proto" id="co-nopay"><b>' + esc(t('co_nopay')) + '</b></p>'
+          : BE() ? '<p class="co-proto"><b>' + esc(t('co_pay')) + '</b><br>' + esc(t('co_delivery_note')) + '</p>' : '<p class="co-proto">' + esc(t('co_proto')) + '</p>') + '</form>';
+      foot = '<button class="cd-btn" type="submit" form="co-form"' + (BE() && !cardOn() && !codOn() ? ' disabled' : '') + '>' + esc(t('co_place')) + ' · ' + money(subtotal()) + '</button>' +
         '<button class="cd-btn ghost" type="button" data-act="back">' + esc(t('co_back')) + '</button>';
     } else if (!ls.length) {
       body = '<div class="cd-empty">' + ICON_BAG + '<h3>' + esc(t('cart_empty')) + '</h3><p>' + esc(t('cart_empty_sub')) + '</p>' +
@@ -290,19 +295,29 @@
     inp.closest('.fld').appendChild(ul); inp.setAttribute('autocomplete', 'off');
     let timer = 0, seq = 0, ctl = null, items = [], cur = -1;
     const hide = () => { ul.hidden = true; cur = -1; };
-    const label = (f) => { const p = f.properties || {}, st = [p.housenumber, p.street || p.name].filter(Boolean).join(' '), city = p.city || p.town || p.village || p.district || p.county || '';
-      return { main: st || p.name || '', sub: [city, 'MI', p.postcode].filter(Boolean).join(' '), full: [st || p.name, city, 'MI ' + (p.postcode || '')].filter(Boolean).join(', ').trim() }; };
+    const mk = (num, street, city, zip) => { const st = [num, street].filter(Boolean).join(' '); return { main: st, sub: [city, 'MI', zip].filter(Boolean).join(' '), full: [st, city, 'MI' + (zip ? ' ' + zip : '')].filter(Boolean).join(', '), has: !!(num && zip) }; };
     const show = () => { ul.innerHTML = items.map((x, i) => '<li role="option" data-i="' + i + '"' + (i === cur ? ' class="on"' : '') + '>' + esc(x.main) + '<small>' + esc(x.sub) + '</small></li>').join(''); ul.hidden = !items.length; };
     const pick = (i) => { if (!items[i]) return; inp.value = items[i].full; hide(); inp.dispatchEvent(new Event('input', { bubbles: true })); };
     async function query(q) {
       const my = ++seq; if (ctl) ctl.abort(); ctl = window.AbortController ? new AbortController() : null;
-      try {
-        const r = await fetch('https://photon.komoot.io/api/?limit=8&lang=en&lat=42.33&lon=-83.05&bbox=' + BBOX + '&q=' + encodeURIComponent(q + ' Michigan'), ctl ? { signal: ctl.signal } : {});
-        const j = await r.json(); if (my !== seq) return;
-        const seen = {}; items = (j.features || []).filter((f) => { const p = f.properties || {}; return (p.state || 'Michigan') === 'Michigan' && (p.street || p.housenumber || p.name); })
-          .map(label).filter((x) => x.main && !seen[x.full] && (seen[x.full] = 1)).slice(0, 6);
-        cur = -1; show();
-      } catch (e) { /* offline or blocked: the person can still type the address */ }
+      const opt = ctl ? { signal: ctl.signal } : {}, m = q.match(/^(\d+[A-Za-z]?)\s+(.+)$/), num = m ? m[1].toLowerCase() : '', rest = m ? m[2] : q;
+      const get = (u) => fetch(u, opt).then((r) => r.json()).catch(() => null);
+      const [ph, nm] = await Promise.all([
+        get('https://photon.komoot.io/api/?limit=8&lang=en&lat=42.33&lon=-83.05&bbox=' + BBOX + '&q=' + encodeURIComponent(q + ' Michigan')),
+        get('https://nominatim.openstreetmap.org/search?format=jsonv2&addressdetails=1&limit=8&countrycodes=us&bounded=1&viewbox=-83.80,42.80,-82.70,42.00&q=' + encodeURIComponent(q + ', Michigan'))]);
+      if (my !== seq) return;
+      const out = [];
+      ((nm || [])).forEach((r) => { const a = r.address || {}; if ((a.state || 'Michigan') !== 'Michigan') return;
+        const road = a.road || a.pedestrian || a.footway || ''; if (!road) return;
+        out.push(mk(a.house_number, road, a.city || a.town || a.village || a.suburb || a.township || a.county || '', a.postcode)); });
+      (((ph || {}).features) || []).forEach((f) => { const p = f.properties || {}; if ((p.state || 'Michigan') !== 'Michigan') return;
+        const road = p.street || (p.housenumber ? '' : p.name); if (!road) return;
+        out.push(mk(p.housenumber, road, p.city || p.town || p.village || p.district || p.county || '', p.postcode)); });
+      /* keep the house number the person typed: if the map has the street but not that exact number, suggest the street with their number */
+      const seen = {}; items = out.map((x) => { if (num && !x.main.toLowerCase().startsWith(num + ' ')) { const r = out.find((y) => y === x); return mk(num, x.main.replace(/^\d+[A-Za-z]?\s+/, ''), x.sub.split(' MI')[0], (x.sub.match(/\d{5}$/) || [''])[0]); } return x; })
+        .filter((x) => x.main && !seen[x.full] && (seen[x.full] = 1))
+        .sort((x, y) => (y.has ? 1 : 0) - (x.has ? 1 : 0)).slice(0, 6);
+      cur = -1; show();
     }
     inp.addEventListener('input', () => { clearTimeout(timer); const q = inp.value.trim(); if (q.length < 3) { hide(); return; } timer = setTimeout(() => query(q), 280); });
     inp.addEventListener('keydown', (e) => {
@@ -338,6 +353,7 @@
     lastOrder = order; cart = {}; persist(); cview = 'done'; renderCart();
   }
 
+  const codOn = () => !!(window.__DD_SETTINGS && window.__DD_SETTINGS.cod_enabled === true);
   const cardOn = () => !!(window.__DD_SETTINGS && window.__DD_SETTINGS.card_enabled === true);
   const cardPct = () => { const p = window.__DD_SETTINGS && Number(window.__DD_SETTINGS.card_hold_buffer_pct); return p >= 0 ? p : 15; };
   async function payByCard(orderId) {
@@ -347,6 +363,7 @@
   async function placeLive(address, phone, notes, ls, form) {
     const btn = document.querySelector('button[form="co-form"]'); if (btn) btn.disabled = true;
     const pr = document.querySelector('input[name="co-pay"]:checked'), pay = pr && pr.value === 'card' && cardOn() ? 'card' : 'cod';
+    if (!codOn() && pay === 'cod') { toast(t('co_nopay')); if (btn) btn.disabled = false; return; }
     try {
       const s = session();
       const r = await BE().placeOrder({ items: ls.map((l) => ({ name: l.p.name, qty: l.qty })), name: (s && s.name) || '', phone, address, notes, pay: pay });

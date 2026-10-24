@@ -57,14 +57,15 @@ async function enter() {
   } catch (e) { loginView(e.message); }
 }
 const NAV = {
-  admin: [['overview', '📊', 'Overview'], ['orders', '🧾', 'Orders'], ['neworder', '➕', 'New order'], ['products', '🥩', 'Products'], ['deals', '🏷️', 'Deals'], ['content', '✏️', 'Site text'], ['money', '💰', 'Money'], ['people', '👥', 'People'], ['settings', '⚙️', 'Settings'], ['siteimages', '🖼️', 'Site pictures'], ['activity', '🕘', 'Activity']],
+  admin: [['overview', '📊', 'Overview'], ['orders', '🧾', 'Orders'], ['neworder', '➕', 'New order'], ['products', '🥩', 'Products'], ['deals', '🏷️', 'Deals'], ['slides', '🎞️', 'Slideshow'], ['content', '✏️', 'Site text'], ['money', '💰', 'Money'], ['people', '👥', 'People'], ['settings', '⚙️', 'Settings'], ['siteimages', '🖼️', 'Site pictures'], ['activity', '🕘', 'Activity']],
   staff: [['overview', '📊', 'Overview'], ['orders', '🧾', 'Orders'], ['neworder', '➕', 'New order']],
   driver: [['deliveries', '🚚', 'My deliveries']]
 };
 function shell() {
+  setTimeout(() => applyTheme(getTheme()), 0);
   $('#app').innerHTML = `<div class="shell"><aside class="side" id="side"><div class="brand"><img src="../img/logo.jpg" alt="">Deshi Drop</div>
     <nav class="nav">${NAV[S.role].map(([k, i, l]) => `<button data-nav="${k}"><span class="ic">${i}</span>${l}${k === 'orders' ? '<span class="bd" id="nb" hidden></span>' : ''}</button>`).join('')}</nav>
-    <div class="nav"><button data-open="site"><span class="ic">🌐</span>View website</button><button data-act="chpw"><span class="ic">🔑</span>Change password</button><button data-act="logout"><span class="ic">🚪</span>Sign out</button></div>
+    <div class="nav"><button data-open="site"><span class="ic">🌐</span>View website</button><button data-act="theme"><span class="ic" id="th-ic">🌙</span><span id="th-tx">Dark mode</span></button><button data-act="chpw"><span class="ic">🔑</span>Change password</button><button data-act="logout"><span class="ic">🚪</span>Sign out</button></div>
     <div class="me"><b>${esc(S.me.name)}</b>${esc(S.role)}</div></aside>
     <main class="main"><div class="top"><button class="btn ghost menu-btn" data-act="menu">☰</button><h2 id="vt"></h2><div id="va" class="row"></div></div><div id="view"></div></main></div>`;
 }
@@ -76,7 +77,12 @@ document.addEventListener('click', (e) => {
 });
 document.addEventListener('change', (e) => { const c = e.target.closest && e.target.closest('[data-chg]'); if (!c) return; const f = ACT[c.dataset.chg]; if (f) Promise.resolve(f(c, e)).catch(fail); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeOv(); });
+const THEME_KEY = 'dd_admin_theme';
+const getTheme = () => { try { return localStorage.getItem(THEME_KEY) === 'dark' ? 'dark' : 'light'; } catch (e) { return 'light'; } };
+function applyTheme(t) { document.documentElement.setAttribute('data-theme', t); const i = document.getElementById('th-ic'), x = document.getElementById('th-tx'); if (i) i.textContent = t === 'dark' ? '☀️' : '🌙'; if (x) x.textContent = t === 'dark' ? 'Light mode' : 'Dark mode'; }
+applyTheme(getTheme());
 const ACT = {
+  theme: () => { const t = getTheme() === 'dark' ? 'light' : 'dark'; try { localStorage.setItem(THEME_KEY, t); } catch (e) { /* ignore */ } applyTheme(t); },
   menu: () => $('#side').classList.toggle('open'),
   logout: async () => { await S.sb.auth.signOut(); },
   close: () => closeOv(),
@@ -104,7 +110,7 @@ function closeOv() { $$('.ov').forEach((o) => o.remove()); }
 function overlay(html, cls) { closeOv(); const o = document.createElement('div'); o.className = 'ov ' + (cls || ''); o.innerHTML = html; o.addEventListener('mousedown', (e) => { if (e.target === o) closeOv(); }); document.body.appendChild(o); return o; }
 function go(v) {
   S.view = v; $$('[data-nav]').forEach((b) => b.classList.toggle('on', b.dataset.nav === v));
-  const T = { overview: 'Overview', orders: 'Orders', neworder: 'New order (phone / walk-in)', products: 'Products', deals: 'Deals', content: 'Site text', money: 'Money — expenses & investment', people: 'People', settings: 'Settings', siteimages: 'Site pictures — logo, slider, gallery', activity: 'Activity log', deliveries: 'My deliveries' };
+  const T = { overview: 'Overview', orders: 'Orders', neworder: 'New order (phone / walk-in)', products: 'Products', deals: 'Deals', slides: 'Slideshow — the slides on your homepage', content: 'Site text', money: 'Money — expenses & investment', people: 'People', settings: 'Settings', siteimages: 'Site pictures — logo, slider, gallery', activity: 'Activity log', deliveries: 'My deliveries' };
   $('#vt').textContent = T[v] || v; $('#va').innerHTML = ''; $('#view').innerHTML = '<div class="empty">Loading…</div>';
   (VIEWS[v] || (() => {}))().catch((e) => { $('#view').innerHTML = `<div class="empty">Something went wrong: ${esc(e.message)}</div>`; });
 }

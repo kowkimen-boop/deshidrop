@@ -53,4 +53,26 @@
   document.querySelectorAll('[data-lang]').forEach((el) => el.addEventListener('click', () => setTimeout(() => {
     const a = menu.querySelector('.cat-pill.active.soon'); if (a) panel.querySelector('.soon-cat').textContent = a.querySelector('.cp-t').textContent;
   }, 50)));
+
+  /* pin the menu only while the customer is inside the product area */
+  (function sticky() {
+    const bar = document.getElementById('categories'), sent = document.getElementById('cat-sentinel'), zone = document.getElementById('shop-zone');
+    if (!bar || !sent || !zone || !('IntersectionObserver' in window)) return;
+    let full = 0, compact = 0, stuck = false, raf = 0;
+    const measure = () => {   // keep the page from jumping when the menu shrinks: the gap below it stays the same size
+      if (stuck) return; full = bar.offsetHeight;
+      bar.classList.add('is-stuck'); compact = bar.offsetHeight; bar.classList.remove('is-stuck');
+      bar.style.setProperty('--cat-gap', Math.max(0, full - compact) + 'px');
+    };
+    const set = (on) => { if (on === stuck) return; if (on) measure(); stuck = on; bar.classList.toggle('is-stuck', on); };
+    const hdrH = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--hdr-h')) || 0;
+    const check = () => { raf = 0;
+      if (document.body.classList.contains('no-sticky')) return set(false);
+      const s = sent.getBoundingClientRect().top, z = zone.getBoundingClientRect().bottom;
+      set(s < hdrH() - 1 && z > hdrH() + (compact || 60) + 20); };
+    const tick = () => { if (!raf) raf = requestAnimationFrame(check); };
+    window.addEventListener('scroll', tick, { passive: true }); window.addEventListener('resize', () => { if (!stuck) measure(); tick(); });
+    document.addEventListener('click', () => setTimeout(() => { if (!stuck) measure(); }, 400));
+    setTimeout(() => { measure(); tick(); }, 600); tick();
+  })();
 })();
