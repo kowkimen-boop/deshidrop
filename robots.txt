@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin/
 Disallow: /supabase/
 
-Sitemap: https://drop.example.com/sitemap.xml
+Sitemap: https://www.deshillc.com/sitemap.xml
