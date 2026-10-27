@@ -151,32 +151,59 @@ D.downloadCSV = (name, head, rows) => { const b = new Blob([[head, ...rows].map(
 ACT['csv-orders'] = () => D.downloadCSV('orders.csv', ['Code', 'Date', 'Customer', 'Phone', 'Address', 'Status', 'Payment', 'Pay status', 'Subtotal', 'Delivery', 'Total', 'Items'],
   S.orders.map((o) => [o.code, o.created_at, o.customer_name, o.phone, o.address, o.status, o.pay_method, o.pay_status, o.subtotal, o.delivery_fee, o.total, (o.order_items || []).map((i) => i.qty + 'x ' + i.name).join('; ')]));
 
-/* ---------- New (manual) order ---------- */
+/* ---------- New (manual) order — also used to enter old offline records ---------- */
+const todayKey = () => dayKey(new Date());
 VIEWS.neworder = async () => {
   const opts = S.products.map((p) => `<option value="${esc(p.name)}">${esc(p.name)} — ${money(p.price)}</option>`).join('');
-  $('#view').innerHTML = `<div class="card"><p class="mute" style="margin-top:0">For phone calls, WhatsApp orders and walk-ins. Prices and deals are applied automatically, just like website orders.</p>
+  const dateBox = isAdmin() ? `<div class="card" style="background:var(--soft,transparent)"><div class="f"><div><label for="no-date">Order date — pick an earlier day to enter an old (offline) record</label><input id="no-date" type="date" value="${todayKey()}" max="${todayKey()}" min="${dayKey(Date.now() - 3 * 365 * 864e5)}"></div>
+    <div style="display:flex;align-items:flex-end"><span class="mute small" id="no-pastnote"></span></div></div></div>` : '';
+  $('#view').innerHTML = `${dateBox}<div class="card"><p class="mute" style="margin-top:0" id="no-help">For phone calls, WhatsApp orders and walk-ins. Prices and deals are applied automatically, just like website orders.</p>
   <div class="f"><div><label>Customer name *</label><input id="no-name"></div><div><label>Phone</label><input id="no-phone" inputmode="tel"></div><div class="full"><label>Address</label><input id="no-addr"></div></div>
   <h3 class="mt">Items</h3><div id="no-items"></div><button class="btn ghost sm" data-act="no-add">+ Add item</button>
   <div class="f mt"><div><label>Payment</label><select id="no-pay"><option value="cod">Cash on delivery</option><option value="card">Card (taken elsewhere)</option></select></div>
   <div><label>Payment status</label><select id="no-ps"><option>unpaid</option><option>paid</option></select></div>
   <div><label>Order status</label><select id="no-st">${Object.entries(STATUS).map(([k, v]) => `<option value="${k}" ${k === 'confirmed' ? 'selected' : ''}>${v}</option>`).join('')}</select></div>
-  ${isAdmin() ? '<div><label>Delivery fee (blank = standard)</label><input id="no-fee" inputmode="decimal"></div>' : ''}<div class="full"><label>Notes</label><input id="no-notes"></div></div>
+  ${isAdmin() ? '<div><label id="no-feel">Delivery fee (blank = standard)</label><input id="no-fee" inputmode="decimal"></div>' : ''}<div class="full"><label>Notes</label><input id="no-notes"></div></div>
   <div class="row sp mt"><div><span class="mute">Estimate: </span><b id="no-tot">$0.00</b></div><button class="btn" data-act="no-save">Create order</button></div></div>`;
-  D.__noOpts = opts; ACT['no-add'](); $('#view').addEventListener('input', noTotal); $('#view').addEventListener('change', noTotal);
+  D.__noOpts = opts; ACT['no-add'](); $('#view').addEventListener('input', noTotal); $('#view').addEventListener('change', noChange);
+  noChange();
 };
-function noTotal() {
-  let t = 0; $$('#no-items .item').forEach((r) => { const p = S.products.find((x) => x.name === $('select', r).value); const q = Number($('input', r).value) || 0; if (p) t += q * (p.salePrice || p.price); });
-  const el = $('#no-tot'); if (el) el.textContent = money(t) + ' + delivery';
+const noPast = () => { const d = $('#no-date'); return !!(d && d.value && d.value < todayKey()); };
+function noChange(e) {
+  const past = noPast();
+  if (e && e.target && e.target.id === 'no-date') {
+    if (past) { $('#no-st').value = 'delivered'; $('#no-ps').value = 'paid'; $('#no-pay').value = 'cod'; }
+    else { $('#no-st').value = 'confirmed'; $('#no-ps').value = 'unpaid'; }
+    $$('#no-items .item').forEach((r) => { const pr = $('.no-price', r); if (pr && !past) pr.value = ''; });
+  }
+  $$('#no-items .no-price').forEach((x) => { x.hidden = !past; });
+  const n = $('#no-pastnote'); if (n) n.textContent = past ? 'Old record: saved with this date. Type the price you really charged for each item (blank = today’s list price). No deals, delivery fee 0 unless you set one.' : '';
+  const fl = $('#no-feel'); if (fl) fl.textContent = past ? 'Delivery fee (blank = $0.00)' : 'Delivery fee (blank = standard)';
+  const btn = $('[data-act="no-save"]'); if (btn) btn.textContent = past ? 'Save old record' : 'Create order';
+  noTotal();
 }
-ACT['no-add'] = () => { const d = document.createElement('div'); d.className = 'item'; d.innerHTML = `<select class="grow">${D.__noOpts}</select><input type="number" min="0.1" step="0.1" value="1" style="width:90px" aria-label="Quantity"><button class="btn ghost sm" data-act="no-del" aria-label="Remove">✕</button>`; $('#no-items').appendChild(d); noTotal(); };
+function noTotal() {
+  const past = noPast(); let t = 0;
+  $$('#no-items .item').forEach((r) => { const p = S.products.find((x) => x.name === $('select', r).value); const q = Number($('.no-qty', r).value) || 0; const pr = $('.no-price', r).value.trim();
+    if (p) t += q * (past && pr !== '' ? Number(pr) || 0 : (past ? p.price : (p.salePrice || p.price))); });
+  const el = $('#no-tot'); if (el) el.textContent = money(t) + (past ? ' + fee' : ' + delivery');
+}
+ACT['no-add'] = () => { const d = document.createElement('div'); d.className = 'item'; d.innerHTML = `<select class="grow">${D.__noOpts}</select><input class="no-qty" type="number" min="0.01" step="0.01" value="1" style="width:84px" aria-label="Quantity"><input class="no-price" type="number" min="0" step="0.01" placeholder="$ price" style="width:96px" aria-label="Price charged per unit" hidden><button class="btn ghost sm" data-act="no-del" aria-label="Remove">✕</button>`; $('#no-items').appendChild(d); noChange(); };
 ACT['no-del'] = (a) => { a.closest('.item').remove(); noTotal(); };
 ACT['no-save'] = async (a) => {
-  const items = $$('#no-items .item').map((r) => ({ name: $('select', r).value, qty: Number($('input', r).value) }));
+  const past = noPast();
+  const items = $$('#no-items .item').map((r) => { const o = { name: $('select', r).value, qty: Number($('.no-qty', r).value) }; const pr = $('.no-price', r).value.trim(); if (past && pr !== '') o.price = Number(pr); return o; });
   const fee = $('#no-fee') && $('#no-fee').value.trim() !== '' ? Number($('#no-fee').value) : null;
+  let date = null; if (past) date = new Date($('#no-date').value + 'T12:00:00').toISOString();
   a.disabled = true;
   try {
-    const r = must(await S.sb.rpc('admin_create_order', { p_items: items, p_name: $('#no-name').value, p_phone: $('#no-phone').value, p_address: $('#no-addr').value, p_notes: $('#no-notes').value || null, p_pay: $('#no-pay').value, p_pay_status: $('#no-ps').value, p_status: $('#no-st').value, p_fee: fee }));
-    toast(`Order ${r.code} created — ${money(r.total)}`); D.go('orders');
+    const args = { p_items: items, p_name: $('#no-name').value, p_phone: $('#no-phone').value, p_address: $('#no-addr').value, p_notes: $('#no-notes').value || null, p_pay: $('#no-pay').value, p_pay_status: $('#no-ps').value, p_status: $('#no-st').value, p_fee: fee };
+    if (past) args.p_date = date;
+    const r = must(await S.sb.rpc('admin_create_order', args));
+    if (past) {   // keep the date so the next old record can be typed straight away
+      const keep = $('#no-date').value; toast(`Saved ${r.code} for ${keep} — ${money(r.total)}. Add the next one.`);
+      await VIEWS.neworder(); $('#no-date').value = keep; noChange({ target: { id: 'no-date' } }); $('#no-name').focus();
+    } else { toast(`Order ${r.code} created — ${money(r.total)}`); D.go('orders'); }
   } finally { a.disabled = false; }
 };
 

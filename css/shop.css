@@ -312,3 +312,15 @@ body.sg-open { overflow: hidden; }
 .ci-hint { margin: 6px 0; padding: 9px 12px; border-radius: 12px; background: #fff6dc; color: #6b4e00; font: 600 13px/1.3 'Inter', sans-serif; }
 
 .free-note { font-style: normal; font-weight: 700; color: #1c6b3c; font-size: .92em; }
+
+/* search overlay: "View cart" bar (shown when the cart has items) */
+.sg-cart { display: flex; align-items: center; gap: 12px; margin: 10px 12px 0; padding: 11px 14px; border: 0; border-radius: 16px; cursor: pointer; text-align: start; color: #fff;
+  background: linear-gradient(135deg, var(--fm-accent) 0%, var(--fm-accent-dark) 100%); box-shadow: 0 8px 18px rgba(20,79,44,.28); font: 700 15px/1.2 'Inter', 'Noto Sans Bengali', sans-serif; -webkit-tap-highlight-color: transparent; }
+.sg-cart[hidden] { display: none; }
+.sg-cart:active { transform: scale(.98); }
+.sg-cart-ic { position: relative; flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,.18); }
+.sg-cart-ic b { position: absolute; top: -4px; inset-inline-end: -4px; min-width: 19px; height: 19px; padding: 0 5px; border-radius: 99px; background: var(--fm-red); color: #fff; font: 800 11px/19px 'Inter', sans-serif; text-align: center; }
+.sg-cart-t { flex: 1; min-width: 0; }
+.sg-cart-t small { display: block; margin-top: 3px; font-weight: 600; font-size: 12.5px; opacity: .9; }
+.sg-cart-go { flex: none; font-size: 22px; line-height: 1; }
+[dir="rtl"] .sg-cart-go { transform: scaleX(-1); }

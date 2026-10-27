@@ -7,7 +7,7 @@ const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = (v) => String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const money = (n) => { n = Number(n) || 0; return (n < 0 ? '-$' : '$') + Math.abs(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); };
-const money0 = (n) => { n = Math.round(Number(n) || 0); return (n < 0 ? '-$' : '$') + Math.abs(n).toLocaleString('en-US'); };
+const money0 = money;   // always show cents
 const STATUS = { new: 'New', confirmed: 'Confirmed', packing: 'Packing', out_for_delivery: 'Out for delivery', delivered: 'Delivered', cancelled: 'Cancelled' };
 const FLOW = ['new', 'confirmed', 'packing', 'out_for_delivery', 'delivered'];
 const dayKey = (d) => { d = new Date(d); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); };
@@ -30,7 +30,7 @@ async function boot() {
   S.sb.auth.onAuthStateChange((ev) => { if (ev === 'SIGNED_OUT') loginView(); });
 }
 function loginView(msg) {
-  clearInterval(S.poll);
+  clearInterval(S.poll); clearTimeout(idleT); S.me = null;
   $('#app').innerHTML = `<div class="login"><form class="box" id="lf"><img src="../img/logo.jpg" alt=""><h1>Deshi Drop</h1><p>Team dashboard — sign in</p>
     <label for="em">Email</label><input id="em" type="email" autocomplete="username" required>
     <label for="pw" class="mt">Password</label><input id="pw" type="password" autocomplete="current-password" required>
@@ -40,6 +40,13 @@ function loginView(msg) {
     const { error } = await S.sb.auth.signInWithPassword({ email: $('#em').value.trim(), password: $('#pw').value });
     if (error) { $('#le').textContent = error.message; $('#go').disabled = false; } else enter();
   };
+}
+/* sign out automatically after 10 minutes without any activity */
+const IDLE_MS = 10 * 60 * 1000; let idleT = 0;
+function idleStart() {
+  const bump = () => { clearTimeout(idleT); idleT = setTimeout(async () => { try { await S.sb.auth.signOut(); } catch (e) { /* ignore */ } loginView('You were signed out after 10 minutes of inactivity. Please sign in again.'); }, IDLE_MS); };
+  if (!S.idleOn) { S.idleOn = true; ['click', 'keydown', 'touchstart', 'scroll', 'mousemove'].forEach((ev) => window.addEventListener(ev, () => { if (S.me) bump(); }, { passive: true })); }
+  bump();
 }
 async function enter() {
   try {
@@ -51,13 +58,13 @@ async function enter() {
     }
     S.me = { id: u.user.id, email: u.user.email, name: p.full_name || u.user.email }; S.role = p.role;
     S.products = must(await S.sb.from('products').select('*').order('sort').order('id'));
-    shell();
+    shell(); idleStart();
     go(S.role === 'driver' ? 'deliveries' : 'overview');
     S.poll = setInterval(pollOrders, 30000);
   } catch (e) { loginView(e.message); }
 }
 const NAV = {
-  admin: [['overview', '📊', 'Overview'], ['orders', '🧾', 'Orders'], ['neworder', '➕', 'New order'], ['products', '🥩', 'Products'], ['deals', '🏷️', 'Deals'], ['slides', '🎞️', 'Slideshow'], ['content', '✏️', 'Site text'], ['money', '💰', 'Money'], ['people', '👥', 'People'], ['settings', '⚙️', 'Settings'], ['siteimages', '🖼️', 'Site pictures'], ['activity', '🕘', 'Activity']],
+  admin: [['overview', '📊', 'Overview'], ['orders', '🧾', 'Orders'], ['neworder', '➕', 'New order'], ['products', '🥩', 'Products'], ['deals', '🏷️', 'Deals'], ['slides', '🎞️', 'Slideshow'], ['content', '✏️', 'Site text'], ['money', '💰', 'Money'], ['reports', '📈', 'Reports'], ['people', '👥', 'People'], ['settings', '⚙️', 'Settings'], ['siteimages', '🖼️', 'Site pictures'], ['activity', '🕘', 'Activity']],
   staff: [['overview', '📊', 'Overview'], ['orders', '🧾', 'Orders'], ['neworder', '➕', 'New order']],
   driver: [['deliveries', '🚚', 'My deliveries']]
 };
@@ -110,7 +117,7 @@ function closeOv() { $$('.ov').forEach((o) => o.remove()); }
 function overlay(html, cls) { closeOv(); const o = document.createElement('div'); o.className = 'ov ' + (cls || ''); o.innerHTML = html; o.addEventListener('mousedown', (e) => { if (e.target === o) closeOv(); }); document.body.appendChild(o); return o; }
 function go(v) {
   S.view = v; $$('[data-nav]').forEach((b) => b.classList.toggle('on', b.dataset.nav === v));
-  const T = { overview: 'Overview', orders: 'Orders', neworder: 'New order (phone / walk-in)', products: 'Products', deals: 'Deals', slides: 'Slideshow — the slides on your homepage', content: 'Site text', money: 'Money — expenses & investment', people: 'People', settings: 'Settings', siteimages: 'Site pictures — logo, slider, gallery', activity: 'Activity log', deliveries: 'My deliveries' };
+  const T = { overview: 'Overview', orders: 'Orders', neworder: 'New order (phone / walk-in)', products: 'Products', deals: 'Deals', slides: 'Slideshow — the slides on your homepage', content: 'Site text', money: 'Money — expenses & investment', reports: 'Reports — daily, weekly, monthly', people: 'People', settings: 'Settings', siteimages: 'Site pictures — logo, slider, gallery', activity: 'Activity log', deliveries: 'My deliveries' };
   $('#vt').textContent = T[v] || v; $('#va').innerHTML = ''; $('#view').innerHTML = '<div class="empty">Loading…</div>';
   (VIEWS[v] || (() => {}))().catch((e) => { $('#view').innerHTML = `<div class="empty">Something went wrong: ${esc(e.message)}</div>`; });
 }

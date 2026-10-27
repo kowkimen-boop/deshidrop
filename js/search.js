@@ -56,14 +56,25 @@
   ov.className = 'sg-ov'; ov.hidden = true; ov.setAttribute('role', 'dialog'); ov.setAttribute('aria-modal', 'true');
   ov.innerHTML = '<div class="sg-bar"><label class="sg-field"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>' +
     '<input type="search" class="sg-in" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search"><button type="button" class="sg-clr" hidden></button></label>' +
-    '<button type="button" class="sg-x"></button></div><ul class="sg-list" aria-live="polite"></ul>';
+    '<button type="button" class="sg-x"></button></div><button type="button" class="sg-cart" data-open-cart hidden></button><ul class="sg-list" aria-live="polite"></ul>';
   document.body.appendChild(ov);
-  const oin = ov.querySelector('.sg-in'), olist = ov.querySelector('.sg-list'), oclr = ov.querySelector('.sg-clr'), ox = ov.querySelector('.sg-x');
+  const ocart = ov.querySelector('.sg-cart'), oin = ov.querySelector('.sg-in'), olist = ov.querySelector('.sg-list'), oclr = ov.querySelector('.sg-clr'), ox = ov.querySelector('.sg-x');
   oclr.innerHTML = '&times;'; ox.textContent = '';
   function labels() { oin.placeholder = T('ph'); oclr.setAttribute('aria-label', T('clear')); ox.setAttribute('aria-label', T('close')); ox.textContent = { en: 'Cancel', bn: 'বাতিল', ar: 'إلغاء' }[lang()] || 'Cancel'; hdrInput.placeholder = T('ph'); }
   const paintO = () => { olist.innerHTML = listHTML(oin.value); oclr.hidden = !oin.value; };
-  function openO() { if (!ov.hidden) return; labels(); ov.hidden = false; document.body.classList.add('sg-open'); oin.value = hdrInput.value || ''; paintO(); setTimeout(() => oin.focus(), 30); }
+  function openO() { if (!ov.hidden) return; labels(); ov.hidden = false; document.body.classList.add('sg-open'); paintCart(); oin.value = hdrInput.value || ''; paintO(); setTimeout(() => oin.focus(), 30); }
   function closeO() { if (ov.hidden) return; ov.hidden = true; document.body.classList.remove('sg-open'); hdrInput.value = ''; hdrInput.blur(); }
+
+  /* "View cart" bar: shows when the cart has items, so the customer can go straight to checkout after adding from search */
+  const CT = { en: ['View cart', 'item', 'items'], bn: ['কার্ট দেখুন', 'আইটেম', 'আইটেম'], ar: ['عرض السلة', 'منتج', 'منتجات'] };
+  function paintCart() {
+    const i = window.__ddCartInfo ? window.__ddCartInfo() : { n: 0, total: '' }, c = CT[lang()] || CT.en;
+    ocart.hidden = !i.n;
+    if (i.n) ocart.innerHTML = '<span class="sg-cart-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg><b>' + i.n + '</b></span>' +
+      '<span class="sg-cart-t">' + c[0] + '<small>' + i.n + ' ' + (i.n === 1 ? c[1] : c[2]) + ' · ' + i.total + '</small></span><span class="sg-cart-go" aria-hidden="true">&rarr;</span>';
+  }
+  ocart.addEventListener('click', () => { closeO(); });   // the shop script opens the cart drawer from the data-open-cart attribute
+  document.addEventListener('ddcart', paintCart);
   hdrInput.addEventListener('focus', () => { if (mq.matches) openO(); });
   hdrInput.addEventListener('click', () => { if (mq.matches) openO(); });
   oin.addEventListener('input', paintO);

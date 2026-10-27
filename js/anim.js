@@ -32,17 +32,17 @@
       const old = document.getElementById('ga-layer'); if (old) old.remove();
       const rtl = document.documentElement.dir === 'rtl', mode = KIND[kind], layer = document.createElement('div');
       layer.id = 'ga-layer'; layer.className = 'ga-layer ga-' + mode + (rtl ? ' ga-rtl' : ''); layer.setAttribute('aria-hidden', 'true');
-      const items = SETS[kind], n = items.length, total = 3800;
+      const items = SETS[kind], n = items.length, slow = (window.innerWidth || 0) >= 900 ? 1.8 : 1, total = Math.round(3800 * slow);
       items.forEach((fn, i) => {
         const el = document.createElement('div'), isAnimal = kind === 'meat';
         el.className = 'ga-sp' + (isAnimal ? ' ga-walk' : '');
         const w = kind === 'meat' ? [74, 124, 106][i] : kind === 'fish' ? 92 + (i % 2) * 14 : 58;
-        el.style.cssText = `--w:${w}px;--d:${i * 420}ms;--y:${kind === 'fish' ? 14 + i * 17 : 0}%;--dur:${total - i * 150}ms;`;
+        el.style.cssText = `--w:${w}px;--d:${i * Math.round(420 * slow)}ms;--y:${kind === 'fish' ? 14 + i * 17 : 0}%;--dur:${total - i * 150}ms;--tf:${slow};`;
         el.innerHTML = fn() + (kind === 'fish' ? '<i class="ga-b b1"></i><i class="ga-b b2"></i><i class="ga-b b3"></i>' : '');
         layer.appendChild(el);
       });
       document.body.appendChild(layer);
-      setTimeout(() => layer.remove(), total + n * 420 + 400);
+      setTimeout(() => layer.remove(), total + n * Math.round(420 * slow) + 400);
     } catch (e) { /* the animation is decoration only */ }
   };
 })();

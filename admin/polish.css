@@ -96,3 +96,10 @@ td input[type=checkbox]{width:20px;height:20px}
 #view>.card[style*="max-width:640px"] .f{grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
 
 .tbl td:first-child b,.tbl td:first-child{white-space:nowrap}
+
+/* reports */
+#rp-tabs .btn.on{background:var(--brand,#0f6b45);color:#fff;border-color:transparent}
+.tbl tfoot th{border-top:2px solid var(--line);padding:10px;font-size:13px}
+.tbl .up{color:#0f7a4a}.tbl .dn{color:#c0392b}
+#rp-body{min-width:0;max-width:100%}#rp-body .grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr))}#rp-body .card{min-width:0;max-width:100%}
+#rp-body .tbl{min-width:520px}

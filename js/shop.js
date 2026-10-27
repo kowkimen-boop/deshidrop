@@ -192,7 +192,8 @@
   }
   const count = () => Object.keys(cart).reduce((a, n) => a + cart[n], 0);
   const subtotal = () => lines().reduce((a, l) => a + l.total, 0);
-  function persist() { LS.set(CART_KEY, cart); updateBadges(); }
+  function persist() { LS.set(CART_KEY, cart); updateBadges(); try { document.dispatchEvent(new Event('ddcart')); } catch (e) { /* old browser */ } }
+  window.__ddCartInfo = () => { let n = 0, t = 0; try { n = count(); t = subtotal(); } catch (e) { /* cart not ready */ } return { n: n, total: money(t) }; };
   function updateBadges(bump) {
     const n = count();
     document.querySelectorAll('[data-cart-count]').forEach((b) => {

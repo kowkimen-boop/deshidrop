@@ -122,3 +122,10 @@ body:not(.no-sticky) #categories { position: sticky; top: var(--hdr-h, 0px); z-i
 #categories.is-stuck .cat-pill { flex: 1 0 auto; min-height: 38px; padding: 6px 12px; font-size: 12.5px; border-radius: 12px; white-space: nowrap; }
 #categories.is-stuck .cp-soon { display: none !important; }
 @media (prefers-reduced-motion: reduce) { #categories, #categories .cat-menu { transition: none; } }
+
+/* phones: the pinned menu is two tidy rows of three (no sideways scrolling), centred */
+@media (max-width: 699px) {
+  #categories.is-stuck .cat-menu { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px; padding: 6px; overflow: visible; max-width: 440px; margin-inline: auto; }
+  #categories.is-stuck .cat-pill { flex: none; min-width: 0; min-height: 34px; padding: 5px 4px; font-size: 12px; line-height: 1.15; white-space: normal; text-align: center; justify-content: center; border-radius: 11px; }
+  #categories.is-stuck .cat-pill::after { display: none; }
+}

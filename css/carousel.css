@@ -216,3 +216,9 @@
 
 /* an empty price tag (no label and no value) is never shown */
 .cs-price:has(.pl:empty):has(b:empty) { display: none; }
+
+/* desktop: the sprite animations play slower (the screen is wider, so the same speed would feel fast) */
+@media (min-width: 900px) {
+  .ga-walk .ga-bob { animation-duration: .9s; } .ga-walk .ga-leg { animation-duration: .9s; }
+  .ga-hop .ga-sp svg { animation-duration: 1.2s; } .ga-swim .ga-wag { animation-duration: .7s; }
+}

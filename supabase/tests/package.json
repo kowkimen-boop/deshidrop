@@ -1,0 +1,1 @@
+{ "name": "deshi-drop-db-tests", "private": true, "type": "module", "scripts": { "test": "node rls.test.mjs" }, "dependencies": { "@electric-sql/pglite": "^0.2.0" } }
