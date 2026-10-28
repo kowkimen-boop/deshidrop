@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /admin/
-Disallow: /supabase/
-
-Sitemap: https://drop.example.com/sitemap.xml
