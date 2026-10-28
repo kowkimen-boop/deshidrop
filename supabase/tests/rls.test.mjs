@@ -29,6 +29,7 @@ await db.exec(readFileSync(path.join(SUP, 'phase2.sql'), 'utf8'));
 await db.exec(seed);
 await db.exec(readFileSync(path.join(SUP, 'phase5.sql'), 'utf8'));
 await db.exec(readFileSync(path.join(SUP, 'phase6.sql'), 'utf8'));
+await db.exec(readFileSync(path.join(SUP, 'phase7.sql'), 'utf8'));
 await db.exec(`update settings set value='true'::jsonb where key='cod_enabled'`);   // most tests use cash orders; the card-only default is tested below
 
 let pass = 0, fail = 0;
@@ -63,9 +64,9 @@ r = await sup(`select full_name from profiles where id=$1`, [U.bob]);
 ok(r.rows[0].full_name === 'Bob B', 'falls back to metadata "name"');
 
 console.log('\n# anonymous visitor');
-r = await denied(null, `select count(*)::int n from products`); ok(r.rows[0].n === 40, 'anon reads 40 active products');
+r = await denied(null, `select count(*)::int n from products`); ok(r.rows[0].n === 46, 'anon reads 46 active products');
 r = await denied(null, `select count(*)::int n from site_content`); ok(r.rows[0].n === 111, 'anon reads 111 site texts');
-r = await denied(null, `select count(*)::int n from settings`); ok(r.rows[0].n === 7, 'anon reads settings');
+r = await denied(null, `select count(*)::int n from settings`); ok(r.rows[0].n === 9, 'anon reads settings');
 r = await denied(null, `select count(*)::int n from deals`); ok(r.rows[0].n === 8, 'anon reads 8 live deals');
 ok((await denied(null, `select * from orders`)).err, 'anon cannot read orders');
 ok((await denied(null, `select * from profiles`)).err, 'anon cannot read profiles');
@@ -322,6 +323,7 @@ const counts = async () => (await sup(`select (select count(*) from products)::i
 const before = await counts();
 await db.exec(schema); await db.exec(readFileSync(path.join(SUP, 'phase3.sql'), 'utf8')); await db.exec(readFileSync(path.join(SUP, 'phase2.sql'), 'utf8')); await db.exec(seed); await db.exec(readFileSync(path.join(SUP, 'phase5.sql'), 'utf8'));
 await db.exec(readFileSync(path.join(SUP, 'phase6.sql'), 'utf8'));
+await db.exec(readFileSync(path.join(SUP, 'phase7.sql'), 'utf8'));
 const after = await counts(); ok(JSON.stringify(before) === JSON.stringify(after), 'schema.sql + seed.sql can be run again without duplicates: ' + JSON.stringify(after));
 ok((await sup(`select price from products where name='Beef Trip (per lb)'`)).rows[0].price === '7.25', 're-running the seed does not overwrite dashboard edits');
 r = await sup(`select count(*)::int n from deals d join products p on p.id=d.product_id where p.name='Beef Trip (per lb)'`); ok(r.rows[0].n === 1, 'seed deal not duplicated');
@@ -338,6 +340,21 @@ console.log('\n# phase 6: past (offline) records');
   const m = await call('root'); ok(!m.err, 'admin can enter a past record: ' + (m.err || ''));
   r = await sup(`select total::float8 t, delivery_fee::float8 f, status::text s, (created_at < now() - interval '19 days') old, delivered_at is not null d from orders where customer_name='Old Customer'`);
   ok(r.rows.length === 1 && r.rows[0].t === 14.5 && r.rows[0].f === 0 && r.rows[0].s === 'delivered' && r.rows[0].old && r.rows[0].d, 'past record: custom price, fee 0, delivered, old date');
+}
+
+console.log('\n# phase 7: small card orders + beef price list');
+{
+  await db.exec(`update settings set value='true'::jsonb where key='card_enabled'`);
+  const place = (items, pay) => denied('bob', `select place_order($1::jsonb,'Bob','5551234567','123 Main St, Dearborn MI',null,$2) j`, [JSON.stringify(items), pay]);
+  let m = await place([{ name: 'Beef Koliza (per lb)', qty: 2 }], 'card'); ok(!m.err && m.rows[0].j.card_fee === 1.25 && Math.abs(m.rows[0].j.total - (m.rows[0].j.subtotal + m.rows[0].j.delivery_fee + 1.25)) < 0.001, 'card order under $50 gets $1.25: ' + (m.err || JSON.stringify(m.rows[0] && m.rows[0].j.card_fee)));
+  m = await place([{ name: 'Beef Koliza (per lb)', qty: 2 }], 'cod'); ok(!m.err && m.rows[0].j.card_fee === 0, 'cash order under $50 has no card fee');
+  m = await place([{ name: 'Basmati Rice (10 lb)', qty: 4 }], 'card'); ok(!m.err && m.rows[0].j.card_fee === 0, 'card order of $50 or more has no card fee');
+  r = await sup(`select count(*)::int n from orders where card_fee = 1.25`); ok(r.rows[0].n >= 1, 'card fee stored on the order');
+  ok((await denied('sam', `update orders set card_fee = 0 where card_fee = 1.25`)).err, 'staff cannot change the card fee');
+  r = await sup(`select count(*)::int n from products where name in ('Meat & Bones – Regular (per lb)','Sina – Only (per lb)','Poncha – Only (per lb)','Leg – Meat & Bones (per lb)','Beef Gurda – Kidney (per lb)','Brain – Full (per piece)') and photo_key like 'pl\\_%'`); ok(r.rows[0].n === 6, 'six new beef items with pictures');
+  r = await sup(`select price::float8 p from products where name='Meat – Regular (per lb)'`); ok(r.rows[0].p === 6, 'price list update applied (Meat Regular $6.00)');
+  const before = (await sup(`select count(*)::int n from products`)).rows[0].n; await db.exec(readFileSync(path.join(SUP, 'phase7.sql'), 'utf8'));
+  ok((await sup(`select count(*)::int n from products`)).rows[0].n === before, 'running phase 7 again adds no duplicates');
 }
 
 console.log(`\n${pass} passed, ${fail} failed`);

@@ -105,7 +105,7 @@ function orderDrawer(id) {
     <dl class="kv"><dt>Customer</dt><dd><b>${esc(o.customer_name)}</b></dd><dt>Phone</dt><dd>${o.phone ? `<a href="tel:${esc(o.phone.replace(/[^\d+]/g, ''))}">${esc(o.phone)}</a>` : '—'}</dd>
     <dt>Address</dt><dd>${esc(o.address || '—')} ${o.address ? `<a href="${mapUrl(o.address)}" target="_blank" rel="noopener noreferrer">map ↗</a>` : ''}</dd>${o.notes ? `<dt>Notes</dt><dd>${esc(o.notes)}</dd>` : ''}</dl>
     <h3>Items</h3>${items.map((i) => `<div class="item"><img class="thumb" src="${esc(photo(i))}" alt=""><div class="grow"><b>${esc(i.name)}</b><div class="mute small">${Number(i.qty)} × ${money(i.unit_price)}${Number(i.list_price) > Number(i.unit_price) ? ` <s>${money(i.list_price)}</s>` : ''}</div></div><b>${money(i.qty * i.unit_price)}</b></div>`).join('')}
-    <div class="row sp mt small"><span>Subtotal</span><span>${money(o.subtotal)}</span></div><div class="row sp small"><span>Delivery</span><span>${money(o.delivery_fee)}</span></div><div class="row sp"><b>Total</b><b style="font-size:20px">${money(o.total)}</b></div>
+    <div class="row sp mt small"><span>Subtotal</span><span>${money(o.subtotal)}</span></div><div class="row sp small"><span>Delivery</span><span>${money(o.delivery_fee)}</span></div>${Number(o.card_fee) > 0 ? `<div class="row sp small"><span>Card fee (small order)</span><span>${money(o.card_fee)}</span></div>` : ''}<div class="row sp"><b>Total</b><b style="font-size:20px">${money(o.total)}</b></div>
     ${o.pay_method === 'card' && (o.stripe_payment_intent || o.pay_status === 'unpaid') ? cardBox(o) : ''}
     ${canDrive ? `<h3 class="mt">Update</h3><div class="row wrap">${FLOW.map((k) => `<button class="btn sm ${o.status === k ? '' : 'ghost'}" data-act="ostatus" data-id="${o.id}" data-s="${k}">${STATUS[k]}</button>`).join('')}<button class="btn red sm" data-act="ostatus" data-id="${o.id}" data-s="cancelled">Cancel order</button></div>
     <div class="f mt"><div><label>Driver</label><select id="od-dr"><option value="">— none —</option>${drivers.map((d) => `<option value="${d.id}" ${o.driver_id === d.id ? 'selected' : ''}>${esc(d.full_name || d.id.slice(0, 6))}</option>`).join('')}</select></div>
@@ -148,8 +148,8 @@ ACT.osave = async (a) => {
 ACT.odelete = async (a) => { if (!confirm('Delete this order permanently? Sales totals will change.')) return; must(await S.sb.from('orders').delete().eq('id', a.dataset.id)); toast('Deleted'); closeOv(); D.go('orders'); };
 const csvCell = (v) => { v = String(v ?? ''); if (/^[=+\-@]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; };
 D.downloadCSV = (name, head, rows) => { const b = new Blob([[head, ...rows].map((r) => r.map(csvCell).join(',')).join('\n')], { type: 'text/csv' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); };
-ACT['csv-orders'] = () => D.downloadCSV('orders.csv', ['Code', 'Date', 'Customer', 'Phone', 'Address', 'Status', 'Payment', 'Pay status', 'Subtotal', 'Delivery', 'Total', 'Items'],
-  S.orders.map((o) => [o.code, o.created_at, o.customer_name, o.phone, o.address, o.status, o.pay_method, o.pay_status, o.subtotal, o.delivery_fee, o.total, (o.order_items || []).map((i) => i.qty + 'x ' + i.name).join('; ')]));
+ACT['csv-orders'] = () => D.downloadCSV('orders.csv', ['Code', 'Date', 'Customer', 'Phone', 'Address', 'Status', 'Payment', 'Pay status', 'Subtotal', 'Delivery', 'Card fee', 'Total', 'Items'],
+  S.orders.map((o) => [o.code, o.created_at, o.customer_name, o.phone, o.address, o.status, o.pay_method, o.pay_status, o.subtotal, o.delivery_fee, o.card_fee || 0, o.total, (o.order_items || []).map((i) => i.qty + 'x ' + i.name).join('; ')]));
 
 /* ---------- New (manual) order — also used to enter old offline records ---------- */
 const todayKey = () => dayKey(new Date());

@@ -23,7 +23,7 @@ Deno.serve(async (req: Request) => {
     const b = await req.json().catch(() => ({}));
     const action = String(b.action || 'capture'), id = String(b.order_id || '');
     if (!/^[0-9a-f-]{36}$/i.test(id) || !['capture', 'release', 'refund'].includes(action)) return json(req, { error: 'Bad request' }, 400);
-    const o = (await (await rest(`orders?id=eq.${id}&select=id,code,pay_method,pay_status,stripe_payment_intent,authorized_amount,total,delivery_fee`)).json())[0];
+    const o = (await (await rest(`orders?id=eq.${id}&select=id,code,pay_method,pay_status,stripe_payment_intent,authorized_amount,total,delivery_fee,card_fee`)).json())[0];
     if (!o || o.pay_method !== 'card' || !o.stripe_payment_intent) return json(req, { error: 'Not a card order with a payment' }, 404);
     const pi = o.stripe_payment_intent;
 
@@ -36,7 +36,7 @@ Deno.serve(async (req: Request) => {
       const r = await stripe(`payment_intents/${pi}/capture`, { amount_to_capture: String(cents) }, `cap-${o.id}-${cents}`);
       const s = await r.json();
       if (!r.ok) return json(req, { error: (s.error && s.error.message) || 'Stripe error' }, 502);
-      const total = cents / 100, sub = Math.max(0, Math.round((total - Number(o.delivery_fee)) * 100) / 100);
+      const total = cents / 100, sub = Math.max(0, Math.round((total - Number(o.delivery_fee) - Number(o.card_fee || 0)) * 100) / 100);
       await rest(`orders?id=eq.${o.id}`, { method: 'PATCH', body: JSON.stringify({ pay_status: 'paid', captured_amount: total, total, subtotal: sub }) });
       return json(req, { ok: true, charged: total });
     }
