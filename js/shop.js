@@ -94,7 +94,7 @@
     e_backend: 'Something went wrong. Please try again.', e_unconfirmed: 'Please confirm your email first — check your inbox.', e_taken: 'An account with this email already exists. Try signing in.',
     new_pw_h: 'Choose a new password', new_pw_btn: 'Save new password', pw_updated: 'Password updated. You are signed in.', tiktok_na: 'TikTok sign-in is not available yet.',
     status_new: 'Received', status_confirmed: 'Confirmed', status_packing: 'Being packed', status_out_for_delivery: 'Out for delivery', status_delivered: 'Delivered', status_cancelled: 'Cancelled',
-    co_card_small: 'Card orders under ${min} add a ${fee} processing fee.', co_paycod: 'Cash on delivery', co_nopay: 'Ordering is paused for a moment while we finish setting up payments. Please check back soon or message us on WhatsApp.', co_cardonly: 'Pay securely by debit or credit card', free_n: '{n} free', co_paycard: 'Debit / credit card', co_card_note: 'We place a temporary hold on your card for your order total plus up to {pct}% (in case the weight changes) and charge only the exact final amount after your order is weighed. The rest is released.', pay_card_btn: 'Pay by card', pay_held: 'Card hold placed', pay_paid: 'Paid by card', pay_unpaid_card: 'Awaiting card payment', pay_refunded: 'Refunded / released', card_ok: 'Thank you! Your card was verified. We will charge the exact amount after weighing.', card_cancel: 'Card payment was not completed. You can pay from My Orders.', e_card: 'Could not open the card page. Your order is saved — pay from My Orders.', co_pay: 'Payment: cash on delivery', co_delivery_note: 'Delivery from $9.99 — free on your first order or 100+ LB. Your final total is shown once the order is placed.',
+    co_card_small: 'Card orders under ${min} add a ${fee} processing fee.', min_qty: 'The minimum order for {name} is {n} {u}.', min_note: 'Minimum order {n} {u}', qty_lbl: 'Quantity', qty_quick: 'Quick add', co_paycod: 'Cash on delivery', co_nopay: 'Ordering is paused for a moment while we finish setting up payments. Please check back soon or message us on WhatsApp.', co_cardonly: 'Pay securely by debit or credit card', free_n: '{n} free', co_paycard: 'Debit / credit card', co_card_note: 'We place a temporary hold on your card for your order total plus up to {pct}% (in case the weight changes) and charge only the exact final amount after your order is weighed. The rest is released.', pay_card_btn: 'Pay by card', pay_held: 'Card hold placed', pay_paid: 'Paid by card', pay_unpaid_card: 'Awaiting card payment', pay_refunded: 'Refunded / released', card_ok: 'Thank you! Your card was verified. We will charge the exact amount after weighing.', card_cancel: 'Card payment was not completed. You can pay from My Orders.', e_card: 'Could not open the card page. Your order is saved — pay from My Orders.', co_pay: 'Payment: cash on delivery', co_delivery_note: 'Delivery from $9.99 — free on your first order or 100+ LB. Your final total is shown once the order is placed.',
     co_done_live: 'Order {id} received. Total {total} (delivery {fee}). Pay cash on delivery — we will contact you to confirm.', fee_free: 'free', orders_loading: 'Loading your orders…',
     e_stock: 'One of the items is no longer available. Please check your cart.', e_signin_again: 'Please sign in again to place your order.', role_admin: 'Admin', role_staff: 'Staff', role_driver: 'Driver'
   });
@@ -103,7 +103,7 @@
     e_backend: 'কিছু একটা সমস্যা হয়েছে। আবার চেষ্টা করুন।', e_unconfirmed: 'আগে আপনার ইমেইল নিশ্চিত করুন — ইনবক্স দেখুন।', e_taken: 'এই ইমেইলে আগেই অ্যাকাউন্ট আছে। সাইন ইন করুন।',
     new_pw_h: 'নতুন পাসওয়ার্ড দিন', new_pw_btn: 'নতুন পাসওয়ার্ড সংরক্ষণ', pw_updated: 'পাসওয়ার্ড বদলানো হয়েছে। আপনি সাইন ইন আছেন।', tiktok_na: 'টিকটক সাইন ইন এখনও চালু হয়নি।',
     status_new: 'গৃহীত', status_confirmed: 'নিশ্চিত', status_packing: 'প্যাক হচ্ছে', status_out_for_delivery: 'ডেলিভারির পথে', status_delivered: 'পৌঁছে গেছে', status_cancelled: 'বাতিল',
-    co_card_small: '${min}-এর কম কার্ড অর্ডারে ${fee} প্রসেসিং ফি যোগ হয়।', co_paycod: 'ডেলিভারির সময় নগদ', co_nopay: 'পেমেন্ট চালুর কাজ চলছে, তাই অর্ডার সাময়িক বন্ধ। একটু পরে আবার দেখুন বা WhatsApp-এ মেসেজ করুন।', co_cardonly: 'ডেবিট বা ক্রেডিট কার্ডে নিরাপদে পেমেন্ট করুন', free_n: '{n}টি ফ্রি', co_paycard: 'ডেবিট / ক্রেডিট কার্ড', co_card_note: 'আমরা আপনার কার্ডে অর্ডারের মোট টাকা ও ওজন বদলালে সর্বোচ্চ {pct}% বেশি সাময়িকভাবে হোল্ড করব এবং অর্ডার ওজনের পর ঠিক চূড়ান্ত অঙ্কটুকুই চার্জ করব। বাকিটা ছেড়ে দেওয়া হবে।', pay_card_btn: 'কার্ডে পেমেন্ট করুন', pay_held: 'কার্ডে হোল্ড করা হয়েছে', pay_paid: 'কার্ডে পরিশোধিত', pay_unpaid_card: 'কার্ড পেমেন্টের অপেক্ষায়', pay_refunded: 'ফেরত / ছেড়ে দেওয়া', card_ok: 'ধন্যবাদ! আপনার কার্ড যাচাই হয়েছে। ওজনের পর সঠিক অঙ্ক চার্জ করা হবে।', card_cancel: 'কার্ড পেমেন্ট সম্পন্ন হয়নি। আমার অর্ডার থেকে পেমেন্ট করতে পারবেন।', e_card: 'কার্ড পেজ খোলা যায়নি। আপনার অর্ডার সংরক্ষিত — আমার অর্ডার থেকে পেমেন্ট করুন।', co_pay: 'পেমেন্ট: ডেলিভারির সময় নগদ', co_delivery_note: 'ডেলিভারি $৯.৯৯ থেকে — প্রথম অর্ডারে বা ১০০+ পাউন্ডে ফ্রি। অর্ডার করার পর চূড়ান্ত মোট দেখানো হবে।',
+    co_card_small: '${min}-এর কম কার্ড অর্ডারে ${fee} প্রসেসিং ফি যোগ হয়।', min_qty: '{name}-এর সর্বনিম্ন অর্ডার {n} {u}।', min_note: 'সর্বনিম্ন অর্ডার {n} {u}', qty_lbl: 'পরিমাণ', qty_quick: 'দ্রুত যোগ করুন', co_paycod: 'ডেলিভারির সময় নগদ', co_nopay: 'পেমেন্ট চালুর কাজ চলছে, তাই অর্ডার সাময়িক বন্ধ। একটু পরে আবার দেখুন বা WhatsApp-এ মেসেজ করুন।', co_cardonly: 'ডেবিট বা ক্রেডিট কার্ডে নিরাপদে পেমেন্ট করুন', free_n: '{n}টি ফ্রি', co_paycard: 'ডেবিট / ক্রেডিট কার্ড', co_card_note: 'আমরা আপনার কার্ডে অর্ডারের মোট টাকা ও ওজন বদলালে সর্বোচ্চ {pct}% বেশি সাময়িকভাবে হোল্ড করব এবং অর্ডার ওজনের পর ঠিক চূড়ান্ত অঙ্কটুকুই চার্জ করব। বাকিটা ছেড়ে দেওয়া হবে।', pay_card_btn: 'কার্ডে পেমেন্ট করুন', pay_held: 'কার্ডে হোল্ড করা হয়েছে', pay_paid: 'কার্ডে পরিশোধিত', pay_unpaid_card: 'কার্ড পেমেন্টের অপেক্ষায়', pay_refunded: 'ফেরত / ছেড়ে দেওয়া', card_ok: 'ধন্যবাদ! আপনার কার্ড যাচাই হয়েছে। ওজনের পর সঠিক অঙ্ক চার্জ করা হবে।', card_cancel: 'কার্ড পেমেন্ট সম্পন্ন হয়নি। আমার অর্ডার থেকে পেমেন্ট করতে পারবেন।', e_card: 'কার্ড পেজ খোলা যায়নি। আপনার অর্ডার সংরক্ষিত — আমার অর্ডার থেকে পেমেন্ট করুন।', co_pay: 'পেমেন্ট: ডেলিভারির সময় নগদ', co_delivery_note: 'ডেলিভারি $৯.৯৯ থেকে — প্রথম অর্ডারে বা ১০০+ পাউন্ডে ফ্রি। অর্ডার করার পর চূড়ান্ত মোট দেখানো হবে।',
     co_done_live: 'অর্ডার {id} গৃহীত হয়েছে। মোট {total} (ডেলিভারি {fee})। ডেলিভারির সময় নগদ দিন — নিশ্চিত করতে আমরা যোগাযোগ করব।', fee_free: 'ফ্রি', orders_loading: 'আপনার অর্ডার লোড হচ্ছে…',
     e_stock: 'একটি পণ্য আর পাওয়া যাচ্ছে না। কার্ট দেখে নিন।', e_signin_again: 'অর্ডার করতে আবার সাইন ইন করুন।', role_admin: 'অ্যাডমিন', role_staff: 'স্টাফ', role_driver: 'ড্রাইভার'
   });
@@ -112,7 +112,7 @@
     e_backend: 'حدث خطأ ما. حاول مرة أخرى.', e_unconfirmed: 'يرجى تأكيد بريدك الإلكتروني أولًا — تحقق من صندوق الوارد.', e_taken: 'يوجد حساب بهذا البريد بالفعل. جرّب تسجيل الدخول.',
     new_pw_h: 'اختر كلمة مرور جديدة', new_pw_btn: 'حفظ كلمة المرور الجديدة', pw_updated: 'تم تحديث كلمة المرور. أنت مسجّل الدخول.', tiktok_na: 'تسجيل الدخول عبر تيك توك غير متاح بعد.',
     status_new: 'تم الاستلام', status_confirmed: 'مؤكد', status_packing: 'قيد التجهيز', status_out_for_delivery: 'في الطريق إليك', status_delivered: 'تم التسليم', status_cancelled: 'ملغي',
-    co_card_small: 'تُضاف رسوم معالجة ${fee} على طلبات البطاقة التي تقل عن ${min}.', co_paycod: 'نقدًا عند التسليم', co_nopay: 'الطلب متوقف مؤقتًا حتى ننهي إعداد الدفع. تحقق لاحقًا أو راسلنا على واتساب.', co_cardonly: 'ادفع بأمان ببطاقة الخصم أو الائتمان', free_n: '{n} مجانًا', co_paycard: 'بطاقة خصم / ائتمان', co_card_note: 'سنحجز مؤقتًا على بطاقتك إجمالي طلبك مع زيادة تصل إلى {pct}% (تحسبًا لتغيّر الوزن) ونخصم المبلغ النهائي الدقيق فقط بعد وزن طلبك. يُفرج عن الباقي.', pay_card_btn: 'ادفع بالبطاقة', pay_held: 'تم حجز المبلغ على البطاقة', pay_paid: 'مدفوع بالبطاقة', pay_unpaid_card: 'بانتظار الدفع بالبطاقة', pay_refunded: 'تم الاسترداد / الإفراج', card_ok: 'شكرًا! تم التحقق من بطاقتك. سنخصم المبلغ الدقيق بعد الوزن.', card_cancel: 'لم يكتمل الدفع بالبطاقة. يمكنك الدفع من طلباتي.', e_card: 'تعذّر فتح صفحة البطاقة. طلبك محفوظ — ادفع من طلباتي.', co_pay: 'الدفع: نقدًا عند التسليم', co_delivery_note: 'التوصيل من ٩٫٩٩$ — مجاني لطلبك الأول أو لأكثر من ١٠٠ رطل. يظهر الإجمالي النهائي بعد تقديم الطلب.',
+    co_card_small: 'تُضاف رسوم معالجة ${fee} على طلبات البطاقة التي تقل عن ${min}.', min_qty: 'الحد الأدنى لطلب {name} هو {n} {u}.', min_note: 'الحد الأدنى للطلب {n} {u}', qty_lbl: 'الكمية', qty_quick: 'إضافة سريعة', co_paycod: 'نقدًا عند التسليم', co_nopay: 'الطلب متوقف مؤقتًا حتى ننهي إعداد الدفع. تحقق لاحقًا أو راسلنا على واتساب.', co_cardonly: 'ادفع بأمان ببطاقة الخصم أو الائتمان', free_n: '{n} مجانًا', co_paycard: 'بطاقة خصم / ائتمان', co_card_note: 'سنحجز مؤقتًا على بطاقتك إجمالي طلبك مع زيادة تصل إلى {pct}% (تحسبًا لتغيّر الوزن) ونخصم المبلغ النهائي الدقيق فقط بعد وزن طلبك. يُفرج عن الباقي.', pay_card_btn: 'ادفع بالبطاقة', pay_held: 'تم حجز المبلغ على البطاقة', pay_paid: 'مدفوع بالبطاقة', pay_unpaid_card: 'بانتظار الدفع بالبطاقة', pay_refunded: 'تم الاسترداد / الإفراج', card_ok: 'شكرًا! تم التحقق من بطاقتك. سنخصم المبلغ الدقيق بعد الوزن.', card_cancel: 'لم يكتمل الدفع بالبطاقة. يمكنك الدفع من طلباتي.', e_card: 'تعذّر فتح صفحة البطاقة. طلبك محفوظ — ادفع من طلباتي.', co_pay: 'الدفع: نقدًا عند التسليم', co_delivery_note: 'التوصيل من ٩٫٩٩$ — مجاني لطلبك الأول أو لأكثر من ١٠٠ رطل. يظهر الإجمالي النهائي بعد تقديم الطلب.',
     co_done_live: 'تم استلام الطلب {id}. الإجمالي {total} (التوصيل {fee}). الدفع نقدًا عند التسليم — سنتصل بك للتأكيد.', fee_free: 'مجاني', orders_loading: 'جارٍ تحميل طلباتك…',
     e_stock: 'أحد المنتجات لم يعد متوفرًا. يرجى مراجعة السلة.', e_signin_again: 'يرجى تسجيل الدخول مرة أخرى لإتمام الطلب.', role_admin: 'مدير', role_staff: 'موظف', role_driver: 'سائق'
   });
@@ -163,9 +163,11 @@
   const money = (c) => '$' + (c / 100).toFixed(2);
   const pidOf = (name) => DD().products.findIndex((p) => p.name === name);
 
+  const minOf = (p) => Number(p && p.min_qty) || 0;
+  const fmtQ = (q) => String(Math.round(q * 100) / 100);
   function cleanCart() {
     const out = {};
-    Object.keys(cart).forEach((n) => { const q = Math.min(99, parseInt(cart[n], 10) || 0); if (q > 0 && pidOf(n) > -1) out[n] = q; });
+    Object.keys(cart).forEach((n) => { const pid = pidOf(n), q = Math.min(999, Math.round(parseFloat(cart[n]) || 0)); if (q > 0 && pid > -1) { const m = minOf(DD().products[pid]); out[n] = m > 0 && q < m ? m : q; } });
     cart = out;
   }
   const lines = () => Object.keys(cart).map((n) => { const pid = pidOf(n), p = DD().products[pid], u = cents(p); return { pid, p, qty: cart[n], unit: u, total: u * cart[n] }; });
@@ -201,8 +203,49 @@
       if (bump) { b.classList.remove('bump'); void b.offsetWidth; b.classList.add('bump'); }
     });
   }
-  function addItem(name) { cart[name] = Math.min(99, (cart[name] || 0) + 1); persist(); updateBadges(true); if (isOpen()) renderCart(); }
-  function setQty(name, q) { if (q <= 0) delete cart[name]; else cart[name] = Math.min(99, q); persist(); renderCart(); }
+  // changes a quantity by d (+/-). A product with a minimum (e.g. 10 lb) jumps straight to the minimum on the first add, and drops out of the cart if reduced below it.
+  function bump(name, d) {
+    const pid = pidOf(name); if (pid < 0) return;
+    const m = minOf(DD().products[pid]), cur = cart[name] || 0, nq = Math.round((cur + d) * 100) / 100;
+    if (nq <= 0 || (m > 0 && nq < m && d < 0)) delete cart[name];
+    else cart[name] = Math.min(999, m > 0 && nq < m ? m : nq);
+    persist(); updateBadges(d > 0); if (isOpen()) renderCart();
+  }
+  function addItem(name) { bump(name, 1); }
+  function setQty(name, q) { if (q <= 0) delete cart[name]; else cart[name] = Math.min(999, q); persist(); renderCart(); }
+  // typed quantity (cart or product card)
+  function typeQty(name, v) {
+    const pid = pidOf(name); if (pid < 0) return; const p = DD().products[pid], m = minOf(p);
+    let q = parseFloat(String(v).replace(',', '.')); if (!(q > 0)) q = 0; q = Math.round(q);   // whole units only (the server accepts whole numbers 1-999)
+    if (q > 0 && m > 0 && q < m) { toast(t('min_qty', { name: DD().pName(p, lang()), n: fmtQ(m), u: p.unit || 'lb' })); persist(); if (isOpen()) renderCart(); return; }
+    if (q > 999) q = 999;
+    if (q <= 0) delete cart[name]; else cart[name] = q;
+    persist(); updateBadges(); if (isOpen()) renderCart();
+  }
+  const quickAmts = () => { const S0 = window.__DD_SETTINGS || {}; if (S0.qty_quick_on === false) return []; return [S0.qty_quick_1 == null ? 5 : S0.qty_quick_1, S0.qty_quick_2 == null ? 10 : S0.qty_quick_2, S0.qty_quick_3 == null ? 25 : S0.qty_quick_3].map(Number).filter((n) => n > 0); };
+  const qControls = (pid, qty, nm) => '<div class="qty"><button type="button" data-act="dec" data-pid="' + pid + '" aria-label="' + esc(t('dec')) + ': ' + nm + '">−</button>' +
+    '<input class="q-in" type="number" inputmode="decimal" min="0" max="999" step="1" value="' + fmtQ(qty) + '" data-pid="' + pid + '" aria-label="' + esc(t('qty_lbl')) + ': ' + nm + '">' +
+    '<button type="button" data-act="inc" data-pid="' + pid + '" aria-label="' + esc(t('inc')) + ': ' + nm + '">+</button></div>';
+  const qChips = (pid, nm) => { const a = quickAmts(); return a.length ? '<div class="qchips" role="group" aria-label="' + esc(t('qty_quick')) + '">' + a.map((n) => '<button type="button" data-act="qadd" data-pid="' + pid + '" data-n="' + n + '" aria-label="+' + n + ' ' + nm + '">+' + n + '</button>').join('') + '</div>' : ''; };
+  // product cards: once an item is in the cart, show a typeable stepper + quick-add buttons under it
+  let syncing = false;
+  function syncCards() {
+    if (syncing || !DD()) return; syncing = true;
+    try {
+      document.querySelectorAll('.card .add-btn[data-pid]').forEach((btn) => {
+        const card = btn.closest('.card'), body = card && card.querySelector('.card-body'); if (!body) return;
+        const pid = +btn.dataset.pid, p = DD().products[pid], q = p ? (cart[p.name] || 0) : 0; let qc = body.querySelector('.qc');
+        if (!q) { if (qc) qc.remove(); return; }
+        const nm = esc(DD().pName(p, lang())), html = qControls(pid, q, nm) + qChips(pid, nm);
+        if (!qc) { qc = document.createElement('div'); qc.className = 'qc'; body.appendChild(qc); }
+        const act = document.activeElement; if (qc.contains(act) && act.classList.contains('q-in')) { act.value = fmtQ(q); return; }
+        if (qc.dataset.k !== html) { qc.innerHTML = html; qc.dataset.k = html; }
+      });
+    } finally { syncing = false; }
+  }
+  document.addEventListener('ddcart', syncCards); document.addEventListener('ddlang', () => setTimeout(syncCards, 60));
+  ['product-grid', 'deal-grid'].forEach((id) => { const g = document.getElementById(id); if (g) new MutationObserver(() => setTimeout(syncCards, 0)).observe(g, { childList: true }); });
+  setTimeout(syncCards, 600); setTimeout(syncCards, 2000);
 
   function thumb(p) {
     const photos = window.__PRODUCT_PHOTOS__ || {};
@@ -255,10 +298,8 @@
         const nm = esc(DD().pName(l.p, L));
         return '<li class="ci"><div class="ci-img">' + thumb(l.p) + '</div><div><div class="ci-name">' + nm + '</div>' +
           '<div class="ci-unit">' + money(l.unit) + ' ' + esc(t('each')) + '</div>' +
-          '<div class="ci-bottom"><div class="qty"><button type="button" data-act="dec" data-pid="' + l.pid + '" aria-label="' + esc(t('dec')) + ': ' + nm + '">−</button>' +
-          '<output aria-live="polite">' + l.qty + '</output>' +
-          '<button type="button" data-act="inc" data-pid="' + l.pid + '" aria-label="' + esc(t('inc')) + ': ' + nm + '">+</button></div>' +
-          '<span class="ci-total">' + money(l.total) + '</span></div>' +
+          '<div class="ci-bottom">' + qControls(l.pid, l.qty, nm) +
+          '<span class="ci-total">' + money(l.total) + '</span></div>' + qChips(l.pid, nm) + (minOf(l.p) > 0 ? '<div class="ci-min">' + esc(t('min_note', { n: fmtQ(minOf(l.p)), u: l.p.unit || 'lb' })) + '</div>' : '') +
           '<button class="ci-rm" type="button" data-act="rm" data-pid="' + l.pid + '">' + esc(t('remove')) + '</button></div></li>';
       }).join('') + '</ul>' + (() => { const ps = promoState(); return ps.free.map((f) => '<div class="ci-free"><b>' + esc(t('free_lbl')) + '</b> ' + f.qty + ' × ' + esc(DD().pName(f.p, L)) + '</div>').join('') + ps.hints.map((h) => '<div class="ci-hint">' + esc(h) + '</div>').join(''); })();
       foot = '<div class="cd-row"><span>' + esc(t('cart_subtotal')) + '</span><b>' + money(subtotal()) + '</b></div>' +
@@ -336,7 +377,7 @@
     if (!currentUser()) {
       SS.set('dd_after_login', '1'); closeCart(); location.hash = '#/account'; toast(t('need_signin')); return;
     }
-    cview = 'checkout'; renderCart();
+    cleanCart(); persist(); cview = 'checkout'; renderCart();
   }
   function placeOrder(e) {
     e.preventDefault();
@@ -643,8 +684,9 @@
     const act = b.dataset.act, pid = +b.dataset.pid, name = DD() && DD().products[pid] && DD().products[pid].name;
     if (act === 'close') closeCart();
     else if (act === 'paycard') { b.disabled = true; payByCard(b.dataset.id).then((ok) => { if (!ok) b.disabled = false; }); }
-    else if (act === 'inc') setQty(name, (cart[name] || 0) + 1);
-    else if (act === 'dec') setQty(name, (cart[name] || 0) - 1);
+    else if (act === 'inc') bump(name, 1);
+    else if (act === 'dec') bump(name, -1);
+    else if (act === 'qadd') bump(name, Number(b.dataset.n) || 0);
     else if (act === 'rm') setQty(name, 0);
     else if (act === 'clear') { cart = {}; persist(); renderCart(); }
     else if (act === 'checkout') startCheckout();
@@ -695,7 +737,7 @@
     if (wasAcc) { renderAccount(); document.title = t('acct_title') + ' — Deshi Drop'; }
   });
 
-  document.addEventListener('change', (e) => { if (e.target && e.target.name === 'co-pay') { const n = $('co-cardnote'); if (n) n.hidden = e.target.value !== 'card'; } });
+  document.addEventListener('change', (e) => { const qi = e.target && e.target.classList && e.target.classList.contains('q-in') ? e.target : null; if (qi) { const pp = DD().products[+qi.dataset.pid]; if (pp) typeQty(pp.name, qi.value); return; } if (e.target && e.target.name === 'co-pay') { const n = $('co-cardnote'); if (n) n.hidden = e.target.value !== 'card'; } });
   const cr = /[?&]card=(ok|cancel)\b/.exec(location.search);
   if (cr) { try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) { /* ignore */ } beAt = 0; setTimeout(() => toast(t(cr[1] === 'ok' ? 'card_ok' : 'card_cancel')), 900); }
 

@@ -40,6 +40,8 @@
     { name: "Leg – Meat & Bones (per lb)", name_bn: "রান – হাড়সহ মাংস (প্রতি পাউন্ড)", cat: "Meat", cat_bn: "মাংস", sub: "Beef", price: "$4.50", icon: "beef", photo: "pl_leg" },
     { name: "Beef Gurda – Kidney (per lb)", name_bn: "গরুর গুর্দা (প্রতি পাউন্ড)", cat: "Meat", cat_bn: "মাংস", sub: "Beef", price: "$3.50", icon: "beef", photo: "pl_gurda" },
     { name: "Brain – Full (per piece)", name_bn: "মগজ – পুরো (প্রতি পিস)", cat: "Meat", cat_bn: "মাংস", sub: "Beef", price: "$10.00", icon: "beef", photo: "pl_brain" },
+    { name: "Lamb (per lb)", name_bn: "ভেড়ার মাংস (প্রতি পাউন্ড)", cat: "Meat", cat_bn: "মাংস", sub: "Lamb & Goat", price: "$6.00", tag: "Min 10 lb", icon: "lamb", photo: "pl_lamb", min_qty: 10 },
+    { name: "Goat (per lb)", name_bn: "খাসির মাংস (প্রতি পাউন্ড)", cat: "Meat", cat_bn: "মাংস", sub: "Lamb & Goat", price: "$8.00", tag: "Min 10 lb", icon: "lamb", photo: "pl_goat", min_qty: 10 },
     { name: "Meat – Zero Fat (per lb)", name_bn: "গরুর মাংস – জিরো ফ্যাট (প্রতি পাউন্ড)", cat: "Meat", cat_bn: "মাংস", sub: "Beef", price: "$7.30", icon: "beef", photo: "beef" },
     { name: "Chicken Soft (per lb)", name_bn: "নরম মুরগি (প্রতি পাউন্ড)", cat: "Meat", cat_bn: "মাংস", sub: "Chicken", price: "$2.50", tag: "Fresh", icon: "chicken", photo: "onion" },
     { name: "Chicken Hard (per piece)", name_bn: "শক্ত মুরগি (প্রতি পিস)", cat: "Meat", cat_bn: "মাংস", sub: "Chicken", price: "$5.00", icon: "chicken", photo: "fl_chicken" },
@@ -94,6 +96,8 @@
     "Leg – Meat & Bones (per lb)":"فخذ بقري بالعظم (للرطل)",
     "Beef Gurda – Kidney (per lb)":"كلى بقري (للرطل)",
     "Brain – Full (per piece)":"مخ بقري كامل (للقطعة)",
+    "Lamb (per lb)":"لحم ضأن (للرطل)",
+    "Goat (per lb)":"لحم ماعز (للرطل)",
     "Chicken Leg – with skin (per lb)":"فخذ دجاج بالجلد (للرطل)",
     "Chicken Leg – without skin (per lb)":"فخذ دجاج بدون جلد (للرطل)",
     "Chicken Breast (per lb)":"صدر دجاج (للرطل)",
@@ -160,8 +164,8 @@
   const grid = document.getElementById('product-grid');
   window.__currentProductLang = 'en';
 
-  function cardHTML(p, i, lang) { return `
-      <div class="card fade-in visible ${(p.photo || p.image_url) ? 'tilt-card' : ''}${p.in_stock === false ? ' sold-out' : ''}" style="transition-delay:${(i % 8) * 60}ms">
+  function cardHTML(p, i, lang, k) { k = k == null ? i : k; return `
+      <div class="card fade-in visible ${(p.photo || p.image_url) ? 'tilt-card' : ''}${p.in_stock === false ? ' sold-out' : ''}" style="transition-delay:${(k % 8) * 60}ms">
         <div class="card-img ${(p.photo || p.image_url) ? 'has-photo' : ''}">
           ${p.tag ? `<span class="tag">${escH(pTag(p,lang))}</span>` : ''}
           ${(p.halal === undefined ? p.cat === 'Meat' : p.halal) ? '<span class="halal-seal" title="100% Halal" aria-label="100% Halal"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#halal-seal"/></svg></span>' : ''}
@@ -268,7 +272,7 @@
     const list = popOrder().filter((i) => !(window.__catFilter && !window.__catFilter(products[i])));
     const pages = Math.max(1, Math.ceil(list.length / PROD_PAGE_N())); prodPage = Math.min(Math.max(0, prodPage), pages - 1);
     const from = prodPage * PROD_PAGE_N(), slice = list.slice(from, from + PROD_PAGE_N());
-    grid.innerHTML = slice.map((i, k) => cardHTML(products[i], k, lang)).join('');
+    grid.innerHTML = slice.map((i, k) => cardHTML(products[i], i, lang, k)).join('');
     grid.classList.remove('pg-next', 'pg-prev'); if (dir) { void grid.offsetWidth; grid.classList.add(dir > 0 ? 'pg-next' : 'pg-prev'); }
     if (prodPager) { prodPager.hidden = pages < 2; prodPager.innerHTML = pages < 2 ? '' : pagerHTML(prodPage, pages, lang, from, slice.length, list.length); }
     renderDeals(lang);
@@ -353,7 +357,11 @@
     "pl_poncha": "img/p/pl_poncha.jpg",
     "pl_leg": "img/p/pl_leg.jpg",
     "pl_gurda": "img/p/pl_gurda.jpg",
-    "pl_brain": "img/p/pl_brain.jpg"
+    "pl_brain": "img/p/pl_brain.jpg",
+    "pl_lamb": "img/p/pl_lamb.jpg",
+    "pl_goat": "img/p/pl_goat.jpg",
+    "pl_sheep": "img/p/pl_sheep.jpg",
+    "pl_goatface": "img/p/pl_goatface.jpg"
   };
   fillProductPhotos();   // first render ran before the photos existed — fill them in now
 
@@ -404,6 +412,7 @@
     "mn_days": "শনি ও রবি · বিকেল ৩টা – রাত ৯টা",
     "sub_all": "সব মাংস",
     "sub_beef": "গরু",
+    "sub_lamb": "ভেড়া ও খাসি",
     "sub_chicken": "মুরগি",
     "cat_fish": "মাছ",
     "cat_soon_badge": "শীঘ্রই",
@@ -537,6 +546,7 @@
     "mn_days": "السبت والأحد · ٣ – ٩ مساءً",
     "sub_all": "كل اللحوم",
     "sub_beef": "بقري",
+    "sub_lamb": "ضأن وماعز",
     "sub_chicken": "دجاج",
     "cat_fish": "السمك",
     "cat_soon_badge": "قريبًا",
@@ -670,7 +680,7 @@
       products.splice(0, products.length, ...d.products.map((r) => ({
         id: r.id, name: r.name, name_bn: r.name_bn || '', name_ar: r.name_ar || '', cat: r.category, cat_bn: r.category_bn || '', cat_ar: r.category_ar || '',
         sub: r.sub || undefined, price: '$' + Number(r.price).toFixed(2), unit: r.unit, tag: r.tag || undefined, icon: r.icon || undefined,
-        photo: r.photo_key || undefined, image_url: r.image_url || undefined, halal: !!r.halal, in_stock: r.in_stock !== false
+        photo: r.photo_key || undefined, image_url: r.image_url || undefined, halal: !!r.halal, in_stock: r.in_stock !== false, min_qty: Number(r.min_qty) || 0
       })));
     }
     if (d.settings && +d.settings.deals_page_size > 0) DEALS_CFG.pageSize = +d.settings.deals_page_size;

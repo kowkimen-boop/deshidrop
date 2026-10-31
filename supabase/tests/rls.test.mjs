@@ -30,6 +30,7 @@ await db.exec(seed);
 await db.exec(readFileSync(path.join(SUP, 'phase5.sql'), 'utf8'));
 await db.exec(readFileSync(path.join(SUP, 'phase6.sql'), 'utf8'));
 await db.exec(readFileSync(path.join(SUP, 'phase7.sql'), 'utf8'));
+await db.exec(readFileSync(path.join(SUP, 'phase8.sql'), 'utf8'));
 await db.exec(`update settings set value='true'::jsonb where key='cod_enabled'`);   // most tests use cash orders; the card-only default is tested below
 
 let pass = 0, fail = 0;
@@ -64,9 +65,9 @@ r = await sup(`select full_name from profiles where id=$1`, [U.bob]);
 ok(r.rows[0].full_name === 'Bob B', 'falls back to metadata "name"');
 
 console.log('\n# anonymous visitor');
-r = await denied(null, `select count(*)::int n from products`); ok(r.rows[0].n === 46, 'anon reads 46 active products');
+r = await denied(null, `select count(*)::int n from products`); ok(r.rows[0].n === 48, 'anon reads 48 active products');
 r = await denied(null, `select count(*)::int n from site_content`); ok(r.rows[0].n === 111, 'anon reads 111 site texts');
-r = await denied(null, `select count(*)::int n from settings`); ok(r.rows[0].n === 9, 'anon reads settings');
+r = await denied(null, `select count(*)::int n from settings`); ok(r.rows[0].n === 13, 'anon reads settings');
 r = await denied(null, `select count(*)::int n from deals`); ok(r.rows[0].n === 8, 'anon reads 8 live deals');
 ok((await denied(null, `select * from orders`)).err, 'anon cannot read orders');
 ok((await denied(null, `select * from profiles`)).err, 'anon cannot read profiles');
@@ -123,10 +124,10 @@ r = await PO('alice', items(['Basmati Rice (10 lb)', 20], ['Chicken Hard (per pi
 ok(r.rows?.[0]?.o && Number(r.rows[0].o.delivery_fee) === 9.99, 'pack/piece/each items do not count toward the 100 lb rule');
 r = await PO('alice', items(['Beef Trip (per lb)', 1]).replace('"qty":1', '"qty":1,"unit_price":0.01'));
 ok(r.rows?.[0]?.o && Number(r.rows[0].o.items[0].unit_price) === 4.8, 'a price sent by the browser is ignored (server uses 4.80)');
-r = await PO('alice', items(['Beef Trip (per lb)', 60], ['Beef Trip (per lb)', 60])); ok(r.err && /invalid quantity/.test(r.err), 'duplicate lines cannot bypass the 99 limit');
+r = await PO('alice', items(['Beef Trip (per lb)', 600], ['Beef Trip (per lb)', 600])); ok(r.err && /invalid quantity/.test(r.err), 'duplicate lines cannot bypass the 999 limit');
 r = await PO('alice', items(['Beef Trip (per lb)', 99], ['Beef Trip (per lb)', -50])); ok(r.err && /invalid quantity/.test(r.err), 'negative quantity rejected');
 r = await PO('alice', items(['Beef Trip (per lb)', 0])); ok(r.err && /invalid quantity/.test(r.err), 'qty 0 rejected');
-r = await PO('alice', items(['Beef Trip (per lb)', 100])); ok(r.err && /invalid quantity/.test(r.err), 'qty 100 rejected');
+r = await PO('alice', items(['Beef Trip (per lb)', 1000])); ok(r.err && /invalid quantity/.test(r.err), 'qty 1000 rejected');
 r = await PO('alice', items(['Beef Trip (per lb)', 1.5])); ok(r.err && /invalid quantity/.test(r.err), 'fractional qty rejected');
 r = await PO('alice', items(['No Such Meat', 1])); ok(r.err && /unknown product/.test(r.err), 'unknown product rejected');
 r = await PO('alice', '[]'); ok(r.err && /empty/.test(r.err), 'empty cart rejected');
@@ -324,6 +325,7 @@ const before = await counts();
 await db.exec(schema); await db.exec(readFileSync(path.join(SUP, 'phase3.sql'), 'utf8')); await db.exec(readFileSync(path.join(SUP, 'phase2.sql'), 'utf8')); await db.exec(seed); await db.exec(readFileSync(path.join(SUP, 'phase5.sql'), 'utf8'));
 await db.exec(readFileSync(path.join(SUP, 'phase6.sql'), 'utf8'));
 await db.exec(readFileSync(path.join(SUP, 'phase7.sql'), 'utf8'));
+await db.exec(readFileSync(path.join(SUP, 'phase8.sql'), 'utf8'));
 const after = await counts(); ok(JSON.stringify(before) === JSON.stringify(after), 'schema.sql + seed.sql can be run again without duplicates: ' + JSON.stringify(after));
 ok((await sup(`select price from products where name='Beef Trip (per lb)'`)).rows[0].price === '7.25', 're-running the seed does not overwrite dashboard edits');
 r = await sup(`select count(*)::int n from deals d join products p on p.id=d.product_id where p.name='Beef Trip (per lb)'`); ok(r.rows[0].n === 1, 'seed deal not duplicated');
@@ -355,6 +357,24 @@ console.log('\n# phase 7: small card orders + beef price list');
   r = await sup(`select price::float8 p from products where name='Meat – Regular (per lb)'`); ok(r.rows[0].p === 6, 'price list update applied (Meat Regular $6.00)');
   const before = (await sup(`select count(*)::int n from products`)).rows[0].n; await db.exec(readFileSync(path.join(SUP, 'phase7.sql'), 'utf8'));
   ok((await sup(`select count(*)::int n from products`)).rows[0].n === before, 'running phase 7 again adds no duplicates');
+}
+
+console.log('\n# phase 8: minimum quantity + big orders');
+{
+  const place = (items) => denied('bob', `select place_order($1::jsonb,'Bob','5551234567','123 Main St, Dearborn MI',null,'cod') j`, [JSON.stringify(items)]);
+  await db.exec(readFileSync(path.join(SUP, 'phase8.sql'), 'utf8'));   // (the phase 7 re-run above restored the older order function)
+  let m = await place([{ name: 'Lamb (per lb)', qty: 9 }]); ok(m.err && /minimum order/i.test(m.err), 'lamb under 10 lb is refused: ' + (m.err || 'accepted'));
+  m = await place([{ name: 'Lamb (per lb)', qty: 5 }, { name: 'Lamb (per lb)', qty: 5 }]); ok(!m.err, 'two lines of the same item add up to the minimum: ' + (m.err || ''));
+  m = await place([{ name: 'Goat (per lb)', qty: 10 }]); ok(!m.err && m.rows[0].j.subtotal === 80, 'goat 10 lb = $80.00 accepted');
+  m = await place([{ name: 'Goat (per lb)', qty: 120 }]); ok(!m.err, 'a 120 lb order is accepted (up to 999): ' + (m.err || ''));
+  m = await place([{ name: 'Beef Koliza (per lb)', qty: 1000 }]); ok(m.err, '1000 lb in one line is refused');
+  m = await place([{ name: 'Beef Koliza (per lb)', qty: 0 }]); ok(m.err, 'zero quantity is refused');
+  ok((await denied('bob', `update products set min_qty = 0`)).err || (await sup(`select count(*)::int n from products where min_qty = 10`)).rows[0].n === 2, 'customer cannot change minimums');
+  r = await sup(`select count(*)::int n from products where min_qty = 10 and name in ('Lamb (per lb)','Goat (per lb)')`); ok(r.rows[0].n === 2, 'lamb and goat have a 10 lb minimum');
+  await db.exec(readFileSync(path.join(SUP, 'phase8.sql'), 'utf8')); r = await sup(`select count(*)::int n from products where name in ('Lamb (per lb)','Goat (per lb)')`); ok(r.rows[0].n === 2, 'running phase 8 again adds no duplicates');
+  await db.exec(`insert into settings (key, value) values ('carousel', '[{"id":"truck"},{"id":"chicken"}]'::jsonb) on conflict (key) do update set value = excluded.value`);
+  await db.exec(readFileSync(path.join(SUP, 'phase8.sql'), 'utf8')); await db.exec(readFileSync(path.join(SUP, 'phase8.sql'), 'utf8'));
+  r = await sup(`select (select string_agg(e->>'id', ',') from jsonb_array_elements(value) e) ids from settings where key='carousel'`); ok(r.rows[0].ids === 'truck,lambgoat,chicken', 'new slide is added once as slide 2 of a saved slideshow: ' + r.rows[0].ids);
 }
 
 console.log(`\n${pass} passed, ${fail} failed`);

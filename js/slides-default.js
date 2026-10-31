@@ -49,6 +49,50 @@ window.__SLIDES_DEFAULT = [
   "anim": ""
  },
  {
+  "id": "lambgoat",
+  "on": true,
+  "theme": "maroon",
+  "art": "photos",
+  "seal": true,
+  "tag": {
+   "en": "Weekend special · Min 10 LB",
+   "bn": "সপ্তাহান্তের অফার · সর্বনিম্ন ১০ পাউন্ড",
+   "ar": "عرض نهاية الأسبوع · الحد الأدنى ١٠ رطل"
+  },
+  "h": {
+   "en": "Fresh Lamb $6/lb & Goat $8/lb",
+   "bn": "তাজা ভেড়া $6/পাউন্ড ও খাসি $8/পাউন্ড",
+   "ar": "ضأن طازج $6/رطل وماعز $8/رطل"
+  },
+  "p": {
+   "en": "Zabiha halal, cut ready to cook. Order 10 LB or more — delivered Saturday & Sunday.",
+   "bn": "জবিহ হালাল, রান্নার উপযোগী কাটা। ১০ পাউন্ড বা তার বেশি অর্ডার করুন — শনি ও রবিবার ডেলিভারি।",
+   "ar": "ذبح حلال، مقطّع جاهز للطهي. اطلب ١٠ أرطال أو أكثر — التوصيل السبت والأحد."
+  },
+  "cta": {
+   "en": "Order lamb & goat",
+   "bn": "ভেড়া ও খাসি অর্ডার করুন",
+   "ar": "اطلب الضأن والماعز"
+  },
+  "go": "meat",
+  "anim": "meat",
+  "imgs": [
+   "pl_lamb",
+   "pl_goatface",
+   "pl_sheep"
+  ],
+  "pl": {
+   "en": "Lamb $6 · Goat $8",
+   "bn": "ভেড়া $6 · খাসি $8",
+   "ar": "ضأن $6 · ماعز $8"
+  },
+  "pv": {
+   "en": "per lb",
+   "bn": "প্রতি পাউন্ড",
+   "ar": "للرطل"
+  }
+ },
+ {
   "id": "meat",
   "on": true,
   "theme": "cream",

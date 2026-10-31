@@ -1,0 +1,9 @@
+
+
+UPDATE 9: upload all files to GitHub, then run supabase/phase6.sql in Supabase SQL Editor (paste only the SQL text). Hard refresh. Details in NEXT-STEPS.md (Update 9).
+
+
+UPDATE 10: upload files, run supabase/phase7.sql, re-deploy the capture-payment function, then follow CARD-TEST-CHECKLIST.md.
+
+
+UPDATE 11: upload files, run supabase/phase8.sql, hard refresh. Details in NEXT-STEPS.md (Update 11).

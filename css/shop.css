@@ -324,3 +324,14 @@ body.sg-open { overflow: hidden; }
 .sg-cart-t small { display: block; margin-top: 3px; font-weight: 600; font-size: 12.5px; opacity: .9; }
 .sg-cart-go { flex: none; font-size: 22px; line-height: 1; }
 [dir="rtl"] .sg-cart-go { transform: scaleX(-1); }
+
+/* quantity controls: typeable stepper + quick-add buttons */
+.qty .q-in { width: 56px; height: 32px; border: 0; background: transparent; text-align: center; font: 700 14px 'Manrope', sans-serif; color: inherit; padding: 0; -moz-appearance: textfield; appearance: textfield; }
+.qty .q-in::-webkit-outer-spin-button, .qty .q-in::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.qty .q-in:focus { outline: 2px solid var(--fm-accent-dark); outline-offset: -2px; background: #fff; }
+.qchips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+.qchips button { min-height: 32px; padding: 4px 9px; border: 1.5px solid var(--fm-border); border-radius: 999px; background: var(--fm-beige); color: var(--fm-charcoal); font: 700 12.5px 'Manrope', sans-serif; cursor: pointer; transition: background .15s, transform .12s; }
+.qchips button:hover { background: var(--fm-accent-soft); } .qchips button:active { transform: scale(.94); }
+.qc { margin-top: 10px; display: flex; flex-direction: column; align-items: flex-start; }
+.qc .qchips { margin-top: 8px; }
+.ci-min { margin-top: 6px; font: 600 12px/1.3 'Inter', sans-serif; color: var(--fm-accent-dark); }
